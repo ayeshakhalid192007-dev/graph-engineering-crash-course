@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 >
-> **Execution mode:** Runs under one `/loop`. Task 1 (registry scaffolding) runs first since later tasks populate it. Tasks 2 (starter template), 3–9 (seven core kits), 10 (sixteen extended kits, itself split into four parallel sub-batches), 11–14 (projects, cheatsheets, advanced tier, assessments), and 15 (remaining scripts) are then fanned out to parallel subagents. Task 16 (verification) runs last, sequentially. The loop self-stops after Task 16 and waits for user approval before `day-4-plan.md` starts.
+> **Execution mode:** This project uses **four separate, independent `/loop` instances — one per day — not one loop reused across days and not one combined loop spanning the whole project.** This document governs only Day 3's own dedicated loop, created fresh once the Day 2 approval gate clears — it shares no runtime state with Days 1–2's loops (both already stopped permanently) or with Day 4's loop (not yet created). Task 1 (registry scaffolding) runs first since later tasks populate it. Tasks 2 (starter template), 3–9 (seven core kits), 10 (sixteen extended kits, itself split into four parallel sub-batches), 11–14 (projects, cheatsheets, advanced tier, assessments), and 15 (remaining scripts) are then fanned out to parallel subagents. Task 16 (verification) runs last, sequentially. The loop then **stops permanently** and waits for user approval before Day 4's loop is created — it is never resumed or continued into Day 4.
 >
 > **Prerequisite:** Day 1 and Day 2 complete and approved. This plan assumes the full 17-step course, `docs/methods/`, `docs/operating/`, and `scripts/originality-check.mjs` + `scripts/verify-labs.sh` already exist and pass.
 
@@ -716,10 +716,10 @@ git add STATE.md loop-run-log.md
 git commit -m "Day 3 complete: Deliverable 1 feature-complete, all CI gates green"
 ```
 
-- [ ] **Step 6: STOP the loop and report to the user.**
+- [ ] **Step 6: STOP Day 3's loop permanently and report to the user.** Per the "separate loop per day" execution mode: this loop ends here — it is not paused or resumed later. Starting Day 4 means **creating a brand-new, separate `/loop` scoped to `day-4-plan.md`**, not reawakening this one.
 
 ---
 
 ## Day 3 Approval Gate
 
-**Do not proceed to `day-4-plan.md` until the user has reviewed Day 3's output and explicitly said to proceed.** Flag the two judgment calls made this day for explicit sign-off: (1) all 16 extended kits use Claude Code as the single reference tool (not a mix), and (2) `registry.yaml` is validated with a hand-rolled scoped parser rather than a YAML library dependency.
+**Do not create Day 4's loop until the user has reviewed Day 3's output and explicitly said to proceed.** Flag the two judgment calls made this day for explicit sign-off: (1) all 16 extended kits use Claude Code as the single reference tool (not a mix), and (2) `registry.yaml` is validated with a hand-rolled scoped parser rather than a YAML library dependency. Once cleared, Day 4 starts as its **own independent `/loop`** — a fresh instance, not this one continuing.

@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 >
-> **Execution mode:** Runs under one `/loop`. Tasks 1–9 (the seven Part tasks + methods + operating) are independent of each other — the loop fans them out to parallel subagents simultaneously, then Task 10 (verification) runs sequentially once all nine land. The loop self-stops after Task 10 and waits for user approval before `day-3-plan.md` starts.
+> **Execution mode:** This project uses **four separate, independent `/loop` instances — one per day — not one loop reused across days and not one combined loop spanning the whole project.** This document governs only Day 2's own dedicated loop, created fresh once the Day 1 approval gate clears — it shares no runtime state with Day 1's loop (which already stopped permanently) or with Days 3–4's loops (not yet created). Tasks 1–9 (the seven Part tasks + methods + operating) are independent of each other — the loop fans them out to parallel subagents simultaneously, then Task 10 (verification) runs sequentially once all nine land. The loop then **stops permanently** and waits for user approval before Day 3's loop is created — it is never resumed or continued into Day 3.
 >
 > **Prerequisite:** `day-1-plan.md` must be complete and approved — this plan assumes `docs/00-start-here/`, `docs/01-prerequisites/`, `docs/02-foundations/`, `scripts/originality-check.mjs`, and the directory stubs from Day 1 Task 6 Step 11 already exist.
 
@@ -469,10 +469,10 @@ git add scripts/verify-labs.sh STATE.md loop-run-log.md
 git commit -m "Day 2 complete: verify-labs.sh added, all labs passing, STATE.md updated"
 ```
 
-- [ ] **Step 8: STOP the loop and report to the user.**
+- [ ] **Step 8: STOP Day 2's loop permanently and report to the user.** Per the "separate loop per day" execution mode: this loop ends here — it is not paused or resumed later. Starting Day 3 means **creating a brand-new, separate `/loop` scoped to `day-3-plan.md`**, not reawakening this one.
 
 ---
 
 ## Day 2 Approval Gate
 
-**Do not proceed to `day-3-plan.md` until the user has reviewed Day 2's output and explicitly said to proceed.** Flag any originality-check collisions that required a rewrite, and confirm the `docs/**/labs/` colocation choice (noted in Architecture above) is acceptable before Day 3 builds on the same convention for pattern kits.
+**Do not create Day 3's loop until the user has reviewed Day 2's output and explicitly said to proceed.** Flag any originality-check collisions that required a rewrite, and confirm the `docs/**/labs/` colocation choice (noted in Architecture above) is acceptable before Day 3 builds on the same convention for pattern kits. Once cleared, Day 3 starts as its **own independent `/loop`** — a fresh instance, not this one continuing.

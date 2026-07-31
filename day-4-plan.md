@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 >
-> **Execution mode:** Runs under one `/loop`. Task 1 (scaffold) and Task 2 (content libs) must land before anything else, since every page/component depends on them. Tasks 3–11 (components + pages) are then fanned out to parallel subagents grouped by the interfaces they share (see each task). Tasks 12–15 (polish, build verification, deploy, close-out) run sequentially at the end. **Task 14 (deploy) is blocked on two open decisions the user must make — see that task and the Approval Gate.**
+> **Execution mode:** This project uses **four separate, independent `/loop` instances — one per day — not one loop reused across days and not one combined loop spanning the whole project.** This document governs only Day 4's own dedicated loop, created fresh once the Day 3 approval gate clears — it shares no runtime state with Days 1–3's loops, all of which already stopped permanently. Task 1 (scaffold) and Task 2 (content libs) must land before anything else, since every page/component depends on them. Tasks 3–11 (components + pages) are then fanned out to parallel subagents grouped by the interfaces they share (see each task). Tasks 12–15 (polish, build verification, deploy, close-out) run sequentially at the end. **Task 14 (deploy) is blocked on two open decisions the user must make — see that task and the Approval Gate.** This is the fourth and final loop in the project — there is no Day 5 loop to hand off to.
 >
 > **Prerequisite:** Days 1–3 complete and approved. `docs/`, `patterns/`, `starters/` are feature-complete; this plan only reads from them, it does not modify their content.
 
@@ -612,7 +612,7 @@ git add STATE.md loop-run-log.md
 git commit -m "Day 4 complete pending deploy decision: both deliverables meet DoD locally"
 ```
 
-- [ ] **Step 5: STOP the loop and report to the user**, explicitly surfacing Task 14's open decision rather than assuming an answer.
+- [ ] **Step 5: STOP Day 4's loop permanently and report to the user**, explicitly surfacing Task 14's open decision rather than assuming an answer. Per the "separate loop per day" execution mode: this is the fourth and final loop — it ends here, and there is no Day 5 loop for it to hand off to.
 
 ---
 
