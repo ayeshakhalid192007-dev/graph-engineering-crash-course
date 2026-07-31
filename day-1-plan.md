@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 >
-> **Execution mode:** This plan runs under a single `/loop` (dynamic, self-paced). The loop dispatches Tasks 1–6 below to parallel subagents where marked, then runs Task 7 (verification) itself before self-stopping. It does **not** advance to `day-2-plan.md` on its own — it stops and waits for the user's explicit approval, per the "Plans first, approve each day" execution mode agreed with the user.
+> **Execution mode:** This project uses **four separate, independent `/loop` instances — one per day — not one loop reused across days and not one combined loop spanning the whole project.** This document governs only Day 1's own dedicated loop. That loop is created fresh when Day 1 starts, dispatches Tasks 1–6 below to parallel subagents where marked, runs Task 7 (verification) itself, and then **stops permanently** — it is never resumed and never carries over into Day 2. Days 2–4 each get their own freshly-created loop, scoped only to that day's plan (`day-2-plan.md`, `day-3-plan.md`, `day-4-plan.md`), started only after the prior day's approval gate is explicitly cleared by the user. The four loops share no runtime state with each other — the only handoff between them is the repo's own committed files (`STATE.md`, `loop-run-log.md`, and the content itself).
 
 **Goal:** Stand up `graph-engineering-course/` as a real, browsable GitHub repo — project scaffolding, the repo's own dogfooded Loop Engineering discipline, and the entry-layer docs (`00-start-here/`, `01-prerequisites/`, `02-foundations/`) — all passing the originality gate.
 
@@ -551,15 +551,17 @@ git add STATE.md loop-run-log.md
 git commit -m "Day 1 complete: verification passed, STATE.md updated"
 ```
 
-- [ ] **Step 7: STOP the loop and report to the user**
+- [ ] **Step 7: STOP Day 1's loop permanently and report to the user**
 
-Per the approval-gated execution mode: do not start `day-2-plan.md`. Summarize what was built, surface the blocked Steinberger quote, and wait for explicit go-ahead.
+Per the "separate loop per day" execution mode: this loop ends here — it is not paused or resumed later. Summarize what was built, surface the blocked Steinberger quote, and wait for explicit go-ahead. Starting Day 2 means **creating a brand-new, separate `/loop` scoped to `day-2-plan.md`**, not reawakening this one.
 
 ---
 
 ## Day 1 Approval Gate
 
-**Do not proceed to `day-2-plan.md` until the user has:**
+**Do not create Day 2's loop until the user has:**
 1. Reviewed the Day 1 deliverables (or this plan, before execution).
 2. Supplied the real Peter Steinberger quote text + exact source/date (Task 2 is blocked without it — a placeholder must never be fabricated).
 3. Explicitly said to proceed.
+
+Once cleared, Day 2 starts as its **own independent `/loop`** — a fresh instance, not this one continuing.
