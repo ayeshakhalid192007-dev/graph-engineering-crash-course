@@ -8,7 +8,7 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 **Edge.** A labeled, directed connection between two nodes that asserts something specific and checkable — "wrote," "depends on," "contradicts," "was informed by." A good edge is a small falsifiable claim, not a vague association; if you can't say what would make an edge wrong, it probably isn't specific enough yet.
 
-**Work-history graph.** The graph that tracks what was attempted, in what order, by whom, and with what outcome — successful and unsuccessful attempts both. Its purpose is retracing: given a strange result, can you walk backward through it and see exactly how that result was produced.
+**Work-history graph.** A chronological record of attempts — what got tried, who tried it, what came before it, and whether it panned out, failures included. Read it backward from a puzzling outcome and the sequence of decisions behind it becomes something you can trace, not something you have to guess at.
 
 **Fact graph.** The graph that tracks claims the team has checked and is willing to build further work on. It grows more slowly and more carefully than a work-history graph, because every node in it is implicitly a promise that the claim has been looked at, not just proposed.
 
@@ -24,8 +24,8 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 **Governance graph.** A graph whose nodes are loops (or agents) rather than facts, and whose edges describe authority and accountability between them — who feeds whom input, who checks whose output, who is allowed to overrule whom. It's the layer you reach for once more than one loop is running against the same shared memory.
 
-**Anchor.** A signal inside a governance graph that comes from outside the loop system entirely — a real test suite, a real user's response, an actual clock. Anchors matter because a group of loops that only check each other can end up perfectly self-consistent and completely wrong at the same time.
+**Anchor.** A check wired into a governance graph from outside the loop system altogether — nothing any loop authored or can nudge, like a passing integration test, an actual human's reaction, or the plain time on a clock. Without at least one, a set of loops checking only each other can settle into confident agreement on something false, with every internal signal insisting it's fine.
 
-**Frozen node.** A node in a graph that no loop is permitted to rewrite, no matter how convenient rewriting it would be in the moment — often a rule, a threshold, or a definition of success. Freezing the right node is what stops a loop from quietly redefining its way to a passing grade.
+**Frozen node.** A fact or rule that stays off-limits to every loop's write access, full stop — not because changing it wouldn't help some loop in the moment, but because that exact temptation is the risk being guarded against. Success thresholds and safety rules are typical candidates. Skip this and a system of loops can gradually edit its own definition of success until every check passes while nothing underneath has actually improved.
 
 **Counter-metric.** A second measurement, independent of whatever a loop is being optimized against and ideally invisible to the loop itself, used to catch the loop gaming its primary metric instead of actually achieving the underlying goal.

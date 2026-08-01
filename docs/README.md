@@ -14,7 +14,7 @@ If you haven't been here before, don't start on this page. Visit [the router](00
 
 | Track | Level | Walking in, you already know… | Walking out, you can… | Where it lives |
 | --- | --- | --- | --- | --- |
-| **G1 · Foundations** | New to graphs | The Loop Engineering vocabulary — heartbeat, spine, maker/checker | Say exactly why a single memory file stops being enough once a second loop shows up, and separate a record of attempts from a store of facts | Prerequisites + Foundations + Part 1 |
+| **G1 · Foundations** | New to graphs | The Loop Engineering vocabulary — heartbeat, spine, maker/checker | Point to the exact moment a lone memory file quits working once a second worker starts touching it, and tell a trail of attempts apart from a store of checked claims | Prerequisites + Foundations + Part 1 |
 | **G2 · Practitioner** | Comfortable with the two-graph split | That work-history and facts are different graphs with different jobs | Push a real claim through extraction, resolution, and provenance, then hand a worker a bounded subgraph and check its output against real edges | Parts 2–4 + Projects 2–6 |
 | **G3 · Engineer** | Can stand up a single working graph | How one graph is built and read | Connect several loops into a governance graph, and name — and patch — each of the four ways a lone loop quietly goes wrong | Part 5 + Projects 7–8 + pattern library |
 | **G4 · Ultra-Pro** | Has shipped a graph already | How to run a graph as production infrastructure | Recognize when a graph is the wrong tool for a job, scale one across a bigger system, and write a new pattern for someone else to reuse | Parts 6–7 + advanced tier + certification |
@@ -25,7 +25,7 @@ If you haven't been here before, don't start on this page. Visit [the router](00
 | --- | --- |
 | [`00-start-here/`](00-start-here/README.md) | A short router — 2–3 questions that point you at the right starting page |
 | [`01-prerequisites/`](01-prerequisites/README.md) | Confirms you have Loop Engineering and Harness Engineering, with recap primers if you want a refresher |
-| [`02-foundations/`](02-foundations/glossary.md) | Vocabulary and mental models this whole course leans on: the glossary, the two-graph split at an intro level, and "comprehension debt" |
+| [`02-foundations/`](02-foundations/README.md) | Vocabulary and mental models this whole course leans on: the [glossary](02-foundations/glossary.md), [mental models](02-foundations/mental-models.md), [the two-graph split](02-foundations/the-two-graphs.md) at an intro level, and [comprehension debt](02-foundations/concepts.md) |
 
 ## The 17-step roadmap
 
