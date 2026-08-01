@@ -6,6 +6,38 @@ the page template, commit conventions, and the human-only status of
 `graph-plan.md` — live in `AGENTS.md`. Read that file first; this one only
 adds the details specific to running Claude Code here.
 
+## Session startup order
+
+Run through this at the start of every session, before touching any task:
+
+1. Read this file (automatic).
+2. Read `AGENTS.md` for the rules that apply regardless of tool.
+3. Read `STATE.md` to see which day this repo's build is on and whether the
+   most recent day is still waiting on human approval.
+4. Read the day plan `STATE.md` points to (`day-1-plan.md` through
+   `day-4-plan.md`) for the actual task breakdown.
+5. Skim `loop-run-log.md`'s latest entries to see exactly where the last
+   session left off, and `loop-constraints.md` / `loop-budget.md` for any
+   hard limits still in force.
+6. Continue from that point. Don't restart a day marked `done` in
+   `STATE.md`, and don't start a day marked `not started` ahead of the
+   human owner's go-ahead — flag it instead.
+
+## Where things live
+
+| File / folder | Role |
+| --- | --- |
+| `graph-plan.md` | Master spec — the single source of truth. Human-only; no agent edits it. |
+| `AGENTS.md` | Rules for any agent, any tool, working in this repo. |
+| `day-1-plan.md` … `day-4-plan.md` | Per-day task breakdown for the build. |
+| `STATE.md` | Which day/phase this repo's own build is currently in. |
+| `loop-run-log.md` | Append-only log of what actually happened, one entry per beat/session. |
+| `loop-constraints.md` | Hard limits no loop or agent may cross. |
+| `loop-budget.md` | How much may change per run, and why. |
+| `LOOP.md` | The loops that maintain this repo's content over time, and their ownership. |
+| `resources/sources.md` | Load-bearing attribution table for the ten primary sources. |
+| `scripts/originality-check.mjs` | Originality gate — see below. |
+
 ## Before committing any `docs/` change
 
 Run the originality checker and make sure it exits clean:
