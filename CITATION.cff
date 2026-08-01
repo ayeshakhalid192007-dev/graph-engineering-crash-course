@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+title: 'Graph Engineering — A Crash Course'
+message: 'If you use this course in your work, please cite it as below.'
+type: software
+authors:
+  - name: 'Graph Engineering Course Contributors'
+date-released: 2026-07-31
+license: MIT
+repository-code: 'https://github.com/graph-engineering-course/graph-engineering-course'
+url: 'https://graph-engineering-course.dev'
+keywords:
+  - 'graph-engineering'
+  - 'multi-agent'
+  - 'shared-memory'
+  - 'course'
+  - 'learning'
