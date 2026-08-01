@@ -14,6 +14,12 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 <a id="fact-graph"></a>**Fact graph.** The graph that tracks claims the team has checked and is willing to build further work on. It grows more slowly and more carefully than a work-history graph, because every node in it is implicitly a promise that the claim has been looked at, not just proposed.
 
+<a id="ratchet"></a>**Ratchet.** A rule for extending a work-history graph that only advances the record forward when a new attempt strictly beats whatever the current best attempt was — anything that doesn't clear that bar gets logged, not deleted, but also doesn't become the new reference point. The name is mechanical on purpose: like a socket wrench that only turns one way, the chain of kept attempts can only move toward "better than before," never quietly slide backward because a mediocre attempt got treated as progress.
+
+<a id="durable-history"></a>**Durable history.** The specific chain of attempts a ratchet keeps — each one strictly better than the attempt before it, retained permanently as the record of how the current best result was actually reached. Durable history stays short precisely because it excludes the attempts that didn't improve on anything; the length of the chain measures how many times real progress happened, not how many times anything was tried.
+
+<a id="queryable-failed-branch"></a>**Queryable failed branch.** An attempt that didn't make it into durable history but still exists as a node another worker can find and read later — what was tried, and specifically why it didn't work. The value isn't in celebrating the failure; it's in making that failure something a later worker can look up before spending a session rediscovering it firsthand.
+
 **Extraction.** The step of turning an unstructured source — a document, a transcript, a diff — into structured nodes and edges that match a schema decided on beforehand. Extraction done well produces something a program can check; extraction done poorly produces a summary that only reads like structure.
 
 **Resolution.** The step of recognizing that two different mentions actually refer to the same real thing, and merging them into a single node without discarding the fact that they started out as separate mentions. A resolution step that can't be undone is a resolution step that will eventually merge two things that shouldn't have been merged.
