@@ -24,6 +24,7 @@ Before writing code, make sure your pattern fits:
 
 ### 2. Fork and create a branch
 
+<!-- Placeholder: Replace with real GitHub repository URL once a remote is created -->
 ```bash
 git clone https://github.com/graph-engineering-course/graph-engineering-course.git
 cd graph-engineering-course
@@ -34,7 +35,7 @@ git checkout -b pattern/your-pattern-name
 
 Every pattern directory has this exact shape:
 
-```
+```text
 patterns/your-pattern-name/
 ├── PATTERN.md                    # what it does, inputs/outputs, failure mode if skipped
 ├── README.md                      # quickstart: how to run the example

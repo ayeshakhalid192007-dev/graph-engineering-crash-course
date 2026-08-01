@@ -7,4 +7,15 @@ jobs:
       - uses: actions/checkout@v4
       - uses: DavidAnson/markdownlint-cli2-action@v16
         with:
-          globs: '**/*.md'
+          globs: |
+            docs/**/*.md
+            README.md
+            CONTRIBUTING.md
+            SECURITY.md
+            AGENTS.md
+            CLAUDE.md
+            LOOP.md
+            STATE.md
+            loop-budget.md
+            loop-constraints.md
+            loop-run-log.md

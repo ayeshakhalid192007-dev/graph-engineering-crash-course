@@ -2,12 +2,13 @@
 
 This repository is not just a pile of files — it is maintained by a small
 number of loops, in the sense this course itself teaches: a heartbeat that
-fires on some trigger, a spine of steps that runs each time, and a
-maker/checker split so the loop doesn't get to grade its own homework. This
-document names the loops that actually keep this repo correct, what each one
-touches, and the two structural guarantees — an anchor and a set of frozen
-nodes — that stop those loops from drifting into a shared, self-consistent
-delusion about the state of the course.
+fires on some trigger, a spine — the durable state each loop picks up at the
+start of a turn and writes back at the end — that carries it from one run to
+the next, and a maker/checker split so the loop doesn't get to grade its own
+homework. This document names the loops that actually keep this repo
+correct, what each one touches, and the two structural guarantees — an
+anchor and a set of frozen nodes — that stop those loops from drifting into
+a shared, self-consistent delusion about the state of the course.
 
 ## The content loop
 

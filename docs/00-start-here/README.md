@@ -4,7 +4,7 @@ Three quick questions. Answer them honestly and skip straight to the section tha
 
 ## 1. Have you actually finished Loop Engineering?
 
-Think about the smallest loop-engineering setup there is: one agent, one file it consults on the way in and updates on the way out, nobody else anywhere near either end. If you can name that file's "spine" on the spot, and explain why a heartbeat isn't the same thing as a maker grading its own homework, you're solid — move to question 2.
+Think about the smallest loop-engineering setup there is: one agent, one file it consults on the way in and updates on the way out, nobody else anywhere near either end. If you can name what makes that file the loop's "spine" on the spot, and explain why a heartbeat isn't the same thing as a maker grading its own homework, you're solid — move to question 2.
 
 If that paragraph felt shaky, go read the [loop engineering primer](../01-prerequisites/loop-engineering-primer.md) before anything else. It's a recap, not the full course, but it will tell you fast whether you need to go back and actually finish Loop Engineering first.
 

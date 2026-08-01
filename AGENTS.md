@@ -43,9 +43,10 @@ instead of resetting each time. In short: open with a scenario built for this
 course, explain the idea in plain language, illustrate it with a diagram
 drawn fresh for this material, show it worked in more than one agent tool,
 offer an optional deeper aside that still credits ideas rather than quoting
-them, check understanding with one short question, hand the reader a real
-exercise to run, and close with a troubleshooting box mapping a symptom to
-its cause and its fix. An agent authoring or reviewing a page should check it
+them, define new terms inline as the reader meets them instead of leaving
+them to a separate glossary, check understanding with one short question,
+hand the reader a real exercise to run, and close with a troubleshooting box
+mapping a symptom to its cause and its fix. An agent authoring or reviewing a page should check it
 against the full template in §12 before treating it as done — a page missing
 one of these pieces is an unfinished page, not a stylistic variant.
 
