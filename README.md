@@ -22,6 +22,7 @@ A single automated agent can work with a thin memory file—read it in, act, wri
 ## Quickstart
 
 1. **Clone this repo:**
+   <!-- Placeholder: Replace with real GitHub repository URL once a remote is created -->
    ```bash
    git clone https://github.com/graph-engineering-course/graph-engineering-course.git
    cd graph-engineering-course
@@ -50,6 +51,7 @@ We welcome contributions: bug reports, pattern additions, example implementation
 
 If you use this course in your work, please cite it:
 
+<!-- Placeholder: Replace repository URL once a GitHub remote is created -->
 ```bibtex
 @software{graph-eng-course-2026,
   title = {Graph Engineering — A Crash Course},
