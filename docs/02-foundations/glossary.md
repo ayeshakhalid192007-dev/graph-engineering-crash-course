@@ -2,15 +2,17 @@
 
 Short, one-paragraph definitions for the vocabulary this course uses. Each entry is written for how the term is used *in this course specifically* — if you've seen a slightly different definition somewhere else, that's expected; graph terminology varies more across communities than most people expect.
 
+<a id="thin-memory-trick"></a>**Thin-memory trick.** The setup that's genuinely fine for exactly one automated loop: a lone plain-text file, checked at the start of a run and updated once at the end, with nothing else ever touching it in between runs. Its safety depends entirely on there being just one reader and one writer, taking turns — add a second process sharing that same file and the arrangement stops being fine without any code changing at all.
+
 **Graph.** A structure made of two kinds of thing: nodes, which stand for something (an entity, an event, an attempt), and edges, which stand for a specific, named relationship between two nodes. A graph is useful precisely because it forces every relationship to be named instead of left implicit in a paragraph of prose somewhere.
 
-**Node.** A single tracked thing in a graph — a person, a function, a ticket, an attempt, a claim. On its own a node carries almost no meaning; it becomes useful once edges connect it to other nodes.
+<a id="node"></a>**Node.** A single tracked thing in a graph — a person, a function, a ticket, an attempt, a claim. On its own a node carries almost no meaning; it becomes useful once edges connect it to other nodes.
 
-**Edge.** A labeled, directed connection between two nodes that asserts something specific and checkable — "wrote," "depends on," "contradicts," "was informed by." A good edge is a small falsifiable claim, not a vague association; if you can't say what would make an edge wrong, it probably isn't specific enough yet.
+<a id="edge"></a>**Edge.** A labeled, directed connection between two nodes that asserts something specific and checkable — "wrote," "depends on," "contradicts," "was informed by." A good edge is a small falsifiable claim, not a vague association; if you can't say what would make an edge wrong, it probably isn't specific enough yet.
 
-**Work-history graph.** A chronological record of attempts — what got tried, who tried it, what came before it, and whether it panned out, failures included. Read it backward from a puzzling outcome and the sequence of decisions behind it becomes something you can trace, not something you have to guess at.
+<a id="work-history-graph"></a>**Work-history graph.** A chronological record of attempts — what got tried, who tried it, what came before it, and whether it panned out, failures included. Read it backward from a puzzling outcome and the sequence of decisions behind it becomes something you can trace, not something you have to guess at.
 
-**Fact graph.** The graph that tracks claims the team has checked and is willing to build further work on. It grows more slowly and more carefully than a work-history graph, because every node in it is implicitly a promise that the claim has been looked at, not just proposed.
+<a id="fact-graph"></a>**Fact graph.** The graph that tracks claims the team has checked and is willing to build further work on. It grows more slowly and more carefully than a work-history graph, because every node in it is implicitly a promise that the claim has been looked at, not just proposed.
 
 **Extraction.** The step of turning an unstructured source — a document, a transcript, a diff — into structured nodes and edges that match a schema decided on beforehand. Extraction done well produces something a program can check; extraction done poorly produces a summary that only reads like structure.
 

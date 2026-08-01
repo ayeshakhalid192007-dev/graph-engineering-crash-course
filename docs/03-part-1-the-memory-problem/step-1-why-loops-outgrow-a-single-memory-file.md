@@ -6,7 +6,7 @@ A pull request touching a login rate limiter goes up for review, and the harness
 
 ## Explanation
 
-A single automated loop can get away with almost no memory infrastructure at all — just one plain file it reads when it wakes up and rewrites before it goes back to sleep. Call this the **thin-memory trick**: one loop, one file, one reader, one writer, and that reader and writer are never active on the file at the same moment, because they're the same process taking turns. Under those conditions a flat file is not a shortcut you'll regret — it's genuinely the right amount of infrastructure for the job, and reaching for anything heavier would be waste.
+A single automated loop can get away with almost no memory infrastructure at all — just one plain file it reads when it wakes up and rewrites before it goes back to sleep. Call this the **[thin-memory trick](../02-foundations/glossary.md#thin-memory-trick)**: one loop, one file, one reader, one writer, and that reader and writer are never active on the file at the same moment, because they're the same process taking turns. Under those conditions a flat file is not a shortcut you'll regret — it's genuinely the right amount of infrastructure for the job, and reaching for anything heavier would be waste.
 
 The trick has a hidden condition baked into it, though: it only holds while there is exactly one loop touching the file. The moment a second reviewer, a second worker, a second anything starts reading or writing that same file, two specific things start going wrong, and they're different failures, not the same one twice.
 

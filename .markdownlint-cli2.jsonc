@@ -3,11 +3,18 @@
   // fixed column), and a few primers use collapsible <details>/<summary>
   // blocks for optional deep-dives. Disable/relax those two rules; keep the
   // rest of the default rule set active.
+  //
+  // "a" is also allowed: docs/02-foundations/glossary.md defines each term
+  // as a bold lead-in inside a flowing paragraph (not a heading), so there's
+  // no auto-generated heading slug to link into. A bare `<a id="...">` right
+  // before the bold term gives step pages a real, stable fragment to link to
+  // (e.g. `glossary.md#node`) without turning the glossary into a heading
+  // list.
   "config": {
     "default": true,
     "MD013": false,
     "MD033": {
-      "allowed_elements": ["details", "summary"]
+      "allowed_elements": ["details", "summary", "a"]
     },
     // docs/README.md's "17-step roadmap" numbers steps 1-17 continuously
     // across several Part-N headings (each heading splits the numbering
