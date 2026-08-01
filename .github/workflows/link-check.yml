@@ -1,0 +1,17 @@
+name: link-check
+on: [push, pull_request]
+jobs:
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run link check
+        run: |
+          if [ -f scripts/link-check.mjs ]; then
+            node scripts/link-check.mjs
+          else
+            echo "scripts/link-check.mjs not created yet (ships Day 3) — skipping."
+          fi

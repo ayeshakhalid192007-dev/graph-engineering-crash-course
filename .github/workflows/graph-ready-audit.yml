@@ -1,0 +1,17 @@
+name: graph-ready-audit
+on: [push, pull_request]
+jobs:
+  graph-ready-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run graph-ready audit
+        run: |
+          if [ -f scripts/graph-ready-audit.mjs ]; then
+            node scripts/graph-ready-audit.mjs
+          else
+            echo "scripts/graph-ready-audit.mjs not created yet (ships Day 3) — skipping."
+          fi
