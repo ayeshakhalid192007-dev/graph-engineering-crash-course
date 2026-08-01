@@ -8,7 +8,7 @@ append-only history of what actually happened during each day's run.
 
 | Day | Status | Plan | Notes |
 | --- | ------ | ---- | ----- |
-| 1 | in progress | day-1-plan.md | repo foundation + prerequisites + foundations |
+| 1 | done | day-1-plan.md | repo foundation + prerequisites + foundations |
 | 2 | not started | day-2-plan.md | full 17-step course + assessments |
 | 3 | not started | day-3-plan.md | pattern library + projects + advanced tier |
 | 4 | not started | day-4-plan.md | website build + polish + ship |
