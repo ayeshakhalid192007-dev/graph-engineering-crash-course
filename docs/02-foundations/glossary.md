@@ -20,11 +20,17 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 <a id="queryable-failed-branch"></a>**Queryable failed branch.** An attempt that didn't make it into durable history but still exists as a node another worker can find and read later — what was tried, and specifically why it didn't work. The value isn't in celebrating the failure; it's in making that failure something a later worker can look up before spending a session rediscovering it firsthand.
 
-**Extraction.** The step of turning an unstructured source — a document, a transcript, a diff — into structured nodes and edges that match a schema decided on beforehand. Extraction done well produces something a program can check; extraction done poorly produces a summary that only reads like structure.
+<a id="schema"></a>**Schema.** The fixed list of entity types and relationship types a graph agrees to hold, settled before any extraction runs rather than expanded afterward to fit whatever a source happened to mention. A schema is a contract on what counts as an acceptable item, not a rough guideline extraction is free to talk its way around.
 
-**Resolution.** The step of recognizing that two different mentions actually refer to the same real thing, and merging them into a single node without discarding the fact that they started out as separate mentions. A resolution step that can't be undone is a resolution step that will eventually merge two things that shouldn't have been merged.
+<a id="extraction"></a>**Extraction.** The step of turning an unstructured source — a document, a transcript, a diff — into structured nodes and edges checked against a schema decided on beforehand. An item that doesn't match the schema's allowed types gets rejected at this step, not reshaped until it looks close enough to pass.
 
-**Provenance.** The record attached to a node or edge of where it came from — which source, which extraction pass, which version of the schema that was active at the time. Provenance is what lets a wrong claim be traced, marked wrong, and replaced later instead of silently vanishing.
+<a id="resolution"></a>**Resolution.** The step of recognizing that two different mentions actually refer to the same real thing, and folding them into a single node without discarding the fact that they started out as separate mentions. Resolution that can't be undone is resolution that will eventually merge two things that never should have been merged.
+
+<a id="reversible-merge"></a>**Reversible merge.** A resolution merge that keeps both of the original mentions, plus the stated reason they were judged to be the same underlying thing, attached to the node they were folded into. Nothing about a reversible merge is final the moment it happens — a reviewer can still inspect why it was made, and split it back apart if the reasoning turns out to be wrong.
+
+<a id="provenance"></a>**Provenance.** The record attached to a claim stating where it came from — which source document, which extraction run, which schema version was active at the time. A claim's provenance record is what lets it be traced, checked, and superseded later instead of quietly rewritten with no trace of what it used to say.
+
+<a id="supersession"></a>**Supersession.** Marking an existing claim as replaced by a newer one, linked to it by a direct edge, while leaving the old claim itself untouched apart from a flipped status field — never editing or deleting it outright. A superseded claim keeps its original content in place, letting a later reader trace what the graph used to hold and exactly when that changed.
 
 **Subgraph.** A deliberately small slice of a larger graph, scoped to exactly what one worker needs for one task. Handing a worker the whole graph defeats the purpose of having a graph at all — a subgraph is how you keep an agent's context small without keeping it uninformed.
 
