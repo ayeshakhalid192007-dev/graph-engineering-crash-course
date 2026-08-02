@@ -32,9 +32,9 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 <a id="supersession"></a>**Supersession.** Marking an existing claim as replaced by a newer one, linked to it by a direct edge, while leaving the old claim itself untouched apart from a flipped status field — never editing or deleting it outright. A superseded claim keeps its original content in place, letting a later reader trace what the graph used to hold and exactly when that changed.
 
-**Subgraph.** A deliberately small slice of a larger graph, scoped to exactly what one worker needs for one task. Handing a worker the whole graph defeats the purpose of having a graph at all — a subgraph is how you keep an agent's context small without keeping it uninformed.
+<a id="subgraph"></a>**Subgraph.** A deliberately small slice of a larger graph, scoped to exactly what one worker needs for one task. Handing a worker the whole graph defeats the purpose of having a graph at all — a subgraph is how you keep an agent's context small without keeping it uninformed.
 
-**Grounding.** The property of a claim being traceable to specific supporting edges in a graph, rather than resting on how plausible or confident it sounds. A grounded claim can be checked mechanically; an ungrounded one can only be argued about.
+<a id="grounding"></a>**Grounding.** The property of a claim being traceable to specific supporting edges in a graph, rather than resting on how plausible or confident it sounds. A grounded claim can be checked mechanically; an ungrounded one can only be argued about.
 
 **Governance graph.** A graph whose nodes are loops (or agents) rather than facts, and whose edges describe authority and accountability between them — who feeds whom input, who checks whose output, who is allowed to overrule whom. It's the layer you reach for once more than one loop is running against the same shared memory.
 
