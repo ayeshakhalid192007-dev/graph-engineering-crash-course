@@ -49,3 +49,7 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 <a id="arbitration-edge"></a>**Arbitration edge.** A recorded rule in a governance graph naming whose action takes precedence when two loops reach for one resource at the same moment. Writing it down is the point: the tie gets settled by something a person decided in advance, not by whichever loop's timer happened to fire a few seconds earlier.
 
 <a id="drift"></a>**Drift.** The slow separation between what a loop was tuned to pursue and what the surrounding system has since come to need, caused by the system moving while the loop's picture of a good outcome stays put. Nothing inside the loop registers it as trouble — measured against the target it was handed, the loop is performing beautifully.
+
+<a id="pre-build-checklist"></a>**Pre-build checklist.** A short set of honest questions asked before any schema gets designed, meant to catch the cases where a queue, a good prompt, or a plain table would settle the job at a fraction of the cost. Answering it "no, don't build one" is the checklist working correctly, not a failure to find a reason to build.
+
+<a id="dual-tool-parity"></a>**Dual-tool parity.** The property of two independently written implementations of the same system — one configured for one agent tool, one for another — landing on the same graph structure from the same source material. Parity is checked by comparing final output, never by assuming two configurations that read similarly must behave identically.
