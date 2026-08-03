@@ -2,15 +2,41 @@
 
 ## Hook
 
-A shipping platform's codebase has been running through extraction for months: every function is a node, every `calls` relationship between two functions is an edge, and every docstring or test assertion describing what a function is supposed to do landed as its own claim node, connected back to that function by a `claims` edge. The graph now holds a few thousand nodes. A ticket comes in: `resolve_shipping_zone`, the function that decides which warehouse fulfills an order, is occasionally routing shipments to the wrong coast. An agent picks up the ticket and, wanting to be thorough, asks for the whole graph before touching anything. What comes back is every function in the platform, chained together call after call, with `resolve_shipping_zone` buried somewhere in the middle — and, attached to that one function, two claim nodes from two different sources that flatly disagree about what it's supposed to do when a postal code doesn't match anything on file. Nobody built a way to hand this agent just the part of the graph its actual task touches, so it gets everything, and the one detail it actually needed to notice sits lost among thousands of edges that have nothing to do with the bug.
+A shipping platform's codebase has run through extraction for months. Every function is a node. Every `calls` relationship is an edge. Every docstring or test assertion describing what a function should do landed as its own claim node, connected back by a `claims` edge. The graph now holds a few thousand nodes.
+
+A ticket comes in: `resolve_shipping_zone`, the function that decides which warehouse fulfills an order, is occasionally routing shipments to the wrong coast. An agent picks up the ticket and, wanting to be thorough, asks for the whole graph before touching anything.
+
+What comes back is every function in the platform, chained together call after call, with `resolve_shipping_zone` buried somewhere in the middle. Attached to that one function: two claim nodes from two different sources that flatly disagree about what it's supposed to do when a postal code doesn't match anything on file. Nobody built a way to hand this agent just the part of the graph its task touches. It gets everything — and the one detail it actually needed sits lost among thousands of edges that have nothing to do with the bug.
 
 ## Explanation
 
-Nothing about having a graph requires handing the whole thing to whoever asks for it. A **[subgraph](../02-foundations/glossary.md#subgraph)** is a deliberately bounded slice of a larger graph — for a worker fixing `resolve_shipping_zone`, that means the function itself plus its direct dependencies: what it calls, what calls it, nothing two or three hops further out. Building that slice isn't a shortcut taken because the full graph is inconvenient to read; it's the whole point of having a graph rather than a document. A graph that gets handed over in full, every time, defeats its own purpose — an agent drowning in a few thousand irrelevant nodes is barely better off than one working from no structured memory at all.
+### A slice, not the whole thing
 
-The package a worker actually receives — the subgraph plus whatever framing tells it what task it's for — is its **task-scoped context**. Scoping by task, not just by proximity, matters because "everything within one hop of `resolve_shipping_zone`" and "everything this fix actually needs" aren't automatically the same set: a neighbor that only handles formatting or logging can usually be left out, while a claim node hanging off the target and disputing what the function does usually can't be — even though a `claims` edge isn't part of the call graph the depth rule was written for. A subgraph built by depth alone is a starting point; a subgraph built for a task asks depth *and* relevance the same question.
+Nothing about having a graph requires handing the whole thing to whoever asks for it. A **[subgraph](../02-foundations/glossary.md#subgraph)** is a deliberately bounded slice of a larger graph. For a worker fixing `resolve_shipping_zone`, that means the function itself plus its direct dependencies — what it calls, what calls it, nothing two or three hops further out.
 
-The part that's easy to get wrong is what happens when the slice-building step runs into an actual disagreement. `resolve_shipping_zone` here has two claim nodes attached to it that contradict each other — one from a docstring, one from a test file — and it would be tempting for whatever assembles the subgraph to quietly pick the more recent one, or the one from the more trusted source, and hand the worker a clean, single answer. That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — resolution only merges mentions that turn out to name the *same* thing, and these two claims are not the same claim wearing different words; they actually disagree about what the function does. A **contradiction-aware bundle** is a subgraph that keeps both sides of a live disagreement intact across the boundary, rather than letting the boundary-drawing step silently settle it before the worker ever sees there was anything to settle. The worker fixing the bug needs to know the graph itself is unsure what `resolve_shipping_zone` is supposed to do — that's material to the fix, not noise to be tidied away on the way out the door.
+Building that slice isn't a shortcut taken because the full graph is inconvenient to read. It's the whole point of having a graph rather than a document. A graph handed over in full, every time, defeats its own purpose — an agent drowning in a few thousand irrelevant nodes is barely better off than one working from no structured memory at all.
+
+### Scoped by task, not just by distance
+
+The package a worker actually receives — the subgraph plus whatever framing tells it what task it's for — is its **task-scoped context**. Scoping by task, not just by proximity, matters because "everything within one hop" and "everything this fix actually needs" aren't automatically the same set.
+
+- A neighbor that only handles formatting or logging can usually be left out.
+- A claim node hanging off the target and disputing what it does usually can't be — even though a `claims` edge isn't part of the call graph the depth rule was written for.
+
+A subgraph built by depth alone is a starting point. A subgraph built for a task asks depth *and* relevance the same question.
+
+### Keeping a disagreement intact
+
+The part that's easy to get wrong is what happens when the slice-building step runs into an actual disagreement. `resolve_shipping_zone` has two claim nodes attached that contradict each other — one from a docstring, one from a test file. It's tempting for whatever assembles the subgraph to quietly pick the more recent one, or the more trusted source, and hand the worker one clean answer.
+
+That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — resolution only merges mentions that turn out to name the *same* thing, and these two claims genuinely disagree about what the function does. A **contradiction-aware bundle** is a subgraph that keeps both sides of a live disagreement intact across the boundary, rather than letting the boundary-drawing step silently settle it. The worker needs to know the graph itself is unsure what the function is supposed to do — that's material to the fix, not noise to tidy away.
+
+### Edge cases worth naming
+
+1. **A three-way disagreement.** Nothing caps a contradiction-aware bundle at two sides — a third source's claim crosses the boundary too, contradictions and all.
+2. **A neighbor that's irrelevant by depth but relevant by content.** A logging helper two hops away that happens to log the exact bug symptom might matter more than a one-hop neighbor that doesn't. Depth is a default, not a guarantee of relevance.
+3. **A subgraph built for the wrong task.** The same function can be the target of two tickets needing different neighborhoods — a performance fix cares about call frequency, a correctness fix cares about claim contradictions. Task framing has to travel with the subgraph, not just the node list.
+4. **No contradiction, but also no claim at all.** A target function with zero attached claims isn't a bug in the subgraph builder — it just means nobody has recorded what the function is supposed to do yet, which is itself worth surfacing to the worker.
 
 ## Diagram
 
@@ -79,28 +105,37 @@ explicit, not just assumed.
 
 ## Going Deeper
 
-Depth is a knob, not a fixed rule, and it's worth being honest about the tradeoff on either side of it. A depth-0 slice — just the target node, nothing else — is easy to build and nearly useless, because a worker fixing a function almost always needs to know what calls it and what it calls. A depth-3 or depth-4 slice starts creeping back toward the whole-graph problem this Step exists to avoid, pulling in nodes several relationships removed from anything the task actually touches. Depth 1 across `calls`/`called_by`, plus an unconditional pull of every claim node hanging directly off the target however many of them there are and whether or not they agree, is a reasonable default for exactly the reason it sounds arbitrary: most single-function fixes live at that radius, and the cases that don't are usually a sign the task was scoped too narrowly in the first place, not that the subgraph builder needs a bigger number.
+Depth is a knob, not a fixed rule, and the tradeoff runs both directions. A depth-0 slice — just the target node — is easy to build and nearly useless, since a worker fixing a function almost always needs to know what calls it and what it calls. A depth-3 or depth-4 slice creeps back toward the whole-graph problem this Step exists to avoid. Depth 1 across `calls`/`called_by`, plus an unconditional pull of every claim node on the target, is a reasonable default: most single-function fixes live at that radius, and the cases that don't are usually a sign the task was scoped too narrowly, not that the builder needs a bigger number.
 
 ## Check Yourself
 
 <details>
 <summary>Someone on the team suggests an adjustment: whenever a target node carries two contradicting claims, retain only the claim whose provenance record is newer, on the grounds that "newer" is a defensible tiebreaker and it keeps the slice simpler. What does the worker lose if the subgraph builder does this? Reveal the answer.</summary>
 
-The worker loses the information that the graph itself doesn't have a settled answer. "More recent" is a plausible tiebreaker for a human deciding which claim to believe, but silently applying it inside subgraph construction hides the disagreement entirely — the worker sees one clean claim and has no way to know a second, contradicting one exists, let alone weigh whether the older claim might actually be the correct one. Recency is a fine input to a decision; it's a poor substitute for letting the worker see there was a decision to make at all.
+The worker loses the information that the graph itself doesn't have a settled answer. "More recent" is a plausible tiebreaker for a human deciding which claim to believe, but silently applying it inside subgraph construction hides the disagreement entirely — the worker sees one clean claim and has no way to know a second, contradicting one exists, let alone weigh whether the older claim might actually be correct. Recency is a fine input to a decision; it's a poor substitute for letting the worker see there was a decision to make at all.
 
 </details>
 
 ## Try With AI
 
-Sketch (on paper or in a scratch file) a tiny graph of your own: four or five nodes representing pieces of a task you're familiar with — files, functions, or steps in a process — connected by a relationship you name yourself. Attach two claim nodes to one of those pieces that disagree about something concerning it (what it's for, whether it's still needed, how it should behave). Ask Claude Code or OpenCode to build a task-scoped subgraph around that one piece: direct neighbors only, plus both claims. Check the result — did it keep both disagreeing claims visible, or did it quietly resolve them into one answer on your behalf? If it resolved them, ask it why, and see whether it can explain what it dropped.
+1. Sketch a tiny graph of your own — four or five nodes representing pieces of a task you know (files, functions, steps in a process), connected by a relationship you name yourself.
+2. Attach two claim nodes to one piece that disagree about something concerning it — what it's for, whether it's still needed, how it should behave.
+3. Ask Claude Code or OpenCode to build a task-scoped subgraph around that piece: direct neighbors only, plus both claims.
+4. Check the result. Did it keep both disagreeing claims visible, or did it quietly resolve them into one answer on your behalf?
+5. If it resolved them, ask it why, and see whether it can explain what it dropped.
 
 ## When It Goes Wrong
 
-**Symptom:** a worker's fix looks locally correct but breaks an assumption another part of the system was relying on, and the worker never mentions being aware of any tension around the function it changed.
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| The fix looks locally correct but breaks an assumption another part of the system relied on, and the worker shows no awareness of any tension around the function it changed. | The subgraph it was handed either didn't include a claim node flagging the disagreement, or included both but let one get filtered out before the worker saw it. | Build the subgraph to keep every claim attached to the target, contradictions included, and confirm the contradiction survives the handoff. |
+| Two workers fixing the same function reach opposite conclusions about what it should do, and neither knows the other's reasoning exists. | Each was handed a subgraph resolved toward a different one of the two contradicting claims, instead of both claims intact. | Never resolve a contradiction inside the subgraph builder — that decision belongs to whoever reads the slice, not whoever assembles it. |
+| A subgraph comes back the same size as the full graph, defeating the point of scoping at all. | The depth or relevance rule was set too loose, or "relevant" was interpreted so broadly it stopped excluding anything. | Tighten the scoping rule and report the subgraph's node count against the full graph's — a scope that doesn't shrink the count isn't scoping. |
+| A worker acts on a claim that turns out to be years out of date, unaware a newer one exists elsewhere in the graph. | The subgraph builder pulled claims by proximity but not by currency, and nothing flagged that a contradiction — old vs. new — even existed. | Pull every claim attached to the target, not just the first one found, and let a live contradiction surface rather than silently picking one. |
 
-**Cause:** the subgraph it was handed either didn't include a claim node that flagged the disagreement, or included both claims but let one get filtered out somewhere between graph and worker, so the worker acted on a single, falsely confident version of what the function was supposed to do.
+---
 
-**Fix:** build the subgraph to keep every claim attached to the target node, contradictions included, and confirm the contradiction actually survives the handoff rather than assuming it does. `labs/step-9-task-scoped-subgraph.py` builds a full graph and a task-scoped subgraph from it, and asserts the subgraph is smaller than the full graph while still carrying the deliberately-contradicting claim pair intact.
+The [glossary](../02-foundations/glossary.md#subgraph) spells out **subgraph** in full. "Task-scoped context" and "contradiction-aware bundle" are this course's own working terms for how that slice gets built and used.
 
 ---
 
