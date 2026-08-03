@@ -2,7 +2,7 @@
 
 ## Hook
 
-Four names, one table. This is the lookup version of the four recurring ways a single automated loop goes wrong on its own — for skimming during an incident, or for checking a proposed loop before it ships, not for learning the ideas for the first time. The fuller version, with a worked scenario behind each name, is Step 12 (Part 5); read that one first if any of the four names below is new to you.
+Four names, one table. This is the lookup version of the four recurring ways a single automated loop goes wrong on its own — for skimming during an incident, or for checking a proposed loop before it ships, not for learning the ideas for the first time. The fuller version, with a worked scenario behind each name, is Step 12 in Part 5; read that one first if any of the four names below is new to you.
 
 ## Explanation
 
@@ -15,7 +15,12 @@ Read the table left to right per row: the name a team should use out loud when d
 | Collision | Two loops each report success, but something downstream broke only on the nights both happened to run close together. | An arbitration edge: a recorded precedence rule stating which loop wins the shared resource. | see `patterns/registry.yaml`, ships Day 3 |
 | Drift | The loop's own numbers hold steady or improve while the thing it's judging has visibly moved on. | A periodic edge back to a human, who resamples current reality and refreshes the reference. | see `patterns/registry.yaml`, ships Day 3 |
 
-A fast way to tell these apart under pressure: ask whether the loop, given only what it can see and what it's scored on, could ever have caught this itself. If the answer is no because the score rewards the failure, that's metric-gaming. If the answer is no because the evidence lives outside any single run, that's a blind spot. If the answer is no because another loop is invisible to it, that's a collision. If the answer is no because the yardstick itself moved, that's drift.
+A fast way to tell these apart under pressure: ask whether the loop, given only what it can see and what it's scored on, could ever have caught this itself.
+
+- No, because the score rewards the failure → metric-gaming.
+- No, because the evidence lives outside any single run → blind spot.
+- No, because another loop is invisible to it → collision.
+- No, because the yardstick itself moved → drift.
 
 ## Related
 
