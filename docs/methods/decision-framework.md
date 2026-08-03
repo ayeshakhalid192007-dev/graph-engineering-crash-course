@@ -6,7 +6,7 @@ Somewhere between "we should build a graph" and actually opening a schema file s
 
 ## What Step 14 actually is
 
-Think of it as the reference-card version of a much longer instinct: before committing to a schema, an extraction pipeline, and everything downstream of them, run the candidate past a fixed, ordered set of checks rather than trusting enthusiasm for the idea. Step 14, closing out Part 6 (One Graph, End to End), walks a live scenario through that ordered set: whether the work items genuinely depend on one another, whether a single source already holds the full answer, whether the relationships in play are few and stable, whether some future reader will need to trace a claim back to its origin, whether anyone is actually positioned to keep the result maintained, and how fast the subject matter underneath it all tends to move. Landing on the wrong side of even one of those is enough to end the check for that candidate on the spot — this isn't a scorecard tallied up to a majority vote.
+Think of it as the reference-card version of a much longer instinct: before committing to a schema, an extraction pipeline, and everything downstream of them, run the candidate past a fixed, ordered set of checks rather than trusting enthusiasm for the idea. Step 14, closing out Part 6 (One Graph, End to End), walks a live scenario through that ordered set — six questions in fixed order, any one of which is enough to end the check for that candidate on the spot. It isn't a scorecard tallied up to a majority vote, and the six questions themselves aren't reproduced here; go read Step 14 for what they actually are.
 
 ## When to reach for this page versus the full step
 
