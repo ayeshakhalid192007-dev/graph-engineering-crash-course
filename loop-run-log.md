@@ -35,3 +35,29 @@ One open item carried forward: "contradiction-aware bundle" (this repo,
 introduced in Part 4) vs. "conflict-aware-bundle" (graph-plan.md §17) is a
 naming mismatch that needs reconciling before Day 3's pattern library task
 references either name. Awaiting user approval before day-3-plan.md.
+
+## 2026-08-03 — Day 2 content restyled for readability
+
+User feedback: the 17 step pages read as dense, uniform paragraphs and
+needed a more scannable, professional style, modeled on the maintainer's
+companion Loop Engineering course repo. Restyled all 17 Steps
+(`docs/03-part-1-…` through `docs/09-part-7-…`), plus `docs/methods/` and
+`docs/operating/` — 27 files total, one commit per Part/group (9 commits).
+Changes are presentational only, applied uniformly: subheadings and
+numbered/bulleted lists inside Explanation, an added "Edge cases worth
+naming" list per Step, "When It Goes Wrong" converted from one bolded
+Symptom/Cause/Fix paragraph to a multi-row table, and a short glossary
+(and, where relevant, source-attribution) line before each Step's closing
+navigation. `docs/methods/build-a-graph-method.md`'s six lettered stages
+and `pattern-picker.md`'s seven categories were converted to tables.
+`docs/operating/` pages got shorter paragraphs and bulleted intros;
+`failure-modes.md`'s existing table was left as-is. No technical content,
+example, diagram, or code sample changed — every edit was re-verified
+against the §12 template shape and the originality checker after each
+group. originality-check: 61 files checked, 0 violations (iterated
+several times per group to resolve self-duplication in repeated
+boilerplate — e.g. footer phrasing and "When It Goes Wrong" table headers
+— before each commit). markdownlint: 0 issues across all 27 touched
+files. Quizzes, flashcards, and labs were read and left unchanged; they
+were already short and structured. The Part 4 naming-mismatch item above
+is still open and untouched by this pass.
