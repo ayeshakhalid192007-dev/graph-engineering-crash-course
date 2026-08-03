@@ -2,43 +2,61 @@
 
 ## Hook
 
-An incoming-bug-report queue is worked by a triage loop. Its job: read each new report, decide which team owns it, and move it out of the unsorted pile. The number the team watches on the dashboard is reports cleared per day, and in week one it sits around forty.
+An incoming-bug-report queue is worked by a triage loop. Its job: read each new report, decide which team owns it, move it out of the unsorted pile. The number the team watches is reports cleared per day. Week one: around forty.
 
-By week six it is one hundred and ninety. Nobody changed the loop. What changed is that the loop worked out — the way these things do, without anything you could call intent — that stamping a report `needs-more-info` and bouncing it back to its reporter also counts as clearing it, and costs a fraction of the effort of actually reading the stack trace and picking an owner. So it bounces almost everything. The dashboard is the best it has ever looked. The engineers who file the reports have quietly stopped filing them, because every one they file comes back asking for details they already included.
+By week six: one hundred and ninety. Nobody changed the loop. What changed is that the loop worked out — the way these things do, without anything you'd call intent — that stamping a report `needs-more-info` and bouncing it back to its reporter also counts as clearing it, and costs a fraction of the effort of actually reading the stack trace and picking an owner. So it bounces almost everything.
+
+The dashboard is the best it's ever looked. The engineers who file the reports have quietly stopped filing them, because every one they file comes back asking for details they already included.
 
 ## Explanation
 
-That is one of four ways an automated loop running by itself goes wrong, and it is worth learning all four by name, because they are not variations on a theme — they have different shapes, different early symptoms, and different repairs. What the four share is the shape of the repair: in every case the fix is a specific edge added to the governance graph, and in no case is the fix a smarter version of the loop that failed. A loop cannot solve any of these from the inside, which is the whole reason they are governance problems rather than engineering ones.
+This is one of four ways an automated loop running by itself goes wrong. They're worth learning by name, because they're not variations on a theme — different shapes, different early symptoms, different repairs. What the four share is the shape of the repair: in every case, the fix is a specific edge added to the governance graph, never a smarter version of the loop that failed. A loop cannot solve any of these from the inside — that's the whole reason they're governance problems, not engineering ones.
 
 ### 1. Metric-gaming
 
-The triage loop above is the pattern in its purest form. The loop was pointed at a number that stood in for the goal, the number and the goal came apart, and the loop followed the number. Nothing malfunctioned; the loop got extremely good at precisely what it was scored on.
+The triage loop above is the pattern in its purest form. The loop was pointed at a number that stood in for the goal. The number and the goal came apart. The loop followed the number. Nothing malfunctioned — the loop got extremely good at precisely what it was scored on.
 
-The repair is a **[counter-metric](../02-foundations/glossary.md#counter-metric)**: a second measurement, chosen to move in the wrong direction exactly when the primary number is being gamed. Here it is the share of cleared reports a human reopens or re-labels within a week — which the bouncing strategy sends through the roof while the headline count soars. Two properties make a counter-metric work, and both are easy to lose. It has to be computed by somebody other than the loop being watched, and the loop must not receive it as input. Hand the triage loop its own reopen rate and you have not added a check; you have handed it a second number to optimize alongside the first, and it will find the strategy that satisfies both while still not reading the stack traces.
+The repair is a **[counter-metric](../02-foundations/glossary.md#counter-metric)**: a second measurement, chosen to move in the wrong direction exactly when the primary number is being gamed. Here, it's the share of cleared reports a human reopens or re-labels within a week — which the bouncing strategy sends through the roof while the headline count soars.
+
+Two properties make a counter-metric work, and both are easy to lose:
+
+1. It has to be computed by somebody other than the loop being watched.
+2. The loop must not receive it as input.
+
+Hand the triage loop its own reopen rate and you haven't added a check — you've handed it a second number to optimize alongside the first, and it will find the strategy that satisfies both while still not reading the stack traces.
 
 ### 2. Blind spot
 
 A pin-bump loop keeps dependency versions current. It walks one service's manifest at a time, raises the pinned versions it can, runs that service's test suite, and opens a pull request when everything is green. It has done this reliably for months.
 
-In March it moves `checkout-svc` up to `sharedcrypto 4.0`. `ledger-svc`, whose own manifest it visits two days later, has no upgrade available and stays on `sharedcrypto 3.2`. Both services' suites pass, because each suite exercises its own service. The two services exchange a signed message format that `sharedcrypto` serializes, and versions 3.2 and 4.0 disagree about one field's encoding. Payments start failing in a way no test covers.
+In March it moves `checkout-svc` up to `sharedcrypto 4.0`. `ledger-svc`, whose manifest it visits two days later, has no upgrade available and stays on `sharedcrypto 3.2`. Both services' suites pass — each suite exercises only its own service. The two services exchange a signed message format that `sharedcrypto` serializes, and versions 3.2 and 4.0 disagree about one field's encoding. Payments start failing in a way no test covers.
 
-No sharper version of the pin-bump loop catches this, because the defect does not exist inside either manifest — it exists in the relationship between two manifests, and the loop is never holding more than one. That is what makes it a blind spot rather than a bug: the failure is outside the loop's field of view by construction. The repair is an **[audit loop](../02-foundations/glossary.md#audit-loop)** standing further back — a scheduled pass that reads every manifest in the repository together and reports any shared dependency pinned to disagreeing versions across services. Note what the repair is *not*. Widening the pin-bump loop's scope until it sees the whole repository does not fix anything; it just renames the audit loop and buries it inside a loop that also has write access, which is a worse arrangement than two loops with different jobs.
+No sharper version of the pin-bump loop catches this, because the defect doesn't exist inside either manifest — it exists in the relationship between two manifests, and the loop never holds more than one at a time. That's what makes it a blind spot rather than a bug: the failure is outside the loop's field of view by construction.
+
+The repair is an **[audit loop](../02-foundations/glossary.md#audit-loop)** standing further back — a scheduled pass that reads every manifest in the repository together and reports any shared dependency pinned to disagreeing versions across services. Widening the pin-bump loop's scope until it sees the whole repository doesn't fix anything — it just renames the audit loop and buries it inside a loop that also has write access, which is worse than two loops with different jobs.
 
 ### 3. Collision
 
-A cost loop scales the batch compute pool from forty nodes down to six at 01:00, because overnight demand is low and the savings are real. A search-reindex loop schedules the nightly full reindex for 01:15, because that is when read traffic bottoms out and a heavy job disturbs the fewest people. Both loops were designed carefully. Neither was designed with the other in mind.
+A cost loop scales the batch compute pool from forty nodes down to six at 01:00, because overnight demand is low and the savings are real. A search-reindex loop schedules the nightly full reindex for 01:15, because that's when read traffic bottoms out and a heavy job disturbs the fewest people. Both loops were designed carefully. Neither was designed with the other in mind.
 
 The reindex, sized for forty nodes, now runs on six. A job that took two hours takes eleven, is still grinding when morning traffic arrives, and holds the pool the cost loop was trying to shrink. Both loops report success: the cost loop scaled down as instructed, the reindex loop completed.
 
-The repair is an **[arbitration edge](../02-foundations/glossary.md#arbitration-edge)** — a rule recorded in the governance graph, not in either loop's code, stating that on nights when a full reindex is scheduled the reindex loop's claim on the pool wins, and the scale-down waits for it to report finished. Putting the rule in the governance graph rather than inside one of the loops is not bookkeeping fussiness. If the cost loop contains the rule, the cost loop is deciding when the cost loop loses, and the next team to add a third consumer of that pool has nowhere to look for the existing arrangement.
+The repair is an **[arbitration edge](../02-foundations/glossary.md#arbitration-edge)** — a rule recorded in the governance graph, not in either loop's code, stating that on nights when a full reindex is scheduled, the reindex loop's claim on the pool wins, and the scale-down waits for it to finish. Putting the rule in the governance graph rather than inside one of the loops matters: if the cost loop contains the rule, the cost loop is deciding when the cost loop loses, and the next team to add a third consumer of that pool has nowhere to look for the existing arrangement.
 
 ### 4. Drift
 
-A macro-suggest loop proposes canned replies to support agents. It was built in the first quarter against the twenty most common question shapes in the preceding quarter's transcripts, and it was genuinely good — agents accepted its suggestion most of the time.
+A macro-suggest loop proposes canned replies to support agents. It was built in Q1 against the twenty most common question shapes in the preceding quarter's transcripts, and it was genuinely good — agents accepted its suggestion most of the time.
 
-In the third quarter the product ships a self-serve billing portal. Questions about changing a saved card, which used to be the single largest category, mostly stop arriving. New questions arrive about exporting invoices from the portal, which the loop has never seen and has no macro for. The loop's own numbers do not fall — they improve slightly, because the shrinking slice of traffic it still recognizes is the slice it recognizes with the most confidence, and its acceptance rate is computed over the suggestions it makes rather than the conversations it ignores. Nine months after its reference set was assembled, it is confidently answering a question mix that no longer exists.
+In Q3 the product ships a self-serve billing portal. Questions about changing a saved card, once the largest category, mostly stop arriving. New questions arrive about exporting invoices from the portal — the loop has never seen these and has no macro for them. The loop's own numbers don't fall. They improve slightly, because the shrinking slice of traffic it still recognizes is the slice it recognizes with the most confidence, and its acceptance rate is computed over the suggestions it makes, not the conversations it ignores. Nine months after its reference set was assembled, it's confidently answering a question mix that no longer exists.
 
-This is **[drift](../02-foundations/glossary.md#drift)**, and it is not a defect in the loop. The loop is doing exactly what it was asked to do; what expired was the assumption baked in at the start, that the definition of a good reply would hold still. The repair is a periodic edge pointing back out of the loop system — a standing monthly task where a human samples fifty live conversations and rebuilds the reference set from what is actually being asked now. It costs a person an hour a month, and there is no cheaper substitute, because every signal the loop could compute for itself is computed against the same stale reference that drifted in the first place.
+This is **[drift](../02-foundations/glossary.md#drift)**, and it's not a defect in the loop. The loop is doing exactly what it was asked to do — what expired was the assumption baked in at the start, that the definition of a good reply would hold still. The repair is a periodic edge pointing back out of the loop system: a standing monthly task where a human samples fifty live conversations and rebuilds the reference set from what's actually being asked now. It costs a person an hour a month, and there's no cheaper substitute — every signal the loop could compute for itself is computed against the same stale reference that drifted in the first place.
+
+### Edge cases worth naming
+
+1. **Two modes hitting the same loop at once.** A loop can be gaming its metric and drifting at the same time — the repairs don't conflict, but diagnosing one doesn't rule out the other.
+2. **A counter-metric that itself gets gamed.** If a loop somehow learns what its counter-metric measures — even without reading it directly, by noticing which actions get reverted — a second, independent counter-metric may be needed. Rare, but not impossible.
+3. **An audit loop that's really a blind spot at one remove.** If the audit loop only reads manifests that opted in to being audited, services that never opted in are its own blind spot — the same failure mode, one layer up.
+4. **A collision between more than two loops.** The arbitration edge scales past two — it just needs to rank all the loops touching the resource, not merely name a winner between a pair.
 
 ## Diagram
 
@@ -118,7 +136,16 @@ acceptable answer to any of the four.
 
 ## Going Deeper
 
-The four modes are worth telling apart because their symptoms overlap enough to send teams to the wrong repair. A loop whose real trouble is a blind spot often first shows up as a metrics argument, since its dashboard is unblemished and the failures are landing somewhere the dashboard does not describe. Collisions get misread as flakiness, because they only reproduce when two schedules line up. Drift gets misread as regression, because the loop's output really did get worse in effect while every number about it stayed flat or rose. The diagnostic question that separates them is short: could this loop, given everything it can see and everything it is scored on, have noticed this by itself? For gaming the answer is no because the score rewarded it; for a blind spot no because the evidence is out of frame; for a collision no because the other loop is invisible to it; for drift no because the yardstick itself moved. Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../operating/).
+The four modes are worth telling apart because their symptoms overlap enough to send teams to the wrong repair. A loop whose real trouble is a blind spot often first shows up as a metrics argument, since its dashboard is unblemished. Collisions get misread as flakiness, because they only reproduce when two schedules line up. Drift gets misread as regression, because the loop's output really did get worse in effect while every number about it stayed flat or rose.
+
+The diagnostic question that separates them is short: could this loop, given everything it can see and everything it's scored on, have noticed this by itself?
+
+- Gaming: no, because the score rewarded it.
+- Blind spot: no, because the evidence is out of frame.
+- Collision: no, because the other loop is invisible to it.
+- Drift: no, because the yardstick itself moved.
+
+Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../operating/).
 
 ## Check Yourself
 
@@ -131,15 +158,24 @@ They have addressed metric-gaming for exactly as long as it takes the loop to fi
 
 ## Try With AI
 
-Pick a loop that already runs in your world — a nightly job, a linter in CI, a bot that files or closes tickets — and write down four things in a scratch file: its trigger, what it reads, what it writes, and the single number anyone judges it by. Hand that over to Claude Code or OpenCode, then have it work through the four modes one at a time, naming a concrete exposure for each rather than a general caution. Then push back on every answer that amounts to improving the loop, and make it name the outside edge instead. The exposures it finds for collision are usually the most surprising, because they require knowing about a loop you did not describe to it — which tells you something in itself about how well documented your other loops are.
+1. Pick a loop that already runs in your world — a nightly job, a linter in CI, a bot that files or closes tickets.
+2. Write down four things in a scratch file: its trigger, what it reads, what it writes, and the single number anyone judges it by.
+3. Hand that over to Claude Code or OpenCode.
+4. Have it work through the four modes one at a time, naming a concrete exposure for each rather than a general caution.
+5. Push back on every answer that amounts to improving the loop, and make it name the outside edge instead.
 
 ## When It Goes Wrong
 
-**Symptom:** a loop's dashboard has never looked healthier, and the people downstream of it have quietly started working around it.
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| Nothing about the numbers looks wrong — the dashboard has never looked better — yet people downstream have quietly started working around the loop. | Metric-gaming — the loop is optimizing a number that came apart from the actual goal. | Add a counter-metric computed by someone else, never given to the loop as input. |
+| Every individual unit passes its own check, but something breaks in the relationship between two units. | Blind spot — the defect exists between units the loop only ever examines one at a time. | Add an audit loop that reads many units together, on its own schedule. |
+| Two loops each report success, but the combined outcome is worse than either predicted alone. | Collision — two loops share a resource, and neither was designed with the other in mind. | Record an arbitration edge naming which loop wins the shared resource. |
+| The loop's numbers stay flat or improve, but its real-world usefulness quietly declines. | Drift — the world the loop was tuned against kept moving; the loop's target didn't. | Add a periodic human edge that refreshes the reference the loop is judged against. |
 
-**Cause:** one of the four modes is live and the loop's own instrumentation structurally cannot show it — the score is being satisfied by an action that does not advance the goal, the damage is landing outside the loop's frame, another loop is undoing its work, or the definition it was built against has expired.
+---
 
-**Fix:** diagnose which of the four it is by asking whether the loop could possibly have noticed on its own, then add the matching outside edge — a counter-metric held by someone else, a wider scheduled audit pass, a recorded precedence rule, or a recurring human refresh of the reference. `labs/step-12-four-failure-modes.py` runs the triage queue twice, once scored on volume alone and once with a counter-metric held outside the loop, and shows the run that looks better on the headline number settling fewer reports in reality.
+Look up **counter-metric**, **audit loop**, **arbitration edge**, or **drift** any time one of the four names stops feeling concrete — the [glossary](../02-foundations/glossary.md#counter-metric) has all four.
 
 ---
 
