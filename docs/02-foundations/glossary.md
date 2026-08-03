@@ -53,3 +53,9 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 <a id="pre-build-checklist"></a>**Pre-build checklist.** A short set of honest questions asked before any schema gets designed, meant to catch the cases where a queue, a good prompt, or a plain table would settle the job at a fraction of the cost. Answering it "no, don't build one" is the checklist working correctly, not a failure to find a reason to build.
 
 <a id="dual-tool-parity"></a>**Dual-tool parity.** The property of two independently written implementations of the same system — one configured for one agent tool, one for another — landing on the same graph structure from the same source material. Parity is checked by comparing final output, never by assuming two configurations that read similarly must behave identically.
+
+<a id="decision-aid"></a>**Decision aid.** A short, quickly-applied set of recognizable patterns used to sort a situation before any deeper checklist runs — not a replacement for careful judgment, but a fast first pass that catches the obvious cases so slower, more thorough tools only get spent on what's left.
+
+<a id="complexity-budget"></a>**Complexity budget.** The amount of structure — schema fields, governance edges, extra loops — that the evidence currently in hand actually justifies, treated as a running account rather than something spent once at design time and forgotten. Every edge added draws against it, whether or not that edge ever catches anything.
+
+<a id="premature-governance"></a>**Premature governance.** A governance edge installed against a category of risk in general rather than a specific observed incident, paid for continuously from the day it ships regardless of whether the failure it repairs ever actually occurs. It differs from ordinary caution in being unbounded — with no incident behind it, there is rarely a clear moment that justifies removing it either.
