@@ -2,19 +2,37 @@
 
 ## Hook
 
-PR #391 changes a pricing function called `calculateDiscount`. `Agent-Static`, a static-analysis reviewer, scans the diff and flags something: `calculateDiscount` reads `customer.tier` without checking whether `customer` itself is null first. That flag gets logged: *Agent-Static reviewed PR #391 and flagged a missing null check.* Later, a second agent, `Agent-Auditor`, is asked to independently confirm defects before they're allowed to block a merge. It reads the actual merged code, traces every call site, and confirms: yes, `calculateDiscount` really does have no null check on `customer.tier` — this isn't a false positive, it's real. That confirmation gets logged too: *`calculateDiscount` has no null check on `customer.tier`.* Two log entries, describing what looks like the same fact. A team building one graph out of this review might reasonably store them as a single node. That single node is the mistake this Step exists to head off.
+PR #391 changes a pricing function, `calculateDiscount`. `Agent-Static`, a static-analysis reviewer, scans the diff and flags something: the function reads `customer.tier` without checking whether `customer` is null first. That gets logged: *Agent-Static reviewed PR #391 and flagged a missing null check.*
+
+Later, `Agent-Auditor` is asked to independently confirm defects before they can block a merge. It reads the merged code, traces every call site, and confirms: yes, `calculateDiscount` really has no null check on `customer.tier`. Not a false positive. That gets logged too: *`calculateDiscount` has no null check on `customer.tier`.*
+
+Two log entries, about what looks like the same fact. A team building one graph out of this review might store them as a single node. That single node is the mistake this Step exists to head off.
 
 ## Explanation
 
-Those two entries are not the same kind of record, even though they're about the same underlying issue. *Agent-Static reviewed PR #391 and flagged a missing null check* belongs to a **[work-history graph](../02-foundations/glossary.md#work-history-graph)**: a record of what was attempted, by whom, when, and with what outcome. Its job is to answer "what happened, and in what order" — if someone later asks why the merge was blocked, the work-history graph can answer "Agent-Static's pass on PR #391 raised it," which is exactly the kind of accountability trail a review process needs to stay auditable.
+### Two different kinds of record
 
-*`calculateDiscount` has no null check on `customer.tier`* belongs to a different graph: the **[fact graph](../02-foundations/glossary.md#fact-graph)** — the record of claims about the codebase itself that the team has actually checked and is willing to build on. Its job is answering a different question: "is this true, right now, about the code" — not "who said so" or "when." Agent-Auditor's confirmation is what earns this claim a place in the fact graph at all; a flag that nobody had independently confirmed shouldn't sit in the same graph as a confirmed one, because the whole value of the fact graph is that everything in it has cleared that bar.
+Those two entries aren't the same kind of record, even though they're about the same issue.
 
-Here's what collapsing them into one node actually costs you, concretely. Suppose the team merges the two entries into `Agent-Static reviewed PR #391 and found calculateDiscount has no null check`. Now imagine `Agent-Static` produces a false positive on some *other* function next month — same static-analysis tool, same phrasing, no independent confirmation this time. In a merged graph, that unconfirmed flag looks structurally identical to the `calculateDiscount` entry, which *was* confirmed. A later agent querying "what are the known real issues in this codebase" has no field left to filter on — the confirmation step got flattened into the same sentence as the claim, instead of staying attached as a separate, checkable property. That's the "too noisy to trust" half of the cost: every unverified flag now reads exactly as authoritative as every verified one.
+*Agent-Static reviewed PR #391 and flagged a missing null check* belongs to a **[work-history graph](../02-foundations/glossary.md#work-history-graph)**: a record of what was attempted, by whom, when, and with what outcome. Its job is to answer "what happened, and in what order."
 
-The other half runs the opposite direction. Suppose, months later, someone wants to answer "how did we first learn about the null-check bug in `calculateDiscount`, and who confirmed it?" If the merge only kept the confirmed-fact phrasing and dropped the work-history framing to save space — a common instinct once two entries look this redundant — that question no longer has an answer sitting in the graph. The order of events, which agent raised it first, and which agent independently checked it are exactly the kind of detail a work-history graph exists to preserve, and exactly the kind of detail that a fact-focused merge tends to discard as noise. That's "too sparse to reconstruct": the trail that used to answer "how did we get here" is gone.
+*`calculateDiscount` has no null check on `customer.tier`* belongs to a different graph — the **[fact graph](../02-foundations/glossary.md#fact-graph)**: claims about the codebase that someone has actually verified, not just proposed. Its job is to answer "is this true, right now" — not "who said so" or "when."
 
-Keeping the two graphs apart costs almost nothing extra to write — it's still one flag from Agent-Static and one confirmation from Agent-Auditor, just filed under two different node types instead of squeezed into one. What it buys back is the ability to ask either question cleanly later: query the fact graph for what's actually true about the code today, query the work-history graph for how the team found out and who checked it.
+### What merging them actually costs
+
+| Cost of merging | What breaks |
+| --- | --- |
+| **Too noisy to trust** | An unconfirmed flag now reads exactly like a confirmed fact. A later agent asking "what are the real known issues" has no field left to filter on — confirmation got flattened into the same sentence as the claim. |
+| **Too sparse to reconstruct** | "How did we first learn about this, and who confirmed it?" no longer has an answer. The order of events and who raised it first are exactly what a work-history graph exists to preserve — and exactly what a fact-focused merge tends to discard. |
+
+Keeping the two graphs apart costs almost nothing extra to write — still one flag from Agent-Static, one confirmation from Agent-Auditor, just filed under two node types instead of squeezed into one. What it buys back is the ability to ask either question cleanly later.
+
+### Edge cases worth naming
+
+1. **A flag that's later disproven.** Agent-Static's flag stays in the work-history graph even if Agent-Auditor finds it's a false positive. The event still happened and still has record value — it just never earns a fact-graph node.
+2. **A fact confirmed twice, by two different agents.** Both confirmations go into the work-history graph as separate events. The fact graph still holds one node for the underlying claim, now with two verifications attached.
+3. **An agent that both flags and confirms in the same pass.** That's still two records, not one — an event (what it did) and, only if it actually checked the code, a claim (what's true). Collapsing them back into one node reproduces the exact mistake this Step is about.
+4. **No agent ever confirms a flag.** It's a legitimate, permanent resident of the work-history graph. It never becomes a fact-graph node until something actually checks it — sitting unconfirmed forever is a valid, honest state, not a bug.
 
 ## Diagram
 
@@ -71,29 +89,39 @@ in either file.
 
 ## Going Deeper
 
-Nothing about "verified by Agent-Auditor" makes a fact permanent. A fact graph holds the team's *current best-checked understanding*, not eternal truth — if `calculateDiscount` gets patched next sprint, the fact node needs to be marked superseded, not silently deleted, so a later reader can see both what used to be true and when that changed. Part 3 of this course covers exactly that lifecycle. For now, the point to hold onto is narrower: a confirmed claim and the event that produced it are always at least two nodes, never one.
+Nothing about "verified by Agent-Auditor" makes a fact permanent. A fact graph holds the team's current best-checked understanding, not eternal truth. If `calculateDiscount` gets patched next sprint, the fact node needs to be marked superseded, not silently deleted, so a later reader can see both what used to be true and when that changed. Part 3 covers that lifecycle in full. For now, the point to hold onto is narrower: a confirmed claim and the event that produced it are always at least two nodes, never one.
 
 ## Check Yourself
 
 <details>
 <summary>A teammate proposes a shortcut: store only the fact graph, and skip the work-history graph entirely, since "the fact graph has the actually-true stuff anyway." What breaks? Reveal the answer.</summary>
 
-You lose the ability to answer "how did we find out, and who checked it" for anything already in the fact graph, and — worse — you lose every unconfirmed flag entirely, since flags that never got independently verified have nowhere to live if the work-history graph doesn't exist. That means the next agent working a similar issue can't see what's already been raised and is still pending confirmation; it will re-flag the same things from scratch, with no memory that someone already looked at them once.
+You lose the ability to answer "how did we find out, and who checked it" for anything already in the fact graph — and, worse, you lose every unconfirmed flag entirely, since flags that never got independently verified have nowhere to live if the work-history graph doesn't exist. The next agent working a similar issue can't see what's already been raised and is still pending confirmation; it re-flags the same things from scratch, with no memory that someone already looked at them once.
 
 </details>
 
 ## Try With AI
 
-Set up a throwaway repo with two empty files in it: `work-history.jsonl` and `facts.jsonl`. Ask Claude Code or OpenCode to act as a reviewer on some real function in a small project you have locally: have it (1) note, in `work-history.jsonl`, that it reviewed the function and what it found, and separately (2) only after re-reading the actual code to confirm the finding, write the confirmed claim to `facts.jsonl`. Open both files afterward and check: does either file contain a sentence that really belongs in the other? If the agent wrote the same sentence to both, ask it why, and have it rewrite each entry so the two files are answering different questions.
+1. Set up a throwaway repo with two empty files: `work-history.jsonl` and `facts.jsonl`.
+2. Ask Claude Code or OpenCode to act as a reviewer on some real function in a small project you have locally.
+3. Have it note, in `work-history.jsonl`, that it reviewed the function and what it found.
+4. Only after it re-reads the actual code to confirm the finding, have it write the confirmed claim to `facts.jsonl`.
+5. Open both files afterward — does either contain a sentence that really belongs in the other?
+6. If the agent wrote the same sentence to both, ask it why, and have it rewrite each entry so the two files answer different questions.
 
 ## When It Goes Wrong
 
-**Symptom:** a query for "what's actually broken right now" returns things that turned out to be false positives nobody ever confirmed, mixed in with real, verified issues, and there's no field to filter one from the other.
-
-**Cause:** work-history events and fact-graph claims got written to the same node at some point, usually because the two entries looked redundant enough that merging them felt like an obvious cleanup.
-
-**Fix:** split the merged node back into its two parts — an event with an agent and a timestamp, and a claim with a verifier — and connect them with an edge instead of collapsing them into one. Going forward, write review findings the way `labs/step-3-split-the-graphs.py` demonstrates: two lists, never flattened into one.
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| Querying "what's actually broken right now" returns unconfirmed false positives mixed in with real, verified issues, with no field to filter one from the other. | Work-history events and fact-graph claims got written to the same node, usually because the two entries looked redundant enough that merging them felt like an obvious cleanup. | Split the merged node back into its two parts — an event with an agent and a timestamp, a claim with a verifier — connected by an edge instead of collapsed into one. |
+| "How did we find out about this?" has no answer, even though the fact is sitting right there in the graph. | The work-history graph was skipped or discarded to save space, keeping only the fact-graph phrasing. | Keep both graphs, always. The event that produced a fact is not the same information as the fact itself. |
+| The same finding gets re-flagged from scratch by a different agent weeks later. | The unconfirmed flag lived nowhere a later agent could find it, because only the fact graph was kept. | An unconfirmed flag still belongs in the work-history graph — that's exactly what lets the next agent see it's already pending. |
+| A confirmed fact still shows up as "just a static-analysis flag" in a downstream report. | The report queried the work-history graph for something only the fact graph can answer — whether the claim is actually true. | Query the right graph for the right question: work-history for what happened, facts for what's true. |
 
 ---
 
-Back to [Part 1 overview](README.md) · On to [Part 2 — The DAG of Work](../04-part-2-the-dag-of-work/)
+Look up **work-history graph** and **fact graph** in the [glossary](../02-foundations/glossary.md#work-history-graph) if either needs a refresher. This Part's attempts-vs-checked-claims split is part of the overall curriculum shape this course draws from Panaversity — the complete record of who contributed what is kept at [resources/sources.md](../../resources/sources.md).
+
+---
+
+That's Part 1. Head to [Part 2 — The DAG of Work](../04-part-2-the-dag-of-work/) next, or revisit the [overview](README.md) first.
