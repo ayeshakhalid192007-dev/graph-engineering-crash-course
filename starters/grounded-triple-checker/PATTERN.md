@@ -20,12 +20,12 @@ to how persuasive either change's write-up happens to be.
 ## What it does
 
 Given a claim shaped like "change `<id>` does not touch module `<name>`",
-this pattern identifies which edge, if it turned up in the graph, would
-break the claim, then scans a populated graph's own edges for a subject,
+this pattern builds the `(<id>, touches, <name>)` triple the claim
+implies, then scans a populated graph's own edges for a subject,
 predicate, and object match against it, leaving the change's own
-description out of the decision entirely. Reports ACCEPT when the edge is
-absent and REJECT — naming the specific edge that was found — when it is
-present.
+description out of the decision entirely. Reports ACCEPT when no edge
+matches and REJECT — naming the specific edge that was found — when one
+does.
 
 ## Inputs
 

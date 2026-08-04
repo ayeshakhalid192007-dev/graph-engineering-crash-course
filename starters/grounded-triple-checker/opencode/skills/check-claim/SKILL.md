@@ -1,6 +1,6 @@
 ---
 name: check-claim
-description: OpenCode equivalent of the Claude Code check-claim skill and graph-verifier agent -- pins each claim to the single edge whose existence alone would break it, scans the populated graph's edges for a matching subject/predicate/object, and independently re-verifies every REJECT's citation
+description: OpenCode equivalent of the Claude Code check-claim skill and graph-verifier agent -- builds each claim's (change, touches, module) triple, scans the populated graph's edges for that exact subject/predicate/object combination, and independently re-verifies every REJECT's citation
 context: pattern-implementation
 ---
 
@@ -31,11 +31,11 @@ absent.
    default to every `claim`-typed node in the graph (this kit's shipped
    scenario ships two: `claim-ch3002-no-license-touch` and
    `claim-ch3047-no-license-touch`).
-3. For each claim, work out the single edge whose presence would break it,
-   using the claim node's own `about` and `forbidden_module` fields
-   directly — never the claim's free-text `text` field, and never the
-   named change's `description` field. The assertion under test is: no
-   `(about, "touches", forbidden_module)` edge exists.
+3. For each claim, assemble the `(about, "touches", forbidden_module)`
+   triple directly from the claim node's own `about` and `forbidden_module`
+   fields — never the claim's free-text `text` field, and never the named
+   change's `description` field. Step 4 walks the graph's edges looking
+   for that subject/predicate/object combination.
 4. Walk every edge the graph has, looking for one entry where subject,
    predicate, and object all three match that triple at once.
 5. Decide the verdict from presence alone: REJECT and cite the matching

@@ -1,13 +1,14 @@
 # grounded-triple-checker Starter Kit
 
-A runnable starter kit for the **grounded-triple-checker** pattern: for a
-"this change doesn't touch that module" claim, the kit picks out the one
-graph edge that, if present, proves the claim wrong, and looks strictly at
-whether the graph actually has it — never at how persuasive or alarming
-the change's own write-up sounds. This kit's worked scenario involves a
-fictional video-encoding and streaming company ("Cobalt Stream") and two
-invented changes against its pipeline — not based on any real company or
-codebase.
+A runnable starter kit for the **grounded-triple-checker** pattern. Its
+worked case is a "this change doesn't touch that module" claim, and the
+verdict comes from exactly one source: whether the graph's edge list
+already contains a matching subject/predicate/object triple for that
+change and module. How convincingly — or how worryingly — the change's
+own write-up is worded never factors in. This kit's worked scenario
+involves a fictional video-encoding and streaming company ("Cobalt
+Stream") and two invented changes against its pipeline — not based on any
+real company or codebase.
 
 This is a **read-path** kit, unlike `document-to-facts`,
 `alias-merge-with-trail`, and `receipt-per-edge`. There's no document to
@@ -25,8 +26,8 @@ a reviewer wants that specific claim double-checked before merging.
 fix, also claiming no contact with the license issuer. Only one of the two
 claims is actually true. `CH-3047` also swaps in a cache helper pulled
 straight out of the license module — a detail its own description never
-mentions — and the graph, built from the diff rather than from either
-change's prose, has the edge that proves it.
+mentions — and the graph, assembled from the diff rather than from either
+change's prose, already contains that exact edge.
 
 A checker that only reads the two descriptions has no reason to treat them
 differently — both sound equally confident. This kit's skill instead asks
@@ -89,8 +90,9 @@ two entries:
   is `null`.
 - **`claim-ch3047-no-license-touch` -> REJECT.** Decomposed edge
   `(CH-3047, touches, drm-license-issuer)` is present in the graph —
-  `CH-3047` also touches `subtitle-sync`, but the license-issuer edge is
-  what falsifies the claim. `citation` names that exact edge.
+  `CH-3047` also touches `subtitle-sync`, but that edge isn't why the
+  claim is rejected; the license-issuer edge is. `citation` names that
+  exact edge.
 
 `CH-3118`, the unrelated metrics-exporter change, has no claim attached and
 should never appear in `verdicts.json` at all.

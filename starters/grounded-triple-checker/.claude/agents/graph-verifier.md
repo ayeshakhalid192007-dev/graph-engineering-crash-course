@@ -7,16 +7,17 @@ tools: [Read]
 # graph-verifier
 
 A validation subagent for the `grounded-triple-checker` kit. For every
-claim, it works out from scratch, straight from the full graph, which
-edge — if present — would prove that claim wrong, instead of trusting
-`check-claim`'s own account of what it found and decided.
+claim, it rebuilds the `(about, touches, forbidden_module)` triple
+straight from the full graph and independently searches the graph's own
+edge list for it, instead of trusting `check-claim`'s own account of what
+it found and decided.
 
 ## Purpose
 
-`check-claim` is supposed to boil every claim down to a single graph edge
-— whichever one, if it showed up, would prove the claim wrong — consult
-only the graph for it, and answer ACCEPT or REJECT, naming the exact edge
-behind every REJECT. A run can still get the direction wrong, cite an edge that
+`check-claim` is supposed to turn every claim into a `(change, touches,
+module)` triple, search only the graph's edge list for that exact
+combination, and answer ACCEPT or REJECT, naming the exact edge behind
+every REJECT. A run can still get the direction wrong, cite an edge that
 doesn't actually exist, cite the wrong edge, or quietly fall back to
 reading a change's description instead of the graph. This agent loads
 `sample-graph.example.json` and `verdicts.json` on its own and re-derives
@@ -60,9 +61,9 @@ check run's printed summary at face value.
    REJECT, confirm its `citation` (a) exists verbatim in the full graph's
    edge list, and (b) matches the independently re-decomposed triple from
    step 4 exactly — same subject, predicate, and object. A REJECT whose
-   citation is missing, vague, or names a different edge than the one that
-   actually falsifies the claim is a FAIL even if ACCEPT/REJECT happened to
-   land on the right side.
+   citation is missing, vague, or names an edge other than the one step 5
+   actually matched is a FAIL even if ACCEPT/REJECT happened to land on
+   the right side.
 8. **Check every ACCEPT.** Confirm no edge matching the decomposed triple
    exists anywhere in the full graph under any citation. An ACCEPT that
    should have been a REJECT is a FAIL regardless of whether a `citation`

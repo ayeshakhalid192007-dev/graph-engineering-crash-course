@@ -1,6 +1,6 @@
 ---
 name: check-claim
-description: Pins a "change does not touch module" claim to one graph edge -- the only fact that can make it false -- scans the populated graph's own edge list for a subject/predicate/object match, and reports ACCEPT or REJECT naming the edge it relied on
+description: Builds the (change, touches, module) triple a "change does not touch module" claim implies, searches the populated graph's own edge list for that exact subject/predicate/object combination, and reports ACCEPT or REJECT naming the edge it relied on
 model: claude-opus-4-1-20250805
 temperature: 0
 tools: [Read, Write]
@@ -8,12 +8,12 @@ tools: [Read, Write]
 
 # check-claim
 
-A claim like "this change doesn't touch that module" rises or falls on one
-underlying fact: whether an edge connecting the two actually exists in the
-graph. This skill isolates that fact and checks for it directly, without
-letting how convincing or alarming the change's own description sounds
-affect the outcome. The verdict comes from what the graph contains, not
-from a gut sense of the description's tone.
+This skill converts a claim shaped like "this change doesn't touch that
+module" into a `(change, touches, module)` triple and searches the graph's
+edge list for that exact subject/predicate/object combination. The
+change's own description is not part of the input at any step: reading it
+plays no role in whether the search finds a match, and no role in what
+verdict that match produces.
 
 ## Instructions
 
@@ -27,12 +27,12 @@ pattern. Follow these steps in order:
    id, check only that one. Otherwise default to every `claim`-typed node
    in the graph — this kit's shipped scenario has two:
    `claim-ch3002-no-license-touch` and `claim-ch3047-no-license-touch`.
-3. **Name the edge whose presence in the graph would break this claim.**
-   Pull the claim node's own `about` (the change id) and `forbidden_module`
-   fields — do not parse these back out of the claim's free-text `text`
-   field, and do not open the change node's `description` at this step.
-   The decomposed assertion is: no edge of the form `(about, "touches",
-   forbidden_module)` exists in the graph.
+3. **Build the search triple.** Pull the claim node's own `about` (the
+   change id) and `forbidden_module` fields — do not parse these back out
+   of the claim's free-text `text` field, and do not open the change
+   node's `description` at this step. Assemble them into `(about,
+   "touches", forbidden_module)`; step 4 walks the graph's edges looking
+   for that combination.
 4. **Scan every edge in the graph, looking for one whose subject,
    predicate, and object all three line up with that triple.** A `touches`
    edge from the right change to a different module doesn't count, and
