@@ -6,17 +6,17 @@ tools: [Read]
 
 # graph-verifier
 
-A validation subagent for the `grounded-triple-checker` kit. It
-independently re-derives, for each claim, the single edge deciding it from
-the full graph, instead of trusting `check-claim`'s own account of what it
-found and decided.
+A validation subagent for the `grounded-triple-checker` kit. For every
+claim, it works out from scratch, straight from the full graph, which
+edge — if present — would prove that claim wrong, instead of trusting
+`check-claim`'s own account of what it found and decided.
 
 ## Purpose
 
-`check-claim` is supposed to reduce every claim to the one edge that
-settles it, look only at the graph for that edge, and report
-ACCEPT or REJECT accordingly — with a REJECT always naming the exact edge
-it found. A run can still get the direction wrong, cite an edge that
+`check-claim` is supposed to boil every claim down to a single graph edge
+— whichever one, if it showed up, would prove the claim wrong — consult
+only the graph for it, and answer ACCEPT or REJECT, naming the exact edge
+behind every REJECT. A run can still get the direction wrong, cite an edge that
 doesn't actually exist, cite the wrong edge, or quietly fall back to
 reading a change's description instead of the graph. This agent loads
 `sample-graph.example.json` and `verdicts.json` on its own and re-derives
@@ -48,10 +48,10 @@ check run's printed summary at face value.
    triple `(about, "touches", forbidden_module)`, read straight from the
    graph's own claim node — never from `verdicts.json`'s
    `decomposed_edge` field.
-5. **Independently search the full graph's edge list** for that exact
-   triple (subject, predicate, and object all matching). This presence-
-   or-absence result is the ground truth the entry's `edge_found` and
-   `verdict` are checked against.
+5. **Independently step through the full graph's edges on its own,**
+   checking each one for a subject, predicate, and object match against
+   that triple. This presence-or-absence result is the ground truth the
+   entry's `edge_found` and `verdict` are checked against.
 6. **Check the verdict direction.** An edge found present with a `verdict`
    of ACCEPT, or an edge found absent with a `verdict` of REJECT, is an
    automatic FAIL for that entry, regardless of what the entry's own

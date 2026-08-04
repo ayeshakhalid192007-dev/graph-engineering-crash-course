@@ -1,6 +1,6 @@
 ---
 name: check-claim
-description: Reduces a "change does not touch module" claim to the single edge that decides it, checks a populated graph directly for that edge, and reports ACCEPT or REJECT with the specific edge cited
+description: Pins a "change does not touch module" claim to one graph edge -- the only fact that can make it false -- scans the populated graph's own edge list for a subject/predicate/object match, and reports ACCEPT or REJECT naming the edge it relied on
 model: claude-opus-4-1-20250805
 temperature: 0
 tools: [Read, Write]
@@ -8,11 +8,12 @@ tools: [Read, Write]
 
 # check-claim
 
-Turns a "doesn't touch that module" claim into the one fact that would have
-to be true for the claim to fail, then answers strictly from whether that
-fact is sitting in the graph — never from how the change's own description
-reads. The point of this skill is that the verdict is a lookup, not an
-impression.
+A claim like "this change doesn't touch that module" rises or falls on one
+underlying fact: whether an edge connecting the two actually exists in the
+graph. This skill isolates that fact and checks for it directly, without
+letting how convincing or alarming the change's own description sounds
+affect the outcome. The verdict comes from what the graph contains, not
+from a gut sense of the description's tone.
 
 ## Instructions
 
@@ -26,22 +27,23 @@ pattern. Follow these steps in order:
    id, check only that one. Otherwise default to every `claim`-typed node
    in the graph — this kit's shipped scenario has two:
    `claim-ch3002-no-license-touch` and `claim-ch3047-no-license-touch`.
-3. **Reduce each claim to the single edge that decides it.** Pull the
-   claim node's own `about` (the change id) and `forbidden_module` fields —
-   do not parse these back out of the claim's free-text `text` field, and
-   do not open the change node's `description` at this step. The decomposed
-   assertion is: no edge of the form `(about, "touches", forbidden_module)`
-   exists in the graph.
-4. **Search the graph's edge list for exactly that edge.** Subject,
-   predicate, and object must all match — a `touches` edge from the right
-   change to a different module doesn't count, and neither does an edge of
-   a different predicate between the same two nodes.
-5. **Decide the verdict from presence alone.** If the edge is present in
-   the graph, REJECT the claim and cite that exact edge as the reason. If
-   the edge is absent, ACCEPT the claim. Do not consult the change's
-   `description` field to double-check either outcome — a description that
-   sounds convincing is not evidence, and neither is one that sounds
-   suspicious.
+3. **Name the edge whose presence in the graph would break this claim.**
+   Pull the claim node's own `about` (the change id) and `forbidden_module`
+   fields — do not parse these back out of the claim's free-text `text`
+   field, and do not open the change node's `description` at this step.
+   The decomposed assertion is: no edge of the form `(about, "touches",
+   forbidden_module)` exists in the graph.
+4. **Scan every edge in the graph, looking for one whose subject,
+   predicate, and object all three line up with that triple.** A `touches`
+   edge from the right change to a different module doesn't count, and
+   neither does an edge of a different predicate between the same two
+   nodes.
+5. **Decide the verdict from presence alone.** A match found among the
+   graph's edges means REJECT, with that exact edge cited as the reason;
+   no match anywhere in the graph means ACCEPT. Do not consult the
+   change's `description` field to double-check either outcome — a
+   description that sounds convincing is not evidence, and neither is one
+   that sounds suspicious.
 6. **Handle the unverifiable case explicitly.** If the claim's `about`
    change id or `forbidden_module` module id isn't found among the graph's
    nodes at all, report that claim as UNVERIFIABLE rather than defaulting

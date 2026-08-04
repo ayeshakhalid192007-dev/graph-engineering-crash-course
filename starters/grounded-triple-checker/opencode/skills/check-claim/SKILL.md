@@ -1,6 +1,6 @@
 ---
 name: check-claim
-description: OpenCode equivalent of the Claude Code check-claim skill and graph-verifier agent -- reduces a claim to the single edge that decides it, checks a populated graph for that edge, and verifies every REJECT's citation independently
+description: OpenCode equivalent of the Claude Code check-claim skill and graph-verifier agent -- pins each claim to the single edge whose existence alone would break it, scans the populated graph's edges for a matching subject/predicate/object, and independently re-verifies every REJECT's citation
 context: pattern-implementation
 ---
 
@@ -11,7 +11,7 @@ OpenCode equivalent of this kit's Claude Code pair
 `.claude/agents/graph-verifier.md`). OpenCode's config doesn't have a
 separate subagent file the way Claude Code does, so this single skill runs
 in two modes, driven by `opencode.json.example`'s `workflow.steps`: **check**
-(the reduce-and-look-up behavior) and **verify** (the independent
+(find the deciding edge and look it up) and **verify** (the independent
 recheck). Both modes read the same `sample-graph.example.json`, so the two
 never drift apart on what counts as the deciding edge for a claim.
 
@@ -31,13 +31,13 @@ absent.
    default to every `claim`-typed node in the graph (this kit's shipped
    scenario ships two: `claim-ch3002-no-license-touch` and
    `claim-ch3047-no-license-touch`).
-3. For each claim, reduce it to the single edge that decides it, using
-   the claim node's own `about` and `forbidden_module` fields directly —
-   never the claim's free-text `text` field, and never the named change's
-   `description` field. The assertion is: no `(about, "touches",
-   forbidden_module)` edge exists.
-4. Search the graph's edge list for that exact triple — subject,
-   predicate, and object all matching.
+3. For each claim, work out the single edge whose presence would break it,
+   using the claim node's own `about` and `forbidden_module` fields
+   directly — never the claim's free-text `text` field, and never the
+   named change's `description` field. The assertion under test is: no
+   `(about, "touches", forbidden_module)` edge exists.
+4. Walk every edge the graph has, looking for one entry where subject,
+   predicate, and object all three match that triple at once.
 5. Decide the verdict from presence alone: REJECT and cite the matching
    edge if it's present; ACCEPT if it's absent. If the claim's `about` or
    `forbidden_module` id isn't in the graph's nodes at all, report
@@ -67,7 +67,8 @@ same way the Claude Code `graph-verifier` agent does.
 4. Independently re-derive the deciding triple `(about, "touches",
    forbidden_module)` straight from the graph's claim node — not from the
    entry's own `decomposed_edge`.
-5. Independently search the full graph's edge list for that triple.
+5. Independently walk the full graph's edges on its own, checking each one
+   against that triple.
 6. Flag any entry whose `verdict` disagrees with this independent
    presence/absence result — an edge found present paired with ACCEPT, or
    found absent paired with REJECT, is an automatic FAIL for that entry.

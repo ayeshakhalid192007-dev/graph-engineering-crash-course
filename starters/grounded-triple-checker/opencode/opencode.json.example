@@ -2,7 +2,7 @@
   "_comment": "OpenCode configuration for the grounded-triple-checker kit. Wires the check-claim skill and a verify step over the Cobalt Stream scenario (sample-graph.example.json). Copy to opencode.json and adjust paths if you move the kit.",
   "version": "1.0",
   "name": "grounded-triple-checker-opencode",
-  "description": "Reduces a 'change does not touch module' claim to the single edge that decides it, checks a populated graph for that edge, and reports ACCEPT/REJECT with independent verification of every REJECT's citation",
+  "description": "Narrows a 'change does not touch module' claim down to the one edge whose presence would prove it wrong, checks a populated graph for that edge, and reports ACCEPT/REJECT with independent verification of every REJECT's citation",
   "tools": [
     {
       "name": "check-claim",

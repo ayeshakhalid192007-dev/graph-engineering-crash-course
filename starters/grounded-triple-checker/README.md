@@ -1,13 +1,13 @@
 # grounded-triple-checker Starter Kit
 
-A runnable starter kit for the **grounded-triple-checker** pattern: reducing
-a "this change doesn't touch that module" claim down to the single edge
-whose presence or absence settles it, then checking a populated graph
-directly for that edge instead of judging the claim by how its description
-reads. This kit's worked scenario
-involves a fictional video-encoding and streaming company ("Cobalt Stream")
-and two invented changes against its pipeline — not based on any real
-company or codebase.
+A runnable starter kit for the **grounded-triple-checker** pattern: for a
+"this change doesn't touch that module" claim, the kit picks out the one
+graph edge that, if present, proves the claim wrong, and looks strictly at
+whether the graph actually has it — never at how persuasive or alarming
+the change's own write-up sounds. This kit's worked scenario involves a
+fictional video-encoding and streaming company ("Cobalt Stream") and two
+invented changes against its pipeline — not based on any real company or
+codebase.
 
 This is a **read-path** kit, unlike `document-to-facts`,
 `alias-merge-with-trail`, and `receipt-per-edge`. There's no document to
@@ -29,11 +29,11 @@ mentions — and the graph, built from the diff rather than from either
 change's prose, has the edge that proves it.
 
 A checker that only reads the two descriptions has no reason to treat them
-differently — both sound equally confident. This kit's skill instead
-decomposes each claim into one specific edge — does a `touches` edge exist
-between the named change and `drm-license-issuer` — and answers from the
-graph alone: ACCEPT `CH-3002`'s claim, REJECT `CH-3047`'s, and name the
-exact edge that gives it away.
+differently — both sound equally confident. This kit's skill instead asks
+one narrow question per claim — is there a `touches` edge linking the named
+change to `drm-license-issuer` in the graph — and lets the answer alone
+decide the outcome: ACCEPT `CH-3002`'s claim, REJECT `CH-3047`'s, and name
+the exact edge that gives it away.
 
 ## Prerequisites
 
@@ -97,8 +97,9 @@ should never appear in `verdicts.json` at all.
 
 ### Checking the verdicts
 
-The whole point of this kit is that each verdict traces back to one named
-edge, not a general impression of the change. To confirm it:
+Every verdict in this kit should be defensible by pointing at one edge in
+the graph — never by describing how safe or risky the change generally
+felt. To confirm it:
 
 - Open `verdicts.json` and check `claim-ch3047-no-license-touch`'s
   `citation` names `{"subject": "CH-3047", "predicate": "touches",
@@ -152,7 +153,7 @@ To adapt this kit to your own grounded-triple-checker scenario:
 | `verdicts.json` shows ACCEPT for `claim-ch3047-no-license-touch`. | The skill read the change's `description` field instead of searching the graph's edge list — re-check `SKILL.md` step 5 ran the edge search before deciding anything. |
 | A REJECT entry has `citation: null` or a citation that doesn't match the decomposed edge. | Step 5 decided REJECT correctly but skipped naming the edge, or named a different one. A REJECT must always cite the exact matching edge, not just assert one exists. |
 | A claim comes back ACCEPT when its `about`/`forbidden_module` id isn't even in the graph. | Step 6 was skipped — an unresolvable claim must be reported UNVERIFIABLE, not defaulted to ACCEPT. |
-| `verdicts.json` includes an entry for `CH-3118` or any change with no claim node. | Step 2 checked a change directly instead of only the claim nodes actually present in the graph. |
+| `verdicts.json` includes an entry for `CH-3118` or any change with no claim node. | Step 2 checked a change directly instead of limiting itself to the claim nodes the graph actually contains. |
 | The verifier reports a discrepancy between its independently-derived edge presence and `verdicts.json`'s self-reported `edge_found`. | This is the verifier doing its job — it means the check run got the lookup wrong. Treat `verdicts.json` as untrusted until the discrepancy is resolved. |
 
 ## Next Steps
