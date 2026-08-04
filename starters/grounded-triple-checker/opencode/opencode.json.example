@@ -1,0 +1,36 @@
+{
+  "_comment": "OpenCode configuration for the grounded-triple-checker kit. Wires the check-claim skill and a verify step over the Cobalt Stream scenario (sample-graph.example.json). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "grounded-triple-checker-opencode",
+  "description": "Reduces a 'change does not touch module' claim to the single edge that decides it, checks a populated graph for that edge, and reports ACCEPT/REJECT with independent verification of every REJECT's citation",
+  "tools": [
+    {
+      "name": "check-claim",
+      "type": "skill",
+      "path": "skills/check-claim/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "check",
+        "tool": "check-claim",
+        "input": {
+          "graph": "../sample-graph.example.json"
+        },
+        "output": "verdicts.json",
+        "description": "Checks every claim node in the graph by default -- claim-ch3002-no-license-touch and claim-ch3047-no-license-touch in this kit's shipped scenario."
+      },
+      {
+        "name": "verify",
+        "tool": "check-claim",
+        "mode": "verify",
+        "input": {
+          "verdicts": "verdicts.json",
+          "graph": "../sample-graph.example.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Mode: verify section) to independently re-decompose and re-check each claim, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}
