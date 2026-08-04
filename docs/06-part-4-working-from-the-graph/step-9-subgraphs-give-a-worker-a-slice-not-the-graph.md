@@ -29,11 +29,11 @@ A subgraph built by depth alone is a starting point. A subgraph built for a task
 
 The part that's easy to get wrong is what happens when the slice-building step runs into an actual disagreement. `resolve_shipping_zone` has two claim nodes attached that contradict each other — one from a docstring, one from a test file. It's tempting for whatever assembles the subgraph to quietly pick the more recent one, or the more trusted source, and hand the worker one clean answer.
 
-That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — resolution only merges mentions that turn out to name the *same* thing, and these two claims genuinely disagree about what the function does. A **contradiction-aware bundle** is a subgraph that keeps both sides of a live disagreement intact across the boundary, rather than letting the boundary-drawing step silently settle it. The worker needs to know the graph itself is unsure what the function is supposed to do — that's material to the fix, not noise to tidy away.
+That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — resolution only merges mentions that turn out to name the *same* thing, and these two claims genuinely disagree about what the function does. A **conflict-aware bundle** is a subgraph that keeps both sides of a live disagreement intact across the boundary, rather than letting the boundary-drawing step silently settle it. The worker needs to know the graph itself is unsure what the function is supposed to do — that's material to the fix, not noise to tidy away.
 
 ### Edge cases worth naming
 
-1. **A three-way disagreement.** Nothing caps a contradiction-aware bundle at two sides — a third source's claim crosses the boundary too, contradictions and all.
+1. **A three-way disagreement.** Nothing caps a conflict-aware bundle at two sides — a third source's claim crosses the boundary too, contradictions and all.
 2. **A neighbor that's irrelevant by depth but relevant by content.** A logging helper two hops away that happens to log the exact bug symptom might matter more than a one-hop neighbor that doesn't. Depth is a default, not a guarantee of relevance.
 3. **A subgraph built for the wrong task.** The same function can be the target of two tickets needing different neighborhoods — a performance fix cares about call frequency, a correctness fix cares about claim contradictions. Task framing has to travel with the subgraph, not just the node list.
 4. **No contradiction, but also no claim at all.** A target function with zero attached claims isn't a bug in the subgraph builder — it just means nobody has recorded what the function is supposed to do yet, which is itself worth surfacing to the worker.
@@ -135,7 +135,7 @@ The worker loses the information that the graph itself doesn't have a settled an
 
 ---
 
-The [glossary](../02-foundations/glossary.md#subgraph) spells out **subgraph** in full. "Task-scoped context" and "contradiction-aware bundle" are this course's own working terms for how that slice gets built and used.
+The [glossary](../02-foundations/glossary.md#subgraph) spells out **subgraph** in full. "Task-scoped context" and "conflict-aware bundle" are this course's own working terms for how that slice gets built and used.
 
 ---
 

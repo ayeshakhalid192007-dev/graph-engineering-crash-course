@@ -61,3 +61,15 @@ boilerplate — e.g. footer phrasing and "When It Goes Wrong" table headers
 files. Quizzes, flashcards, and labs were read and left unchanged; they
 were already short and structured. The Part 4 naming-mismatch item above
 is still open and untouched by this pass.
+
+## 2026-08-04 — Naming mismatch reconciled, Day 2 approval gate cleared
+
+Resolved the one open item from Day 2: Part 4 used "contradiction-aware
+bundle" while graph-plan.md §17 (and day-3-plan.md's `registry.yaml`,
+Task 1 Step 3) name the same pattern `conflict-aware-bundle`. Renamed all
+four occurrences in `docs/06-part-4-working-from-the-graph/step-9-…md`
+and `flashcards.md` to "conflict-aware bundle", matching the canonical
+pattern name. No other content changed. originality-check: 61 files
+checked, 0 violations. `STATE.md`'s Day 2 row now shows no open items.
+User has reviewed and approved proceeding to `day-3-plan.md`; Day 3's own
+independent `/loop` starts next.
