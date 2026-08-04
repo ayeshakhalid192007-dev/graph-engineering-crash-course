@@ -57,11 +57,12 @@ drowns in a few thousand nodes that have nothing to do with its task, or
 — just as likely — the one claim node that actually mattered gets lost
 somewhere in everything else it wasn't given a reason to read. Worse,
 if a subgraph builder does exist but resolves a disagreement between two
-attached claims before handing the slice over, the worker sees one clean
-answer and has no way to know the graph itself doesn't have a settled
-one — it fixes the function according to whichever claim happened to
-survive the boundary-drawing step, unaware a second, contradicting claim
-ever existed.
+attached claims before handing the slice over, the worker only ever sees
+a single confident-looking answer, with nothing in the returned slice to
+suggest the underlying graph is still split on the question — it fixes
+the function according to whichever claim happened to survive the
+boundary-drawing step, unaware a second, contradicting claim ever
+existed.
 
 ## Link to starter kit
 
