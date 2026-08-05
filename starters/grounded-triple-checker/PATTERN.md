@@ -48,12 +48,13 @@ does.
 
 ## Failure mode if skipped
 
-A checker that instead weighs how a change's description reads will wave
-through an author who genuinely believed their own summary right alongside
-one who didn't — a change that quietly reaches into a sensitive module
-gets the same pass as one that never goes near it, because nothing
-required checking the edge that actually separated the two. The graph
-carried that edge the entire time; the check simply never queried it.
+The one fact that separates a change staying clear of a sensitive module
+from one that doesn't is already sitting in the graph as a single edge,
+recorded independent of what either change's write-up claims. Skip
+querying it, and there's nothing left to score but the two write-ups
+themselves — a pair of equally confident-sounding summaries land the same
+verdict regardless of which change underneath actually crossed into that
+module.
 
 ## Link to starter kit
 

@@ -29,12 +29,12 @@ straight out of the license module — a detail its own description never
 mentions — and the graph, assembled from the diff rather than from either
 change's prose, already contains that exact edge.
 
-A checker that only reads the two descriptions has no reason to treat them
-differently — both sound equally confident. This kit's skill instead asks
-one narrow question per claim — is there a `touches` edge linking the named
-change to `drm-license-issuer` in the graph — and lets the answer alone
-decide the outcome: ACCEPT `CH-3002`'s claim, REJECT `CH-3047`'s, and name
-the exact edge that gives it away.
+Read side by side, the two descriptions give no way to tell which claim is
+true — both come across just as sure of themselves. This kit's skill
+instead asks one narrow question per claim — is there a `touches` edge
+linking the named change to `drm-license-issuer` in the graph — and lets
+the answer alone decide the outcome: ACCEPT `CH-3002`'s claim, REJECT
+`CH-3047`'s, and name the exact edge that gives it away.
 
 ## Prerequisites
 
