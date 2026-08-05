@@ -1,0 +1,48 @@
+{
+  "_comment": "Fixed governance graph for the counter-metric-loop worked scenario: a fictional software company, Thornfield Systems. Two loop nodes sit at the top -- pr-approval-loop (owned by the review-bot team, scored on PRs approved per week) and release-pipeline (owned by release engineering, computing a 72-hour revert rate that pr-approval-loop never receives). Four period nodes hold one week each of real readings, attached to their loop by a 'reported' edge carrying the actual number. A 'bound-by' edge points release-pipeline at the threshold node that defines when its reading counts as divergence. Nothing in this file marks which weeks were gamed -- that's what counter-metric-check and graph-verifier have to work out from the readings and the ceiling alone, the same way check-claim in the grounded-triple-checker kit works a verdict out from edges rather than prose. Crucially, walk every edge whose subject is pr-approval-loop: none of them touches release-pipeline, the threshold node, or any period's counter_reading. That absence is the isolation property this pattern depends on, and it's a structural fact about this file, not a comment asserting it.",
+  "nodes": [
+    {
+      "id": "pr-approval-loop",
+      "type": "loop",
+      "role": "primary",
+      "owner": "review-bot team",
+      "metric": "prs_approved_per_week",
+      "description": "Approves a pull request once its required CI checks are green and assigns it to the next release train. Its dashboard tracks one number: pull requests approved per week."
+    },
+    {
+      "id": "release-pipeline",
+      "type": "loop",
+      "role": "counter",
+      "owner": "release engineering",
+      "metric": "revert_rate_72h",
+      "description": "Deploys whatever pr-approval-loop has approved and separately tracks how many of those merges get rolled back within 72 hours of shipping. Computed and owned entirely by release engineering; pr-approval-loop has no path to read this number."
+    },
+    {
+      "id": "revert-ceiling",
+      "type": "threshold",
+      "metric": "revert_rate_72h",
+      "ceiling": 0.20,
+      "set_by": "release engineering",
+      "reason": "Above a fifth of merges bouncing back inside three days, the engineering hours spent reverting and re-fixing exceed whatever the approval pace bought back."
+    },
+    { "id": "week-14", "type": "period", "label": "Week 14" },
+    { "id": "week-15", "type": "period", "label": "Week 15" },
+    { "id": "week-16", "type": "period", "label": "Week 16" },
+    { "id": "week-17", "type": "period", "label": "Week 17" }
+  ],
+  "edges": [
+    { "subject": "pr-approval-loop", "predicate": "feeds", "object": "release-pipeline" },
+    { "subject": "release-pipeline", "predicate": "measures", "object": "pr-approval-loop" },
+    { "subject": "release-pipeline", "predicate": "bound-by", "object": "revert-ceiling" },
+
+    { "subject": "pr-approval-loop", "predicate": "reported", "object": "week-14", "value": 52 },
+    { "subject": "pr-approval-loop", "predicate": "reported", "object": "week-15", "value": 64 },
+    { "subject": "pr-approval-loop", "predicate": "reported", "object": "week-16", "value": 91 },
+    { "subject": "pr-approval-loop", "predicate": "reported", "object": "week-17", "value": 55 },
+
+    { "subject": "release-pipeline", "predicate": "reported", "object": "week-14", "value": 0.08 },
+    { "subject": "release-pipeline", "predicate": "reported", "object": "week-15", "value": 0.13 },
+    { "subject": "release-pipeline", "predicate": "reported", "object": "week-16", "value": 0.34 },
+    { "subject": "release-pipeline", "predicate": "reported", "object": "week-17", "value": 0.10 }
+  ]
+}
