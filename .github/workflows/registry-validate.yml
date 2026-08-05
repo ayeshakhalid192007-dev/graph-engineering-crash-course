@@ -1,0 +1,17 @@
+name: registry-validate
+on: [push, pull_request]
+jobs:
+  registry-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run registry validation
+        run: |
+          if [ -f scripts/validate-registry.mjs ]; then
+            node scripts/validate-registry.mjs
+          else
+            echo "scripts/validate-registry.mjs not created yet (ships Day 3) — skipping."
+          fi

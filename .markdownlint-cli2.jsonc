@@ -1,0 +1,19 @@
+{
+  // Course documentation prose is intentionally long-form (not wrapped at a
+  // fixed column), and a few primers use collapsible <details>/<summary>
+  // blocks for optional deep-dives. Disable/relax those two rules; keep the
+  // rest of the default rule set active.
+  "config": {
+    "default": true,
+    "MD013": false,
+    "MD033": {
+      "allowed_elements": ["details", "summary"]
+    },
+    // docs/README.md's "17-step roadmap" numbers steps 1-17 continuously
+    // across several Part-N headings (each heading splits the numbering
+    // into its own markdown list, e.g. Part 2 starts at "4."). The numbers
+    // are semantic (they match each step's filename), not a per-list
+    // restart, so MD029's ol-prefix check doesn't apply here.
+    "MD029": false
+  }
+}
