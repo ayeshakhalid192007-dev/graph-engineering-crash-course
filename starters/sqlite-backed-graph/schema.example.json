@@ -1,0 +1,17 @@
+{
+  "_comment": "Row-shape reference for the two tables schema.sql defines -- nodes and edges. This is not sample data; schema.sql's own INSERT statements already carry this kit's populated worked example (the Elm Street tool-cabinet scenario). A node's 'data' field is a JSON-encoded string, not a nested object, because SQLite columns hold text/integer/real/blob/null and nothing structured -- parse it before reading type-specific fields like a Person's aliases.",
+  "node": {
+    "id": "<primary key, e.g. 'person-kavita' or 'tool-ladder'>",
+    "type": "<entity type, e.g. 'Person' or 'Tool'>",
+    "data": "<JSON-encoded string of type-specific fields, e.g. '{\"name\":\"Kavita\",\"aliases\":[\"Mrs K\"]}'>"
+  },
+  "edge": {
+    "id": "<primary key, e.g. 'e2'>",
+    "from_id": "<foreign key into nodes.id -- the edge's subject>",
+    "to_id": "<foreign key into nodes.id -- the edge's object>",
+    "label": "<relationship type, e.g. 'owns', 'borrowed', 'returned'>",
+    "source_doc": "<the source document this edge was extracted from>",
+    "extraction_run_id": "<the id of the extraction run that produced this edge>",
+    "schema_version": "<the schema version active when this edge was written>"
+  }
+}

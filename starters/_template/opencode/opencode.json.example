@@ -1,0 +1,22 @@
+{
+  "_comment": "OpenCode configuration template for this pattern. Replace with the actual OpenCode configuration needed for your pattern implementation. See OpenCode documentation for the full format.",
+  "version": "1.0",
+  "name": "example-pattern-opencode",
+  "description": "OpenCode implementation of the example pattern",
+  "tools": [
+    {
+      "name": "example-skill",
+      "type": "skill",
+      "path": "skills/example-skill/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "process-input",
+        "tool": "example-skill",
+        "input": "schema.example.json"
+      }
+    ]
+  }
+}

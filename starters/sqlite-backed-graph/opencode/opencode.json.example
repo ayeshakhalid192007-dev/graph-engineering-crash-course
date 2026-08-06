@@ -1,0 +1,37 @@
+{
+  "_comment": "OpenCode configuration for the sqlite-backed-graph kit. Wires the query-graph skill's load/query and verify steps against graph.db, built from ../schema.sql (the Elm Street tool-cabinet worked example). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "sqlite-backed-graph-opencode",
+  "description": "Loads schema.sql into a local SQLite file and answers availability/provenance questions against the nodes/edges tables, with independent verification of the output",
+  "tools": [
+    {
+      "name": "query-graph",
+      "type": "skill",
+      "path": "skills/query-graph/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "load-and-query",
+        "tool": "query-graph",
+        "input": {
+          "schema": "../schema.sql",
+          "database": "../graph.db"
+        },
+        "output": "../output.json"
+      },
+      {
+        "name": "verify",
+        "tool": "query-graph",
+        "mode": "verify",
+        "input": {
+          "database": "../graph.db",
+          "schema": "../schema.sql",
+          "output": "../output.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Mode: verify section) to independently re-derive each verdict and provenance lookup from graph.db, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_comment": "OpenCode configuration for the counter-metric-loop kit. Wires the counter-metric-check skill and a verify step over the Thornfield Systems scenario (governance-graph.example.json). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "counter-metric-loop-opencode",
+  "description": "Compares a watched loop's headline reading against an independently owned counter-metric reading per period, flags every period where the counter-metric crosses its recorded ceiling, and independently re-checks every flag",
+  "tools": [
+    {
+      "name": "counter-metric-check",
+      "type": "skill",
+      "path": "skills/counter-metric-check/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "check",
+        "tool": "counter-metric-check",
+        "input": {
+          "graph": "../governance-graph.example.json"
+        },
+        "output": "divergence-report.json",
+        "description": "Checks every period node in the graph by default -- week-14 through week-17 in this kit's shipped scenario."
+      },
+      {
+        "name": "verify",
+        "tool": "counter-metric-check",
+        "mode": "verify",
+        "input": {
+          "report": "divergence-report.json",
+          "graph": "../governance-graph.example.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Mode: verify section) to independently re-pull each period's readings and re-check them, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}

@@ -9,9 +9,4 @@ jobs:
         with:
           node-version: 20
       - name: Run graph-ready audit
-        run: |
-          if [ -f scripts/graph-ready-audit.mjs ]; then
-            node scripts/graph-ready-audit.mjs
-          else
-            echo "scripts/graph-ready-audit.mjs not created yet (ships Day 3) — skipping."
-          fi
+        run: node scripts/graph-ready-audit.mjs
