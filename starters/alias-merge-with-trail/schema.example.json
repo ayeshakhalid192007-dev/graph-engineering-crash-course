@@ -1,0 +1,24 @@
+{
+  "_comment": "Schema for the alias-merge-with-trail worked scenario (sample-input.md): folding two surface names for one Meridian Freight backend system ('the payments service' and 'billing-svc') into a single canonical entity without discarding either mention. 'entities' is the fixed type list a canonical node may take. 'aliases' is the fixed shape of a retained-mention record, not sample data — a merge run's output.json fills these shapes in with real values.",
+  "entities": [
+    {
+      "type": "Service",
+      "properties": [
+        "canonical_name",
+        "merge_reason"
+      ]
+    }
+  ],
+  "aliases": [
+    {
+      "canonical": "<the Service.canonical_name this group of mentions was folded into>",
+      "mentions": [
+        {
+          "surface": "<the exact string a source used to refer to the system>",
+          "source": "<the document the surface string came from>",
+          "retrievable": true
+        }
+      ]
+    }
+  ]
+}

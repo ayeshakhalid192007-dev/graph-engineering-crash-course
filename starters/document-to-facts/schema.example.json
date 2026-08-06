@@ -1,0 +1,43 @@
+{
+  "_comment": "Schema for the document-to-facts worked scenario: extracting facts from an incident report (sample-input.md, INC-4482). Only these entity types and relationship types are valid extraction output. Anything else the source document mentions (e.g. a person's name, a Slack channel) must be reported as rejected, not coerced into one of these types.",
+  "entities": [
+    {
+      "type": "Service",
+      "properties": [
+        "name"
+      ]
+    },
+    {
+      "type": "Incident",
+      "properties": [
+        "id",
+        "summary",
+        "duration"
+      ]
+    },
+    {
+      "type": "Cause",
+      "properties": [
+        "description"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "type": "caused-by",
+      "from": "Incident",
+      "to": "Cause",
+      "properties": [
+        "source_document"
+      ]
+    },
+    {
+      "type": "affected",
+      "from": "Incident",
+      "to": "Service",
+      "properties": [
+        "source_document"
+      ]
+    }
+  ]
+}

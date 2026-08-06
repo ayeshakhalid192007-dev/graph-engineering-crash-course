@@ -1,0 +1,24 @@
+{
+  "_comment": "Fixed sample graph for the grounded-triple-checker worked scenario: a fictional video-encoding and streaming company, Cobalt Stream. This is NOT a schema/shape template (read-path kits don't ship schema.example.json) -- it is a small, already-populated, ready-to-query graph standing in for a much larger production graph (a real one might carry thousands of change/module edges; this file holds 10 nodes so the whole thing is easy to read while the checker demonstrates that its verdict on each claim came from a single edge in this file, never from anything written in the change's own description). 'change' nodes are connected to 'module' nodes by 'touches' edges; every one of them was pulled straight out of an actual diff by extraction, never guessed at from summarizing what the change's author wrote about it. 'claim' nodes record a change/module pair someone asserted is NOT connected by a 'touches' edge, and are linked to the change they were made about by a 'claims' edge. Nothing in this file marks which claim is true -- that is exactly what check-claim and graph-verifier have to work out from the 'touches' edges alone.",
+  "nodes": [
+    { "id": "CH-3002", "type": "change", "description": "Batches duplicate thumbnail-regeneration requests together and merges the CDN purge calls they trigger, cutting redundant work in the encoding pipeline's asset-refresh path. Its own description claims it does not touch drm-license-issuer." },
+    { "id": "CH-3047", "type": "change", "description": "Adds a retry ceiling to the subtitle-sync worker so a flaky captioning vendor can't spin it in a loop, and swaps in a cache helper pulled from the license module to skip a duplicate lookup. Reads like a small subtitle-timing fix; its own description also claims it does not touch drm-license-issuer." },
+    { "id": "CH-3118", "type": "change", "description": "Rewrites the metrics exporter's histogram bucket boundaries so latency percentiles bucket more finely. Has no claim attached and no connection to the license issuer or subtitle pipeline -- included to show a change that never enters either claim's verdict." },
+    { "id": "thumbnail-renderer", "type": "module", "description": "Generates thumbnail images for uploaded video assets." },
+    { "id": "cdn-purger", "type": "module", "description": "Issues CDN cache-purge calls whenever an asset changes." },
+    { "id": "subtitle-sync", "type": "module", "description": "Synchronizes subtitle tracks against a video's audio timeline; calls out to a third-party captioning vendor." },
+    { "id": "drm-license-issuer", "type": "module", "description": "Issues and revokes DRM playback licenses for protected video assets. The sensitive module both of this kit's claims are about -- a change reaching into it needs to be visible even when its own description never mentions doing so." },
+    { "id": "metrics-exporter", "type": "module", "description": "Exports internal pipeline metrics to the monitoring stack. Part of an unrelated cluster neither claim in this kit ever references." },
+    { "id": "claim-ch3002-no-license-touch", "type": "claim", "about": "CH-3002", "forbidden_module": "drm-license-issuer", "text": "CH-3002 does not touch drm-license-issuer.", "source": "change_description" },
+    { "id": "claim-ch3047-no-license-touch", "type": "claim", "about": "CH-3047", "forbidden_module": "drm-license-issuer", "text": "CH-3047 does not touch drm-license-issuer.", "source": "change_description" }
+  ],
+  "edges": [
+    { "subject": "CH-3002", "predicate": "touches", "object": "thumbnail-renderer" },
+    { "subject": "CH-3002", "predicate": "touches", "object": "cdn-purger" },
+    { "subject": "CH-3047", "predicate": "touches", "object": "subtitle-sync" },
+    { "subject": "CH-3047", "predicate": "touches", "object": "drm-license-issuer" },
+    { "subject": "CH-3118", "predicate": "touches", "object": "metrics-exporter" },
+    { "subject": "CH-3002", "predicate": "claims", "object": "claim-ch3002-no-license-touch" },
+    { "subject": "CH-3047", "predicate": "claims", "object": "claim-ch3047-no-license-touch" }
+  ]
+}

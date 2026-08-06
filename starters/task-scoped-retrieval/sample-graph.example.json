@@ -1,0 +1,34 @@
+{
+  "_comment": "Fixed sample graph for the task-scoped-retrieval worked scenario: a fictional codebase graph for 'Verdant Metrics', an invented e-commerce analytics company. This is NOT a schema/shape template (read-path kits don't ship schema.example.json) -- it is a small, already-populated, ready-to-query graph standing in for a much larger production graph (a real one might hold thousands of function/claim nodes; this file holds 14 so the whole thing is easy to read while a subgraph builder proves it left most of it out). 'function' nodes are connected by 'calls' edges; 'claim' nodes are connected to the function they describe by 'claims' edges and to each other by 'contradicts' edges when two claims disagree.",
+  "nodes": [
+    { "id": "normalize_currency_code", "type": "function", "description": "Normalizes a raw currency code string (e.g. 'usd', 'US Dollar') to its canonical ISO 4217 code before an amount is priced or stored. This is the target node for this kit's worked scenario." },
+    { "id": "convert_ledger_entry", "type": "function", "description": "Converts one raw ledger entry into a priced line item, calling normalize_currency_code on the entry's currency field first." },
+    { "id": "build_customer_invoice", "type": "function", "description": "Assembles a customer-facing invoice, calling normalize_currency_code directly on the invoice's stated billing currency." },
+    { "id": "lookup_currency_table", "type": "function", "description": "Looks up a normalized currency code in the internal currency-metadata table. Called by normalize_currency_code once a code is normalized." },
+    { "id": "round_to_minor_unit", "type": "function", "description": "Rounds a priced amount to the correct number of minor units (e.g. cents) for its currency. Called by normalize_currency_code as its last step." },
+    { "id": "generate_quarterly_report", "type": "function", "description": "Builds the quarterly financial summary by calling convert_ledger_entry once per ledger entry in the quarter. Two hops from normalize_currency_code, not a direct dependency of it." },
+    { "id": "fetch_exchange_rate_api", "type": "function", "description": "Calls an external exchange-rate API. Called by lookup_currency_table when a code isn't in the cached table. Two hops from normalize_currency_code, not a direct dependency of it." },
+    { "id": "archive_old_invoices", "type": "function", "description": "Moves invoices older than the retention window into cold storage. Unrelated to currency normalization -- part of a separate cluster of functions this kit's scenario must exclude from the target's subgraph." },
+    { "id": "send_email_receipt", "type": "function", "description": "Emails a receipt after archiving. Calls archive_old_invoices. Part of the unrelated cluster." },
+    { "id": "rotate_log_files", "type": "function", "description": "Rotates application log files on a schedule. Part of the unrelated cluster." },
+    { "id": "sync_warehouse_inventory", "type": "function", "description": "Syncs warehouse inventory counts on a schedule. Part of the unrelated cluster." },
+    { "id": "claim-docstring-reject-unknown", "type": "claim", "source": "docstring", "text": "normalize_currency_code raises ValueError on any currency code it doesn't recognize." },
+    { "id": "claim-test-default-usd", "type": "claim", "source": "test_suite", "text": "normalize_currency_code silently defaults an unrecognized currency code to USD instead of raising." },
+    { "id": "claim-unrelated-archive-retention", "type": "claim", "source": "ops_runbook", "text": "archive_old_invoices retains invoice archives for 7 years before permanent deletion. Attached to archive_old_invoices, not to normalize_currency_code -- included to prove a claim on a different node must not leak into the target's subgraph." }
+  ],
+  "edges": [
+    { "subject": "convert_ledger_entry", "predicate": "calls", "object": "normalize_currency_code" },
+    { "subject": "build_customer_invoice", "predicate": "calls", "object": "normalize_currency_code" },
+    { "subject": "normalize_currency_code", "predicate": "calls", "object": "lookup_currency_table" },
+    { "subject": "normalize_currency_code", "predicate": "calls", "object": "round_to_minor_unit" },
+    { "subject": "generate_quarterly_report", "predicate": "calls", "object": "convert_ledger_entry" },
+    { "subject": "lookup_currency_table", "predicate": "calls", "object": "fetch_exchange_rate_api" },
+    { "subject": "send_email_receipt", "predicate": "calls", "object": "archive_old_invoices" },
+    { "subject": "archive_old_invoices", "predicate": "calls", "object": "rotate_log_files" },
+    { "subject": "sync_warehouse_inventory", "predicate": "calls", "object": "rotate_log_files" },
+    { "subject": "normalize_currency_code", "predicate": "claims", "object": "claim-docstring-reject-unknown" },
+    { "subject": "normalize_currency_code", "predicate": "claims", "object": "claim-test-default-usd" },
+    { "subject": "claim-docstring-reject-unknown", "predicate": "contradicts", "object": "claim-test-default-usd" },
+    { "subject": "archive_old_invoices", "predicate": "claims", "object": "claim-unrelated-archive-retention" }
+  ]
+}
