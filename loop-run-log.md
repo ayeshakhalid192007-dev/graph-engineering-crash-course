@@ -73,3 +73,60 @@ pattern name. No other content changed. originality-check: 61 files
 checked, 0 violations. `STATE.md`'s Day 2 row now shows no open items.
 User has reviewed and approved proceeding to `day-3-plan.md`; Day 3's own
 independent `/loop` starts next.
+
+## 2026-08-06 — Day 3 complete
+
+Pattern library complete: 23 specs, 7 full multi-tool core kits, 16
+single-tool + porting-note extended kits. 8 projects with reference
+solutions, three cheatsheets, the Ultra-Pro advanced tier, and the
+assessments (final exam, capstone rubric, Graph Ready certification) all
+written. The three remaining gate scripts — `link-check.mjs`,
+`validate-registry.mjs`, `graph-ready-audit.mjs` — now exist, and the Day
+1 existence guards that let their workflows pass by skipping have been
+removed. All four CI gates green: originality-check 86 files / 0
+violations, link-check 270 files / 0 broken links, validate-registry 23
+patterns / 0 errors, graph-ready-audit 23 kits / 0 violations.
+markdownlint clean across all 86 linted files. Deliverable 1 is
+feature-complete.
+
+Verified at close-out: registry holds 23 entries, exactly 7 marked `core:
+true`, and those 7 are precisely the kits carrying an `opencode/`
+directory; the other 16 each carry a `PORTING.md`. (An eighth `opencode/`
+directory exists under `starters/_template/`, which is the scaffold and
+correctly ships both tool directories.)
+
+Three judgment calls from this day need sign-off at the approval gate.
+Two were anticipated in `day-3-plan.md`: all 16 extended kits use Claude
+Code as their single reference tool rather than a mix, and
+`patterns/registry.yaml` is validated by a hand-rolled parser scoped to
+that file's flat shape rather than by a YAML library dependency.
+
+The third was not anticipated and was approved by the user mid-run.
+`scripts/originality-check.mjs` — a Day 1 deliverable and a live CI gate
+— now scans prose only: fenced code blocks, inline code spans, and the
+URL half of Markdown links are removed before the 8-word-run scan. The
+trigger was Task 11: a project page's starting material and its reference
+solution's worked result legitimately show the same JSON record, and the
+checker was reporting all 55 such runs as duplication, plus 8 more where
+two pages linked to the same document or shared a long page title. The
+change matches the policy `day-3-plan.md`'s Global Constraints already
+stated — code and config are not prose and were never subject to the
+8-word rule. Genuine prose duplication was fixed by rewriting, not by the
+tool change: 25 real overlaps were reworded before the checker was
+touched. Each removal now leaves a barrier that a word run may not span,
+so dropping a code sample cannot splice the sentences on either side of
+it into a run no page wrote. Verified by canary: a page duplicating an
+existing paragraph is still caught (12 runs flagged, exit 1). The three
+new scripts were canary-tested the same way before commit — a dangling
+link, a core kit with its `opencode/` removed, and a `PATTERN.md` with a
+renamed section each produced exit 1 naming the specific cause.
+
+One smaller fix worth recording: seven markdownlint errors shipped with
+projects 1–4 in the previous session's commit (two unlabelled code
+fences, four bare email addresses in a table, one list missing a leading
+blank line), which left the markdown-lint workflow red. Cleared as part
+of Task 11.
+
+Day 3's loop stops here, permanently. Awaiting user approval before
+`day-4-plan.md`; Day 4 starts as its own fresh, independent `/loop`, not
+a continuation of this one.
