@@ -1,0 +1,26 @@
+{
+  "name": "graph-engineering-crash-course",
+  "version": "0.1.0",
+  "private": true,
+  "description": "The Graph Engineering Crash Course. The installable CLI is packages/graph-kit — this root package is never published.",
+  "type": "module",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course.git"
+  },
+  "scripts": {
+    "check:originality": "node scripts/originality-check.mjs",
+    "check:links": "node scripts/link-check.mjs",
+    "validate:registry": "node scripts/validate-registry.mjs",
+    "audit:graph-ready": "node scripts/graph-ready-audit.mjs",
+    "check:all": "npm run check:originality && npm run check:links && npm run validate:registry && npm run audit:graph-ready",
+    "bundle:kit": "node packages/graph-kit/scripts/bundle-kits.mjs"
+  }
+}

@@ -1,0 +1,52 @@
+name: kit-package
+on: [push, pull_request]
+jobs:
+  kit-package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 20
+
+      # The kits live once, at the repo root. bundle-kits.mjs stages a copy into the
+      # package and fails if the kit count and the spec count have drifted apart.
+      - name: Bundle kits into the package
+        run: node packages/graph-kit/scripts/bundle-kits.mjs
+
+      - name: CLI smoke test
+        run: |
+          node packages/graph-kit/bin/graph-kit.mjs --version
+          node packages/graph-kit/bin/graph-kit.mjs list
+
+      # An extended kit has no OpenCode implementation, so asking for one must fail
+      # with a real message rather than installing a half-empty directory.
+      - name: Extended kit refuses --tool opencode
+        run: |
+          if node packages/graph-kit/bin/graph-kit.mjs arbitration-edge --tool opencode --dir "$RUNNER_TEMP/x" 2>/dev/null; then
+            echo "expected a non-zero exit for an extended kit with --tool opencode"
+            exit 1
+          fi
+
+      - name: Install a core and an extended kit
+        run: |
+          node packages/graph-kit/bin/graph-kit.mjs document-to-facts --dir "$RUNNER_TEMP/kits"
+          node packages/graph-kit/bin/graph-kit.mjs arbitration-edge  --dir "$RUNNER_TEMP/kits"
+          test -f "$RUNNER_TEMP/kits/document-to-facts/opencode/opencode.json.example"
+          test -f "$RUNNER_TEMP/kits/document-to-facts/SPEC.md"
+          test -f "$RUNNER_TEMP/kits/arbitration-edge/PORTING.md"
+          test ! -d "$RUNNER_TEMP/kits/arbitration-edge/opencode"
+
+      # The package must carry kits and specs only. A course file in the tarball means
+      # `files` in package.json drifted.
+      - name: Tarball carries no course content
+        working-directory: packages/graph-kit
+        run: |
+          npm pack --pack-destination "$RUNNER_TEMP" >/dev/null
+          tar tzf "$RUNNER_TEMP"/graph-engineering-graph-kit-*.tgz | sed 's|^package/||' > "$RUNNER_TEMP/files.txt"
+          if grep -Eq '^(docs|examples|skills|templates|resources|assets)/|-plan\.md|graph-plan|loop-run-log|STATE\.md|AGENTS\.md|CLAUDE\.md' "$RUNNER_TEMP/files.txt"; then
+            echo "Course content leaked into the tarball:"
+            grep -E '^(docs|examples|skills|templates|resources|assets)/|-plan\.md|graph-plan|loop-run-log|STATE\.md|AGENTS\.md|CLAUDE\.md' "$RUNNER_TEMP/files.txt"
+            exit 1
+          fi
+          echo "tarball clean: $(wc -l < "$RUNNER_TEMP/files.txt") files"
