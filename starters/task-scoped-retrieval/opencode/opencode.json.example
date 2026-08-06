@@ -1,0 +1,37 @@
+{
+  "_comment": "OpenCode configuration for the task-scoped-retrieval kit. Wires the build-subgraph skill and a verify step over the Verdant Metrics scenario (sample-graph.example.json). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "task-scoped-retrieval-opencode",
+  "description": "Traverses a full graph and returns a bounded subgraph around one target node -- depth-bounded dependencies plus any disputed claims -- with independent verification that nothing outside the boundary leaked in",
+  "tools": [
+    {
+      "name": "build-subgraph",
+      "type": "skill",
+      "path": "skills/build-subgraph/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "build",
+        "tool": "build-subgraph",
+        "input": {
+          "graph": "../sample-graph.example.json",
+          "target": "normalize_currency_code",
+          "depth": 1
+        },
+        "output": "output.json"
+      },
+      {
+        "name": "verify",
+        "tool": "build-subgraph",
+        "mode": "verify",
+        "input": {
+          "output": "output.json",
+          "graph": "../sample-graph.example.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Mode: verify section) to independently re-traverse sample-graph.example.json and check output.json for leakage, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "_comment": "OpenCode configuration for the alias-merge-with-trail kit. Wires the merge-aliases skill and a verify step over the Meridian Freight scenario (sample-input.md / schema.example.json). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "alias-merge-with-trail-opencode",
+  "description": "Folds two surface names for one backend system into a canonical entity while keeping both original mentions retrievable, with independent verification that no mention was lost",
+  "tools": [
+    {
+      "name": "merge-aliases",
+      "type": "skill",
+      "path": "skills/merge-aliases/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "merge",
+        "tool": "merge-aliases",
+        "input": {
+          "document": "../sample-input.md",
+          "schema": "../schema.example.json"
+        },
+        "output": "output.json"
+      },
+      {
+        "name": "verify",
+        "tool": "merge-aliases",
+        "mode": "verify",
+        "input": {
+          "output": "output.json",
+          "schema": "../schema.example.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Mode: verify section) to independently re-check output.json against schema.example.json, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}

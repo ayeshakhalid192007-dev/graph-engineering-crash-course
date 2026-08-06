@@ -1,0 +1,36 @@
+{
+  "_comment": "Schema for the receipt-per-edge worked scenario (sample-input.md): a Talus Robotics root-cause report, RCA-3309, extracted twice under two schema versions. 'edge' is the fixed shape every written edge must match, not sample data. Every edge must carry all three receipt fields (source_doc, extraction_run_id, schema_version), regardless of schema_version, or attach-receipts must refuse to write it.",
+  "edge": {
+    "subject": "<the entity the claim is about>",
+    "predicate": "<the relationship type, e.g. caused-by>",
+    "object": "<the entity or value the claim points to>",
+    "source_doc": "<the source document this edge was extracted from>",
+    "extraction_run_id": "<the id of the extraction run that produced this edge>",
+    "schema_version": "<the schema version active when this edge was written>"
+  },
+  "schema_versions": {
+    "v1": {
+      "description": "Original schema. A caused-by edge carries only the bare claim plus the three receipt fields.",
+      "required_edge_fields": [
+        "subject",
+        "predicate",
+        "object",
+        "source_doc",
+        "extraction_run_id",
+        "schema_version"
+      ]
+    },
+    "v2": {
+      "description": "Adds a required impact_scope field to every caused-by edge, naming which downstream systems the cause affected.",
+      "required_edge_fields": [
+        "subject",
+        "predicate",
+        "object",
+        "impact_scope",
+        "source_doc",
+        "extraction_run_id",
+        "schema_version"
+      ]
+    }
+  }
+}
