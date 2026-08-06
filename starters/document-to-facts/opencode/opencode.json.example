@@ -1,0 +1,36 @@
+{
+  "_comment": "OpenCode configuration for the document-to-facts kit. Wires the extract-facts skill and a verify step over the incident-report scenario (sample-input.md / schema.example.json). Copy to opencode.json and adjust paths if you move the kit.",
+  "version": "1.0",
+  "name": "document-to-facts-opencode",
+  "description": "Schema-first extraction of Service/Incident/Cause facts from an incident report, with independent schema verification of the output",
+  "tools": [
+    {
+      "name": "extract-facts",
+      "type": "skill",
+      "path": "skills/extract-facts/SKILL.md"
+    }
+  ],
+  "workflow": {
+    "steps": [
+      {
+        "name": "extract",
+        "tool": "extract-facts",
+        "input": {
+          "document": "../sample-input.md",
+          "schema": "../schema.example.json"
+        },
+        "output": "output.json"
+      },
+      {
+        "name": "verify",
+        "tool": "extract-facts",
+        "mode": "verify",
+        "input": {
+          "output": "output.json",
+          "schema": "../schema.example.json"
+        },
+        "description": "Re-runs the same skill in verify mode (see SKILL.md's Verification Mode section) to independently re-check output.json against the schema, mirroring the Claude Code graph-verifier subagent."
+      }
+    ]
+  }
+}

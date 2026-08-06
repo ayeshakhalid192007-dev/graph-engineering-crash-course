@@ -1,0 +1,21 @@
+{
+  "_comment": "Minimal example schema for this pattern. Replace this example with a schema matching your pattern's domain. For write-path patterns, entities and relationships represent the structure the skill should produce. For read-path patterns, this would typically be a sample-graph.example.json instead, showing the graph structure you're querying against.",
+  "entities": [
+    {
+      "type": "example_entity_type",
+      "properties": [
+        "property_name"
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "type": "example_relationship_type",
+      "from": "entity_type_a",
+      "to": "entity_type_b",
+      "properties": [
+        "property_name"
+      ]
+    }
+  ]
+}

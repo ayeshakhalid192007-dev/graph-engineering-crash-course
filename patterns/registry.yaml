@@ -1,0 +1,116 @@
+patterns:
+  - name: document-to-facts
+    category: A-extraction
+    stage: write
+    cost: medium
+    core: true
+  - name: code-change-to-graph
+    category: A-extraction
+    stage: write
+    cost: medium
+    core: false
+  - name: conversation-to-claims
+    category: A-extraction
+    stage: write
+    cost: medium
+    core: false
+  - name: alias-merge-with-trail
+    category: B-resolution
+    stage: write
+    cost: low
+    core: true
+  - name: confidence-scored-dedup
+    category: B-resolution
+    stage: write
+    cost: medium
+    core: false
+  - name: reversible-merge-audit
+    category: B-resolution
+    stage: write
+    cost: low
+    core: false
+  - name: receipt-per-edge
+    category: C-provenance
+    stage: write
+    cost: low
+    core: true
+  - name: supersession-chain
+    category: C-provenance
+    stage: write
+    cost: low
+    core: false
+  - name: versioned-schema-log
+    category: C-provenance
+    stage: write
+    cost: low
+    core: false
+  - name: task-scoped-retrieval
+    category: D-subgraph
+    stage: read
+    cost: low
+    core: true
+  - name: budget-capped-subgraph
+    category: D-subgraph
+    stage: read
+    cost: low
+    core: false
+  - name: conflict-aware-bundle
+    category: D-subgraph
+    stage: read
+    cost: medium
+    core: false
+  - name: grounded-triple-checker
+    category: E-checker
+    stage: read
+    cost: medium
+    core: true
+  - name: contradiction-detector
+    category: E-checker
+    stage: read
+    cost: medium
+    core: false
+  - name: early-victory-guard
+    category: E-checker
+    stage: read
+    cost: low
+    core: false
+  - name: counter-metric-loop
+    category: F-governance
+    stage: governance
+    cost: low
+    core: true
+  - name: arbitration-edge
+    category: F-governance
+    stage: governance
+    cost: low
+    core: false
+  - name: audit-loop
+    category: F-governance
+    stage: governance
+    cost: medium
+    core: false
+  - name: anchor-and-freeze
+    category: F-governance
+    stage: governance
+    cost: low
+    core: false
+  - name: sqlite-backed-graph
+    category: G-storage
+    stage: storage
+    cost: low
+    core: true
+  - name: file-graph-for-small-teams
+    category: G-storage
+    stage: storage
+    cost: low
+    core: false
+  - name: postgres-backed-graph
+    category: G-storage
+    stage: storage
+    cost: medium
+    core: false
+  - name: neo4j-at-scale
+    category: G-storage
+    stage: storage
+    cost: high
+    core: false
