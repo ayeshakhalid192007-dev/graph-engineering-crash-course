@@ -5,11 +5,11 @@ This directory contains runnable starter kits for all 23 patterns in the library
 ## Install one without cloning
 
 ```bash
-npx @graph-engineering/graph-kit list        # browse all 23
-npx @graph-engineering/graph-kit <kit-name>  # install into the current directory
+npx @graph-engineering-kits/graph-kit list        # browse all 23
+npx @graph-engineering-kits/graph-kit <kit-name>  # install into the current directory
 ```
 
-The [`@graph-engineering/graph-kit`](../packages/graph-kit/README.md) CLI carries the kits and their specs and nothing else — no course, no clone, no API keys. Copying a directory out of this folder by hand does the same job and stays supported.
+The [`@graph-engineering-kits/graph-kit`](../packages/graph-kit/README.md) CLI carries the kits and their specs and nothing else — no course, no clone, no API keys. Copying a directory out of this folder by hand does the same job and stays supported.
 
 ## Core Kits (Full Multi-Tool)
 

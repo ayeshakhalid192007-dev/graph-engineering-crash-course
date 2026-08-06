@@ -2,9 +2,9 @@
 // Installs a graph kit into the user's project.
 // Replaces `git clone` + `cp -r starters/<pattern> .`, which needed the whole course.
 //
-//   npx @graph-engineering/graph-kit list
-//   npx @graph-engineering/graph-kit document-to-facts
-//   npx @graph-engineering/graph-kit new my-pattern --tool claude
+//   npx @graph-engineering-kits/graph-kit list
+//   npx @graph-engineering-kits/graph-kit document-to-facts
+//   npx @graph-engineering-kits/graph-kit new my-pattern --tool claude
 //
 // The kits are bundled into the tarball at publish time, so nothing is fetched at run
 // time and nothing but the kits and their specs is downloaded.
@@ -33,7 +33,7 @@ const registryPath = path.join(patternsDir, "registry.yaml");
 
 const REPO_SLUG = "ayeshakhalid192007-dev/graph-engineering-crash-course";
 const REPO_BLOB = `https://github.com/${REPO_SLUG}/blob/main`;
-const INVOKE = "npx @graph-engineering/graph-kit";
+const INVOKE = "npx @graph-engineering-kits/graph-kit";
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
 function die(msg) {

@@ -1,10 +1,10 @@
-# @graph-engineering/graph-kit
+# @graph-engineering-kits/graph-kit
 
 Install a ready-to-run graph pattern kit into any project. One command, no clone, no course.
 
 ```bash
-npx @graph-engineering/graph-kit list
-npx @graph-engineering/graph-kit document-to-facts
+npx @graph-engineering-kits/graph-kit list
+npx @graph-engineering-kits/graph-kit document-to-facts
 ```
 
 Each kit is a working implementation of one pattern for building and operating knowledge graphs that agents can actually use — extraction, resolution, provenance, bounded retrieval, grounded checking, governance, and storage. Kits run against a small worked example that ships with them. **No API keys and no external services** are needed to try one.

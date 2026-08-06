@@ -1,5 +1,5 @@
 {
-  "name": "@graph-engineering/graph-kit",
+  "name": "@graph-engineering-kits/graph-kit",
   "version": "0.1.0",
   "description": "Install a ready-to-run graph kit from the Graph Engineering Crash Course into any project — kits only, no course, no clone.",
   "type": "module",

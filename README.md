@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course/actions/workflows/originality-check.yml/badge.svg)](https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course/actions)
-[![npm](https://img.shields.io/npm/v/@graph-engineering/graph-kit.svg)](https://www.npmjs.com/package/@graph-engineering/graph-kit)
+[![npm](https://img.shields.io/npm/v/@graph-engineering-kits/graph-kit.svg)](https://www.npmjs.com/package/@graph-engineering-kits/graph-kit)
 
 ## Overview
 
@@ -17,7 +17,7 @@ A single automated agent can work with a thin memory file—read it in, act, wri
 | **[Start here →](docs/00-start-here/)** | Begin with the learning path and prerequisite checks |
 | **[Course docs →](docs/README.md)** | The complete 17-step curriculum (foundations through advanced patterns) |
 | **[Pattern library →](patterns/README.md)** | Production-ready graph patterns and example implementations |
-| **[Starter kits →](starters/README.md)** | 23 runnable kits for Claude Code and OpenCode — installable via `npx @graph-engineering/graph-kit` |
+| **[Starter kits →](starters/README.md)** | 23 runnable kits for Claude Code and OpenCode — installable via `npx @graph-engineering-kits/graph-kit` |
 | **[Sources →](resources/sources.md)** | Full attribution for the ten primary sources |
 
 ## Quickstart
@@ -25,8 +25,8 @@ A single automated agent can work with a thin memory file—read it in, act, wri
 **Just want a starter kit?** You don't need this repo at all:
 
 ```bash
-npx @graph-engineering/graph-kit list              # all 23 kits
-npx @graph-engineering/graph-kit document-to-facts # install one here
+npx @graph-engineering-kits/graph-kit list              # all 23 kits
+npx @graph-engineering-kits/graph-kit document-to-facts # install one here
 ```
 
 No clone, no build, no API keys. See [`packages/graph-kit`](packages/graph-kit/README.md).

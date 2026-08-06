@@ -43,7 +43,7 @@ jobs:
         working-directory: packages/graph-kit
         run: |
           npm pack --pack-destination "$RUNNER_TEMP" >/dev/null
-          tar tzf "$RUNNER_TEMP"/graph-engineering-graph-kit-*.tgz | sed 's|^package/||' > "$RUNNER_TEMP/files.txt"
+          tar tzf "$RUNNER_TEMP"/graph-engineering-kits-graph-kit-*.tgz | sed 's|^package/||' > "$RUNNER_TEMP/files.txt"
           if grep -Eq '^(docs|examples|skills|templates|resources|assets)/|-plan\.md|graph-plan|loop-run-log|STATE\.md|AGENTS\.md|CLAUDE\.md' "$RUNNER_TEMP/files.txt"; then
             echo "Course content leaked into the tarball:"
             grep -E '^(docs|examples|skills|templates|resources|assets)/|-plan\.md|graph-plan|loop-run-log|STATE\.md|AGENTS\.md|CLAUDE\.md' "$RUNNER_TEMP/files.txt"
