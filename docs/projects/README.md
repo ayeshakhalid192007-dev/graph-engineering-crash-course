@@ -15,7 +15,7 @@ Work through Projects 1–4 alongside Steps 1–13 (the core path); save 5–8 f
 | 3 | [Extract your first ten facts](03-extract-your-first-ten-facts.md) | Intermediate | 30–45 min | fixed schema, extraction, rejecting out-of-schema items | Step 6, Part 3 |
 | 4 | [Merge without losing the trail](04-merge-without-losing-the-trail.md) | Intermediate–Advanced | 45–60 min | resolution, reversible merges, evidence over similarity | Step 7, Part 3 |
 | 5 | [Give every edge a receipt](05-give-every-edge-a-receipt.md) | Intermediate | 30–45 min | provenance, source records, schema-version tracking | Step 8, Part 3 |
-| 6 | [Feed a worker a subgraph, not the graph](06-feed-a-worker-a-subgraph.md) | Intermediate | 45–60 min | subgraphs, bounded context, task-scoped retrieval | Step 9, Part 4 |
+| 6 | [Feed a worker a subgraph](06-feed-a-worker-a-subgraph.md) | Intermediate | 45–60 min | subgraphs, bounded context, task-scoped retrieval | Step 9, Part 4 |
 | 7 | [Catch a lie with a checker](07-catch-a-lie-with-a-checker.md) | Advanced | 45–60 min | grounding, rejecting claims the graph can't back up | Step 10, Part 4 |
 | 8 | [Wire two loops together (capstone)](08-wire-two-loops-together-capstone.md) | Capstone | 90–120 min | governance graph, arbitration, anchors, frozen nodes | Steps 11–13, Part 5 |
 

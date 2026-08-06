@@ -15,7 +15,7 @@ Before touching the document, you'll fix a schema — the same discipline Step 6
 
 ## Starting material
 
-```
+```markdown
 # Fernbank Changelog
 
 ## v2.4.0 — 2026-03-02

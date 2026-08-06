@@ -15,10 +15,10 @@ A small plant shop's support inbox has five tickets that each sign off with some
 
 | Mention | Raw name | Source ticket | Email | Order # | Phone (last 4) |
 | --- | --- | --- | --- | --- | --- |
-| m1 | Jonathan Ferreira | #401 | jonathan.ferreira88@gmail.com | 10432 | — |
-| m2 | Jon Ferreira | #405 | jonathan.ferreira88@gmail.com | 10432 | — |
-| m3 | J. Ferreira | #412 | j.ferreira@ferreiradesigns.com | 10890 | — |
-| m4 | Jonny F | #418 | jonathan.ferreira88@gmail.com | 11002 | — |
+| m1 | Jonathan Ferreira | #401 | `jonathan.ferreira88@gmail.com` | 10432 | — |
+| m2 | Jon Ferreira | #405 | `jonathan.ferreira88@gmail.com` | 10432 | — |
+| m3 | J. Ferreira | #412 | `j.ferreira@ferreiradesigns.com` | 10890 | — |
+| m4 | Jonny F | #418 | `jonathan.ferreira88@gmail.com` | 11002 | — |
 | m5 | Ferreira, J | #420 | — | 10432 | 4471 |
 
 ## Your task

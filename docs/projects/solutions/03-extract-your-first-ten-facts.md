@@ -30,6 +30,7 @@ If this kind of item showed up often — plan limits, pricing, quotas — that w
 ## The resulting graph
 
 **Nodes:**
+
 - `Release`: v2.4.0, v2.3.1, v2.3.0
 - `Feature`: bulk tag rename, pin-to-top shortcut, dark mode, Notebooks sidebar view, offline mode, weekly digest email
 - `Issue`: mobile auto-lock data loss, search missing recent edits, stale collaborator list, PDF export cutoff
