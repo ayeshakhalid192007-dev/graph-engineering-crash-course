@@ -7,10 +7,19 @@ import { join, extname, dirname, resolve } from "node:path";
 const ROOTS = ["docs", "patterns", "starters", "resources", "."];
 const LINK_RE = /\[[^\]]*\]\((\.{1,2}\/[^)#\s]+|[^)#\s:]+\.md)(#[^)]*)?\)/g;
 
+const SKIP_DIRS = new Set(["node_modules", ".git", "web"]);
+
+// packages/*/starters and packages/*/patterns are copies staged by
+// packages/graph-kit/scripts/bundle-kits.mjs at pack time — gitignored build artifacts,
+// not source. Their relative links are written for the repo root and don't resolve from
+// the copy's location, which is correct and not a broken link in anything anyone edits.
+const BUNDLED_COPY = /(^|[\\/])packages[\\/][^\\/]+[\\/](starters|patterns)([\\/]|$)/;
+
 function walk(dir, out = []) {
   for (const entry of readdirSync(dir)) {
-    if (entry === "node_modules" || entry === ".git" || entry === "web") continue;
+    if (SKIP_DIRS.has(entry)) continue;
     const p = join(dir, entry);
+    if (BUNDLED_COPY.test(p)) continue;
     const s = statSync(p);
     if (s.isDirectory()) walk(p, out);
     else if (extname(p) === ".md") out.push(p);

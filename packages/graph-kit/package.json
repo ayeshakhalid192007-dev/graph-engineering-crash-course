@@ -1,0 +1,43 @@
+{
+  "name": "@graph-engineering-kits/graph-kit",
+  "version": "0.1.0",
+  "description": "Install a ready-to-run graph kit from the Graph Engineering Crash Course into any project — kits only, no course, no clone.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "graph-kit": "bin/graph-kit.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md",
+    "starters/",
+    "patterns/",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "graph-engineering",
+    "knowledge-graph",
+    "claude-code",
+    "opencode",
+    "agent",
+    "provenance",
+    "scaffold",
+    "starter-kit"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course.git",
+    "directory": "packages/graph-kit"
+  },
+  "homepage": "https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course/tree/main/starters#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "bundle": "node scripts/bundle-kits.mjs",
+    "prepack": "node scripts/bundle-kits.mjs"
+  }
+}

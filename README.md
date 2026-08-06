@@ -1,7 +1,8 @@
 # Graph Engineering — A Crash Course
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-<!-- TODO: replace with real CI badge once a GitHub remote exists -->
+[![CI](https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course/actions/workflows/originality-check.yml/badge.svg)](https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course/actions)
+[![npm](https://img.shields.io/npm/v/@graph-engineering-kits/graph-kit.svg)](https://www.npmjs.com/package/@graph-engineering-kits/graph-kit)
 
 ## Overview
 
@@ -16,16 +17,27 @@ A single automated agent can work with a thin memory file—read it in, act, wri
 | **[Start here →](docs/00-start-here/)** | Begin with the learning path and prerequisite checks |
 | **[Course docs →](docs/README.md)** | The complete 17-step curriculum (foundations through advanced patterns) |
 | **[Pattern library →](patterns/README.md)** | Production-ready graph patterns and example implementations |
-| **[Starter kits →](starters/README.md)** | Clone-and-run templates for Claude Code and OpenCode |
+| **[Starter kits →](starters/README.md)** | 23 runnable kits for Claude Code and OpenCode — installable via `npx @graph-engineering-kits/graph-kit` |
 | **[Sources →](resources/sources.md)** | Full attribution for the ten primary sources |
 
 ## Quickstart
 
+**Just want a starter kit?** You don't need this repo at all:
+
+```bash
+npx @graph-engineering-kits/graph-kit list              # all 23 kits
+npx @graph-engineering-kits/graph-kit document-to-facts # install one here
+```
+
+No clone, no build, no API keys. See [`packages/graph-kit`](packages/graph-kit/README.md).
+
+**Want the course?**
+
 1. **Clone this repo:**
-   <!-- Placeholder: Replace with real GitHub repository URL once a remote is created -->
+
    ```bash
-   git clone https://github.com/graph-engineering-course/graph-engineering-course.git
-   cd graph-engineering-course
+   git clone https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course.git
+   cd graph-engineering-crash-course
    ```
 
 2. **Read the prerequisites** — this course assumes you've already worked through Loop Engineering and Harness Engineering. If not, [start there](docs/00-start-here/).
@@ -51,13 +63,12 @@ We welcome contributions: bug reports, pattern additions, example implementation
 
 If you use this course in your work, please cite it:
 
-<!-- Placeholder: Replace repository URL once a GitHub remote is created -->
 ```bibtex
 @software{graph-eng-course-2026,
   title = {Graph Engineering — A Crash Course},
   author = {{Graph Engineering Course Contributors}},
   year = {2026},
-  url = {https://github.com/graph-engineering-course/graph-engineering-course},
+  url = {https://github.com/ayeshakhalid192007-dev/graph-engineering-crash-course},
   license = {MIT}
 }
 ```

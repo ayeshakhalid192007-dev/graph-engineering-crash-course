@@ -2,6 +2,15 @@
 
 This directory contains runnable starter kits for all 23 patterns in the library. Each kit includes a quickstart, schema examples, and reference implementations in Claude Code and/or OpenCode.
 
+## Install one without cloning
+
+```bash
+npx @graph-engineering-kits/graph-kit list        # browse all 23
+npx @graph-engineering-kits/graph-kit <kit-name>  # install into the current directory
+```
+
+The [`@graph-engineering-kits/graph-kit`](../packages/graph-kit/README.md) CLI carries the kits and their specs and nothing else — no course, no clone, no API keys. Copying a directory out of this folder by hand does the same job and stays supported.
+
 ## Core Kits (Full Multi-Tool)
 
 These 7 patterns have complete implementations in both Claude Code and OpenCode, with full `.claude/` and `opencode/` subdirectories:

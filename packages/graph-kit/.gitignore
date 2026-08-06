@@ -1,0 +1,5 @@
+# Build artifacts staged by scripts/bundle-kits.mjs at pack/publish time.
+# The sources live once, at the repo root. Never edit these copies.
+starters/
+patterns/
+LICENSE
