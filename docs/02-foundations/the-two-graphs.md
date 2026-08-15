@@ -1,5 +1,9 @@
 # The Two Graphs
 
+![Transcripts vs Knowledge Graph](../assets/transcripts-vs-graph.png)
+
+---
+
 ## Hook
 
 A small support team runs an army of agents that triage incoming tickets. Ticket #482 comes in: "can't log in." One agent tries a password reset — doesn't fix it. A second agent restarts the user's session — still broken. A third agent notices the account's login token was issued thirty-one days ago, past the product's thirty-day expiry, and closes the ticket with the real cause identified. Three attempts happened, in a specific order, and one confirmed fact came out the other end. Those are not the same kind of thing, and treating them as if they were is where a lot of graph designs quietly go wrong.
