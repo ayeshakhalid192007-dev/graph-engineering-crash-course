@@ -38,7 +38,7 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-3. You should have a fact graph built and understand extraction, resolution, and provenance.
 
-**What this unlocks**: You'll know how to scope task-sized subgraphs and verify outputs mechanically instead of trusting tone.
+**What this unlocks**: Scope task-sized subgraphs and verify outputs mechanically instead of trusting tone.
 
 ## Practice
 

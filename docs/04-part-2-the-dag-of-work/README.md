@@ -38,7 +38,7 @@ flowchart TB
 
 **Prerequisites**: Complete Part 1. You should understand the two-graph split and why work-history needs its own structure.
 
-**What this unlocks**: You'll know how to build a work-history graph that lets future agents learn from past failures instead of repeating them.
+**What this unlocks**: Build work-history graphs where future agents learn from past failures instead of repeating them.
 
 ## Practice
 

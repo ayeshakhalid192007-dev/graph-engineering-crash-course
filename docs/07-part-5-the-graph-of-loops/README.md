@@ -41,7 +41,7 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-4. You should understand both work-history and fact graphs, and how to use them.
 
-**What this unlocks**: You'll know how to wire multiple loops safely, spot when a lone loop is gaming metrics or drifting, and apply the right governance fix.
+**What this unlocks**: Wire multiple loops safely, spot when a lone loop is gaming metrics or drifting, and apply the right governance fix.
 
 ## Practice
 

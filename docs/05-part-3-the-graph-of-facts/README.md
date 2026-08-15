@@ -41,7 +41,7 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-2. You should understand the fact graph's purpose and how it differs from work-history.
 
-**What this unlocks**: You'll know how to extract structured claims from documents, merge mentions of the same thing, and maintain chain of custody for every fact.
+**What this unlocks**: Extract structured claims from documents, merge mentions of the same thing, and maintain chain of custody for every fact.
 
 ## Practice
 
