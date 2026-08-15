@@ -1,14 +1,16 @@
-# Graph Engineering Course — Docs
+# Graph Engineering Course
 
-This directory is the whole course. Everything readable on GitHub and everything rendered by the companion website is generated from these same markdown files — there is exactly one copy of the content, not two that can drift apart.
+Complete course on building and managing shared memory graphs for autonomous systems.
 
-If you haven't been here before, don't start on this page. Visit [the router](00-start-here/README.md) first and answer a couple of quick questions about where you're coming from; it will point you at the right entry point below.
+👉 **New here?** Start at [00-start-here](00-start-here/README.md)
 
-## Two ways through the material
+## Learning Paths
 
-**The core path (roughly two hours).** Steps 1 through 13, plus Projects 1 through 4. This gets you from "I have one loop and one memory file" to "I can build a fact graph, feed a worker a bounded slice of it, and check a claim against real edges instead of trusting how confident it sounds." Most readers stop here on a first pass and that's a complete, useful stopping point.
+**Core Path** (~2 hours)  
+Steps 1-13 + Projects 1-4. Learn to build fact graphs and check claims mechanically.
 
-**The second read.** Steps 14 through 17, Projects 5 through 8, the full pattern library, and the advanced tier. This is where governance, scale, and the judgment calls about when *not* to build a graph live. Come back for it once the core path has had time to sink in, or once you're actually running more than one loop against a shared graph and need the harder material.
+**Advanced Path**  
+Steps 14-17 + Projects 5-8 + pattern library. Governance, scale, and when to skip graphs entirely.
 
 ## Skill tracks
 

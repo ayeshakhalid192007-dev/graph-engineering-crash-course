@@ -1,9 +1,16 @@
 # Part 1 — The Memory Problem
 
-Why a lone memory file stops working once more than one writer touches it, and the split that fixes it.
+When a single memory file stops working, and how graphs fix it.
 
-- **Step 1** — where the single-file trick breaks down
-- **Step 2** — nodes and edges without the jargon
-- **Step 3** — why work-history and facts can't share one graph
+## Steps
 
-This folder's entry in the [top-level docs guide](../README.md) links all three directly. Check yourself with the [quiz](quiz.md) and [flashcards](flashcards.md), or run the scripts under [labs](labs/).
+- **[Step 1](step-1-why-loops-outgrow-a-single-memory-file.md)** — When two writers race to the same file
+- **[Step 2](step-2-graphs-in-plain-terms.md)** — Nodes and edges: the basics
+- **[Step 3](step-3-keep-your-two-graphs-separate.md)** — Why work-history and facts need separate graphs
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+- [Flashcards](flashcards.md) — Review key concepts
+
+Next: [Part 2 - The DAG of Work](../04-part-2-the-dag-of-work/)
