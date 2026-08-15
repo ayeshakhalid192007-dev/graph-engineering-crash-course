@@ -1,5 +1,9 @@
 # Graph Engineering Course
 
+![Memory + Graph = Smarter Agents](assets/memory-plus-graph-smarter-agents.png)
+
+---
+
 Complete course on building and managing shared memory graphs for autonomous systems.
 
 👉 **New here?** Start at [00-start-here](00-start-here/README.md)
