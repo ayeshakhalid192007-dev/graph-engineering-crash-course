@@ -38,7 +38,7 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-6. You should have built at least one complete graph from extraction to verification.
 
-**What this unlocks**: After this part, you'll know when *not* to build a graph, and how to keep governance proportional to evidence instead of adding it preemptively.
+**What this unlocks**: You'll know when *not* to build a graph, and how to keep governance proportional to evidence instead of adding it preemptively.
 
 ## Practice
 
@@ -47,7 +47,7 @@ flowchart TB
 
 ## Check Your Understanding
 
-After completing this part, you should be able to:
+Can you now:
 
 - ✓ Recognize independent work items that need only a queue
 - ✓ Identify single-question-single-document problems

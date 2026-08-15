@@ -41,7 +41,7 @@ flowchart TB
 
 **Prerequisites**: Complete the Foundations section first. You should be comfortable with loop engineering vocabulary (heartbeat, spine, maker/checker).
 
-**What this unlocks**: After this part, you'll recognize the exact moment when a flat file needs to become a graph, and you'll understand why attempts and facts can't share the same structure.
+**What this unlocks**: You'll recognize the exact moment when a flat file needs to become a graph, and understand why attempts and facts can't share the same structure.
 
 ## Practice
 
@@ -50,7 +50,7 @@ flowchart TB
 
 ## Check Your Understanding
 
-After completing this part, you should be able to:
+Can you now:
 
 - ✓ Identify the race condition that breaks single-file memory
 - ✓ Explain what makes an edge "directed" and "labeled"

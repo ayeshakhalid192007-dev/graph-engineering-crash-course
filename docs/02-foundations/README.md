@@ -49,7 +49,7 @@ flowchart TB
 
 ## Check Your Understanding
 
-After completing this section, you should be able to:
+Can you now:
 
 - ✓ Explain why a single memory file works for one loop but fails for two
 - ✓ Distinguish between work-history graphs and fact graphs

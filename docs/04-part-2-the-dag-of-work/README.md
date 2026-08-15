@@ -38,7 +38,7 @@ flowchart TB
 
 **Prerequisites**: Complete Part 1. You should understand the two-graph split and why work-history needs its own structure.
 
-**What this unlocks**: After this part, you'll know how to build a work-history graph that lets future agents learn from past failures instead of repeating them.
+**What this unlocks**: You'll know how to build a work-history graph that lets future agents learn from past failures instead of repeating them.
 
 ## Practice
 
@@ -47,7 +47,7 @@ flowchart TB
 
 ## Check Your Understanding
 
-After completing this part, you should be able to:
+Can you now:
 
 - ✓ Explain why overwriting state loses valuable information
 - ✓ Implement the ratchet pattern for append-only progress

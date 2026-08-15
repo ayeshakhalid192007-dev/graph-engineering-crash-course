@@ -38,7 +38,7 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-5. You should understand the full graph engineering pipeline.
 
-**What this unlocks**: After this part, you'll know when to build a graph and when to use simpler alternatives. You'll also know how to validate your implementation.
+**What this unlocks**: You'll know when to build a graph and when to use simpler alternatives. You'll also know how to validate your implementation.
 
 ## Practice
 
@@ -46,7 +46,7 @@ flowchart TB
 
 ## Check Your Understanding
 
-After completing this part, you should be able to:
+Can you now:
 
 - ✓ Apply the six-question checklist to any candidate problem
 - ✓ Rule out problems that don't justify a graph
