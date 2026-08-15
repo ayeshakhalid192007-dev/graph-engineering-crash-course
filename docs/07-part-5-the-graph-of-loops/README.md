@@ -1,5 +1,9 @@
 # Part 5 — The Graph of Loops
 
+![The Loop is the Node. The Graph is the Wiring.](../assets/loop-is-node-graph-is-wiring.png)
+
+---
+
 Governing multiple loops and preventing common failure patterns. This part introduces governance graphs and the four ways lone loops fail.
 
 ## What You'll Learn
