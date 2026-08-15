@@ -5,6 +5,7 @@ Recording progress without losing the trail of failed attempts. This part introd
 ## What You'll Learn
 
 Build a work-history graph that preserves learning:
+
 - How to keep improvements without erasing failures
 - Why failed attempts must stay findable
 - The ratchet pattern for append-only progress

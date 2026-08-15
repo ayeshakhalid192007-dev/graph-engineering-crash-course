@@ -5,6 +5,7 @@ Building a fact graph from extraction to provenance. This part covers schema-fir
 ## What You'll Learn
 
 Build a fact graph that maintains trust and traceability:
+
 - Schema-first extraction from unstructured sources
 - Merging duplicates without losing evidence
 - Attaching provenance to every claim

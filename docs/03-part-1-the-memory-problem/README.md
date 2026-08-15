@@ -5,6 +5,7 @@ The moment a single memory file breaks and why graphs fix it. This part shows ex
 ## What You'll Learn
 
 Understand the fundamental problem graph engineering solves:
+
 - When and why a single file fails with multiple writers
 - How nodes and edges create structured shared memory
 - Why work-history and fact graphs serve different purposes

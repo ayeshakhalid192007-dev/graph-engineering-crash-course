@@ -5,6 +5,7 @@ Deciding when to build a graph and validating the implementation. This part prov
 ## What You'll Learn
 
 Make informed build-or-skip decisions:
+
 - Six questions to answer before committing to a graph
 - Building the same system twice to verify correctness
 - Recognizing when simpler tools are the right choice

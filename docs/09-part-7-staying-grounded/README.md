@@ -5,6 +5,7 @@ Knowing when to skip graphs and managing complexity budgets. This part teaches j
 ## What You'll Learn
 
 Make proportionate decisions:
+
 - Four recognizable cases where simpler tools win
 - Adding governance only after failures appear
 - Keeping complexity proportional to actual need
@@ -55,6 +56,6 @@ After completing this part, you should be able to:
 
 ---
 
-**🎉 Course Complete!** 
+**🎉 Course Complete!**
 
 You've learned the full graph engineering pipeline from first principles. Return to [Start Here](../00-start-here/README.md) to review any section, or explore [Advanced Topics](../advanced/README.md) for deeper dives into specific patterns.

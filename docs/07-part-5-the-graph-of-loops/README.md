@@ -5,6 +5,7 @@ Governing multiple loops and preventing common failure patterns. This part intro
 ## What You'll Learn
 
 Connect loops safely and prevent predictable failures:
+
 - Building governance graphs that wire loops together
 - Recognizing and fixing the four failure modes
 - Using anchors and frozen nodes to prevent drift

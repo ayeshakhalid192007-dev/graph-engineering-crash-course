@@ -5,6 +5,7 @@ Core vocabulary and concepts for graph engineering. This section establishes the
 ## What You'll Learn
 
 Build a solid foundation before diving into implementation:
+
 - Why graphs exist and when they replace simpler tools
 - The critical distinction between work-history and fact graphs
 - Key terminology used throughout the course

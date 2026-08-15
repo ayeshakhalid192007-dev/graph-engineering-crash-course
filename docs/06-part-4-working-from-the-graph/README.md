@@ -5,6 +5,7 @@ Using fact graphs to inform workers and verify their outputs. This part shows ho
 ## What You'll Learn
 
 Put the fact graph to work:
+
 - Scoping task-sized subgraphs instead of dumping everything
 - Verifying claims against real edges, not confidence scores
 - Building grounded checkers that decompose claims
