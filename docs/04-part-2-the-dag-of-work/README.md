@@ -1,5 +1,9 @@
 # Part 2 — The DAG of Work
 
+![Commit DAG vs Knowledge Graph](../assets/commit-dag-vs-knowledge-graph.png)
+
+---
+
 Recording progress without losing the trail of failed attempts. This part introduces the ratchet pattern and queryable failed branches.
 
 ## What You'll Learn
