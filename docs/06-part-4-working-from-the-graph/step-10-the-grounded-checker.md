@@ -1,5 +1,9 @@
 # Step 10 · The Grounded Checker
 
+![The Grounded Checker](../../assets/the-grounded-checker.png)
+
+---
+
 ## Hook
 
 `PR-5190` lands with a description that reads well: *"Refactors the login form's client-side validation. No backend changes, doesn't touch auth."* It's a five-hundred-line diff, mostly HTML and CSS tweaks — confident, specific, exactly how a reviewer wants a description to sound.
