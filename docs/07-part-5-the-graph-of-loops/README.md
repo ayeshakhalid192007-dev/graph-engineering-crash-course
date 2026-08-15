@@ -41,16 +41,16 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-4. You should understand both work-history and fact graphs, and how to use them.
 
-**What this unlocks**: You'll know how to connect multiple loops safely, recognize when a lone loop is gaming metrics or drifting, and apply the right governance fix.
+**What this unlocks**: You'll know how to wire multiple loops safely, spot when a lone loop is gaming metrics or drifting, and apply the right governance fix.
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
-- [Flashcards](flashcards.md) — Review key concepts
+- [Quiz](quiz.md) — Validate understanding  
+- [Flashcards](flashcards.md) — Study material
 
-## Check Your Understanding
+## Verify Your Skills
 
-Can you now:
+Can you:
 
 - ✓ Wire loops together using a governance graph
 - ✓ Identify metric-gaming, blind spots, collisions, and drift

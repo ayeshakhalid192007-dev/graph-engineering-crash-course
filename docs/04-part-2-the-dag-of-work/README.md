@@ -42,12 +42,12 @@ flowchart TB
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
-- [Flashcards](flashcards.md) — Review key concepts
+- [Quiz](quiz.md) — Test understanding
+- [Flashcards](flashcards.md) — Review concepts
 
 ## Check Your Understanding
 
-Can you now:
+Can you:
 
 - ✓ Explain why overwriting state loses valuable information
 - ✓ Implement the ratchet pattern for append-only progress

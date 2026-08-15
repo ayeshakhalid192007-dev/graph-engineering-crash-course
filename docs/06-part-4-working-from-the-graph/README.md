@@ -38,16 +38,16 @@ flowchart TB
 
 **Prerequisites**: Complete Parts 1-3. You should have a fact graph built and understand extraction, resolution, and provenance.
 
-**What this unlocks**: You'll know how to hand workers only the graph slice they need and verify their outputs mechanically instead of trusting tone.
+**What this unlocks**: You'll know how to scope task-sized subgraphs and verify outputs mechanically instead of trusting tone.
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
-- [Flashcards](flashcards.md) — Review key concepts
+- [Quiz](quiz.md) — Assess understanding
+- [Flashcards](flashcards.md) — Review material
 
-## Check Your Understanding
+## Verify Your Skills
 
-Can you now:
+Can you:
 
 - ✓ Scope a subgraph to a specific task boundary
 - ✓ Decompose prose claims into falsifying edges

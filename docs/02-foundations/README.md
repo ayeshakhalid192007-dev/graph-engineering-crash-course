@@ -47,9 +47,9 @@ flowchart TB
 
 **Suggested path**: Read mental models → the two graphs → skim glossary → read concepts. Return to the glossary as a reference when you encounter unfamiliar terms later.
 
-## Check Your Understanding
+## Skills Assessment
 
-Can you now:
+Can you:
 
 - ✓ Explain why a single memory file works for one loop but fails for two
 - ✓ Distinguish between work-history graphs and fact graphs

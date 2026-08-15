@@ -42,11 +42,11 @@ flowchart TB
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
+- [Quiz](quiz.md) — Confirm understanding
 
-## Check Your Understanding
+## Verify Your Skills
 
-Can you now:
+Can you:
 
 - ✓ Apply the six-question checklist to any candidate problem
 - ✓ Rule out problems that don't justify a graph

@@ -42,12 +42,12 @@ flowchart TB
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
-- [Flashcards](flashcards.md) — Review key concepts
+- [Quiz](quiz.md) — Assess knowledge
+- [Flashcards](flashcards.md) — Study concepts
 
-## Check Your Understanding
+## Verify Your Skills
 
-Can you now:
+Can you:
 
 - ✓ Recognize independent work items that need only a queue
 - ✓ Identify single-question-single-document problems

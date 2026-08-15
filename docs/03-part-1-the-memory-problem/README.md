@@ -45,12 +45,12 @@ flowchart TB
 
 ## Practice
 
-- [Quiz](quiz.md) — Test your understanding
-- [Flashcards](flashcards.md) — Review key concepts
+- [Quiz](quiz.md) — Check knowledge
+- [Flashcards](flashcards.md) — Review terms
 
-## Check Your Understanding
+## Skills Assessment
 
-Can you now:
+Can you:
 
 - ✓ Identify the race condition that breaks single-file memory
 - ✓ Explain what makes an edge "directed" and "labeled"
