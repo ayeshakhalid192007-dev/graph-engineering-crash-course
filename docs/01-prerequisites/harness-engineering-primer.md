@@ -18,6 +18,35 @@ Harness Engineering organizes the scaffolding around an agent into five jobs, an
 
 **Escalate** is the honest fallback: when a failure doesn't fit a known correction, the harness stops pretending it can handle everything and hands the decision to a person, with enough context attached that the handoff doesn't cost them another hour of digging.
 
+## Diagram
+
+```mermaid
+flowchart TB
+    subgraph "Harness Scaffold"
+        A["Agent Output"]
+        C["Constrain"]
+        I["Inform"]
+        V["Verify"]
+        Cor["Correct"]
+        Es["Escalate"]
+        H["Human Reviewer"]
+
+        A -- "flows through" --> C & I
+        C -- "narrowed space" --> A
+        I -- "context" --> A
+        A -- "checks against" --> V
+        V -- "passes" --> A
+        V -- "fails" --> Cor & Es
+        Cor -- "automatic fix" --> A
+        Es -- "handoff with context" --> H
+    end
+
+    style V fill:#4169E1,color:#FFFFFF
+    style Es fill:#D4AF37,color:#000000
+```
+
+**Five jobs.** Constrain, Inform, Verify, Correct, Escalate — each answers a different question about what the agent is allowed to do.
+
 ## Check yourself
 
 An agent's tests fail after it opens a pull request. The harness reformats a misindented line automatically, then still can't get the suite green, and pings a human with the failing test output attached. Which job did the reformat belong to, and which job did the ping belong to?

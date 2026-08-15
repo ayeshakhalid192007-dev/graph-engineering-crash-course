@@ -47,26 +47,36 @@ The same file names this repo's anchor outright: the automated workflows that ru
 
 ```mermaid
 flowchart TB
-    CAT[("catalogue.yaml<br/>lists 41 runbooks")]
-    L1["link loop"]
-    L2["owner loop"]
-    L3["freshness loop"]
-    CAT --> L1
-    CAT --> L2
-    CAT --> L3
-    L1 <-- "counts agree" --> L2
-    L2 <-- "counts agree" --> L3
-    L3 <-- "counts agree" --> L1
+    subgraph "Sealed Loop System"
+        CAT[("catalogue.yaml<br/>lists 41 runbooks")]
+        L1["link loop"]
+        L2["owner loop"]
+        L3["freshness loop"]
+        
+        CAT --> L1 & L2 & L3
+        L1 <-. "counts agree" .-> L2
+        L2 <-. "counts agree" .-> L3
+        L3 <-. "counts agree" .-> L1
+        
+        style CAT fill:#E2E8F0,color:#000000
+        style L1 fill:#E2E8F0,color:#000000
+        style L2 fill:#E2E8F0,color:#000000
+        style L3 fill:#E2E8F0,color:#000000
+    end
 
-    DISK[("runbooks/ on disk<br/>42 files present")]
-    DISK == "ANCHOR: nothing here<br/>was written by a loop" ==> GAP{{"1 runbook in no<br/>loop's field of view:<br/>payments-failover"}}
-    CAT -.-> GAP
+    subgraph "Anchor & Frozen Node"
+        DISK[("ANCHOR<br/>runbooks/ on disk<br/>42 files present")]
+        RULE["FROZEN NODE<br/>review window = 90 days<br/>(no loop may rewrite)"]
+        
+        style DISK fill:#4169E1,color:#FFFFFF
+        style RULE fill:#D4AF37,color:#000000
+    end
 
-    RULE["FROZEN: review window = 90 days<br/>no loop may rewrite this"]
+    DISK == "finds the mismatch" ==> GAP{{"1 runbook missing<br/>from catalogue:<br/>payments-failover"}}
     L3 -. "write refused" .-> RULE
 ```
 
-The triangle of agreement in the upper half is genuine and worthless — all three loops drew from one source, so their agreement is a fact about that source's reach, not about the runbooks. Only the doubled arrow, coming in from a place no loop wrote, finds the forty-second file.
+The triangle of agreement in the upper half is genuine and worthless — all three loops drew from one source, so their agreement is a fact about that source's reach, not about the runbooks. Only the anchor, coming in from a place no loop wrote, finds the forty-second file.
 
 ## Claude Code vs OpenCode
 

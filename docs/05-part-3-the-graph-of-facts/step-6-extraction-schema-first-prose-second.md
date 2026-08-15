@@ -44,15 +44,29 @@ A schema that accepts everything offered to it isn't a schema. It's a suggestion
 ## Diagram
 
 ```mermaid
-flowchart LR
-    Doc[("PM-2117<br/>postmortem, raw prose")] --> Pass["Extraction pass"]
-    Sch["Schema<br/>entities: Service, Incident, Cause<br/>relationships: caused-by, affected"] -. "constrains" .-> Pass
-    Pass --> Ok1["PM-2117 --caused-by--><br/>expired internal CA cert"]
-    Pass --> Ok2["PM-2117 --affected--><br/>checkout-api"]
-    Pass --> Bad["PM-2117 --escalated-to--><br/>on-call rotation<br/>(rejected: not on the schema)"]
-    Ok1 --> Graph[("Fact graph")]
-    Ok2 --> Graph
-    Bad -. "never enters" .-> Graph
+flowchart TB
+    subgraph "Input"
+        Doc[("PM-2117<br/>postmortem, raw prose")]
+        Sch["Schema<br/>entities: Service, Incident, Cause<br/>relationships: caused-by, affected"]
+    end
+
+    subgraph "Extraction Pass"
+        Doc --> Pass["Extraction"]
+        Sch -. "constrains" .-> Pass
+        Pass --> Ok1["PM-2117 --caused-by--><br/>expired internal CA cert"]
+        Pass --> Ok2["PM-2117 --affected--><br/>checkout-api"]
+        Pass --> Bad["PM-2117 --escalated-to--><br/>on-call rotation<br/>(rejected: not on schema)"]
+    end
+
+    subgraph "Output"
+        Graph[("Fact graph")]
+        Ok1 --> Graph
+        Ok2 --> Graph
+        Bad -. "never enters" .-> Graph
+    end
+
+    style Pass fill:#4169E1,color:#FFFFFF
+    style Graph fill:#D4AF37,color:#000000
 ```
 
 Two items pass through because their entity types and relationship type are on the allowed list. The third is built from the same document and reads just as plausibly as the other two, but `escalated-to` and a `Team` entity were never defined in the schema — so it's discarded at the gate, not admitted and reshaped to fit.

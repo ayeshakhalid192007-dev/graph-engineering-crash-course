@@ -10,4 +10,41 @@ The three attempts on ticket #482 belong in what this course calls a **work-hist
 
 The confirmed cause — "this product's login tokens expire after thirty days, and an expired token produces this exact error" — belongs somewhere different: a **fact graph**. This is where the team keeps claims it has actually checked and is willing to have future agents build on without re-verifying from scratch. Growth here is deliberately slow: a fact graph should add nodes at a fraction of a work-history graph's pace, because each one admitted is effectively a promise that whoever reads it next can treat it as settled rather than something still to be checked.
 
-Notice what goes wrong if the team keeps only one graph. If every attempt and every confirmed fact lands in the same undifferentiated pile, a future agent querying "what do we know about login failures" has no way to tell a one-off attempt that didn't pan out from the actual, checked cause — it all just looks like more nodes. Keep the two separate, even if they live in the same database, and that question has a clean answer: query the fact graph for what's known, query the work-history graph for what's been tried. This page only gets you the vocabulary and the shape of the split; the fuller treatment of exactly what collapsing them costs you, and how to keep them from blurring together in practice, comes later once you've built a bit more of the surrounding picture.
+Notice what goes wrong if the team keeps only one graph. If every attempt and every confirmed fact lands in the same undifferentiated pile, a future agent querying "what do we know about login failures" has no way to tell a one-off attempt that didn't pan out from the actual, checked cause — it all just looks like more nodes. Keep the two separate, even if they live in the same database, and that question has a clean answer: query the fact graph for what's known, query the work-history graph for what's been tried.
+
+## Diagram
+
+```mermaid
+flowchart TB
+    subgraph "Work-History Graph"
+        WH1["Ticket #482"]
+        WH2["Password reset<br/>(didn't fix)"]
+        WH3["Restart session<br/>(still broken)"]
+        WH4["Token expiry<br/>(real cause)"]
+        WH1 -- "tried" --> WH2
+        WH2 -- "tried" --> WH3
+        WH3 -- "tried" --> WH4
+        style WH1 fill:#4169E1,color:#FFFFFF
+        style WH2 fill:#E2E8F0,color:#000000
+        style WH3 fill:#E2E8F0,color:#000000
+        style WH4 fill:#D4AF37,color:#000000
+    end
+
+    subgraph "Fact Graph"
+        F1["Login tokens expire<br/>after 30 days"]
+        F2["Expired token<br/>causes login error"]
+        F1 -- "implies" --> F2
+        style F1 fill:#D4AF37,color:#000000
+        style F2 fill:#D4AF37,color:#000000
+    end
+
+    Q1["Query: what's broken?"]
+    Q1 -- "queries" --> F1 & F2
+    Q1 -. "gets" .-> "Only verified facts"
+
+    Q2["Query: what was tried?"]
+    Q2 -- "queries" --> WH1 & WH2 & WH3 & WH4
+    Q2 -. "gets" .-> "All attempts with order"
+```
+
+This page only gets you the vocabulary and the shape of the split; the fuller treatment of exactly what collapsing them costs you, and how to keep them from blurring together in practice, comes later once you've built a bit more of the surrounding picture.

@@ -42,9 +42,31 @@ Direction does real work here, not decoration. `AuthMiddleware --depends_on--> S
 ## Diagram
 
 ```mermaid
-flowchart LR
-    A["AuthMiddleware"] -- "depends_on" --> B["SessionStore"]
-    C["RateLimiter"]
+flowchart TB
+    subgraph "Graph Structure"
+        direction LR
+        A["AuthMiddleware"]
+        B["SessionStore"]
+        C["RateLimiter"]
+
+        A -- "depends_on" --> B
+
+        style A fill:#4169E1,color:#FFFFFF
+        style B fill:#4169E1,color:#FFFFFF
+        style C fill:#E2E8F0,color:#000000
+    end
+
+    subgraph "Key Ideas"
+        direction TB
+        I1["Node: one thing tracked"]
+        I2["Edge: directed + labeled"]
+        I3["Silence: no edge = no assertion"]
+
+        I1 --> I2 --> I3
+        style I1 fill:#D4AF37,color:#000000
+        style I2 fill:#D4AF37,color:#000000
+        style I3 fill:#D4AF37,color:#000000
+    end
 ```
 
 Three nodes, one directed edge. `RateLimiter` is part of the same service, but no edge connects it to anything yet — nobody has asserted a relationship for it. That's a legitimate state, not a sign the graph is wrong. See `labs/step-2-label-the-arrow.py` for this structure built as a plain adjacency dictionary, with a check that the two directions of an edge are never treated as the same claim.

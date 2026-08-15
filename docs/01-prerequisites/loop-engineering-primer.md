@@ -14,6 +14,31 @@ Three words carry most of the weight in Loop Engineering, and this course leans 
 
 **Maker/checker** is the split between the part of the loop that produces work and the part that judges whether the work is good enough to count as done. A loop that only makes and never checks will happily ship its own mistakes forever; a loop that separates the two roles — even crudely, even inside the same run — catches a meaningful share of them before they go out the door.
 
+## Diagram
+
+```mermaid
+flowchart LR
+    H["⏱ Heartbeat\nwhen it runs"]
+    B["🤖 Body\ndoes the work"]
+    C{"✅ Checker\ngrades it"}
+    S["🧠 Spine\nremembers"]
+    X["🛑 Provable stop"]
+
+    H --> B
+    B --> C
+    C -- "not done" --> S
+    S --> H
+    C -- "success · run limit · no progress" --> X
+    X --> U["🧑‍💻 You — the engineer"]
+
+    style H fill:#4169E1,color:#FFFFFF
+    style B fill:#0B1325,color:#FFFFFF
+    style C fill:#D4AF37,color:#000000
+    style S fill:#E2E8F0,color:#000000
+```
+
+**Three core ideas.** Heartbeat, Spine, Maker/checker — the shape of a loop that keeps moving on its own.
+
 ## Check yourself
 
 A single support-bot loop keeps its ticket queue in one JSON file that it reads at the top of each turn and overwrites at the bottom. What has to be true about who touches that file for this setup to keep working safely?

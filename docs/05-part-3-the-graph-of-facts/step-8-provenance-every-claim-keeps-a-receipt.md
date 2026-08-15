@@ -38,10 +38,27 @@ This is **[supersession](../02-foundations/glossary.md#supersession)**: the old 
 ## Diagram
 
 ```mermaid
-flowchart LR
-    V1["Claim (v1)<br/>checkout-api --caused-by--> expired CA cert<br/>status: superseded"] -- "supersedes" --> V2["Claim (v2)<br/>checkout-api --caused-by--> expired CA cert<br/>confidence: 0.9<br/>status: active"]
-    P1["Provenance record<br/>source: PM-2117<br/>run: extraction-014<br/>schema: v1"] -. "attached to" .-> V1
-    P2["Provenance record<br/>source: PM-2117<br/>run: extraction-029<br/>schema: v2"] -. "attached to" .-> V2
+flowchart TB
+    subgraph "Claim Evolution"
+        V1["Claim (v1)<br/>status: superseded"]
+        V2["Claim (v2)<br/>confidence: 0.9<br/>status: active"]
+
+        V1 -- "supersedes" --> V2
+
+        style V1 fill:#E2E8F0,color:#000000
+        style V2 fill:#D4AF37,color:#000000
+    end
+
+    subgraph "Provenance Records"
+        P1["Provenance (v1)<br/>source: PM-2117<br/>run: extraction-014<br/>schema: v1"]
+        P2["Provenance (v2)<br/>source: PM-2117<br/>run: extraction-029<br/>schema: v2"]
+
+        P1 -. "attached to" .-> V1
+        P2 -. "attached to" .-> V2
+
+        style P1 fill:#4169E1,color:#FFFFFF
+        style P2 fill:#4169E1,color:#FFFFFF
+    end
 ```
 
 The `v1` claim never leaves the graph — its status changes and a `supersedes` edge points forward from it, but its own provenance record is untouched. A query run against the graph as it stood before the `v2` extraction still gets a truthful answer, because nothing about that earlier moment was rewritten to look like the later one.

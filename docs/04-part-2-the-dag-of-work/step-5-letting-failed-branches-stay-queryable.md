@@ -38,13 +38,21 @@ This is the discard log from Step 4, earning its keep beyond prompt search. The 
 ```mermaid
 flowchart TB
     Bug["Bug: webhook double-fulfills order"]
-    A["Attempt A — Agent-A<br/>in-memory dedupe cache<br/>status: failed<br/>(no shared state across replicas)"]
-    B["Attempt B — Agent-B<br/>DB uniqueness constraint<br/>status: failed<br/>(constraint checked after fulfillment ran)"]
-    C["Attempt C — Agent-C<br/>reorder side effects<br/>status: abandoned<br/>(session ended before verified)"]
+    A["Attempt A<br/>Agent-A<br/>in-memory cache<br/>status: failed"]
+    B["Attempt B<br/>Agent-B<br/>DB constraint<br/>status: failed"]
+    C["Attempt C<br/>Agent-C<br/>reorder side effects<br/>status: abandoned"]
+    
     A -- "tried_for" --> Bug
     B -- "tried_for" --> Bug
     C -- "tried_for" --> Bug
-    D["Agent-D"] -- "queries tried_for(Bug)<br/>before proposing Attempt D" --> Bug
+    
+    D["Agent-D"] -- "queries tried_for(Bug)" --> Bug
+
+    style Bug fill:#4169E1,color:#FFFFFF
+    style A fill:#E2E8F0,color:#000000
+    style B fill:#E2E8F0,color:#000000
+    style C fill:#E2E8F0,color:#000000
+    style D fill:#0B1325,color:#FFFFFF
 ```
 
 `Agent-D` doesn't need to know any of this history in advance. It queries the `tried_for` edges on the bug node and gets all three attempts back, statuses included, in one step. Nothing about that query filters out the failed or abandoned ones — if it did, `Agent-D` would be right back to starting cold.

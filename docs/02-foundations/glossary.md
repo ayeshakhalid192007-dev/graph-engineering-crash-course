@@ -14,6 +14,8 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 <a id="fact-graph"></a>**Fact graph.** The graph that tracks claims the team has checked and is willing to build further work on. It grows more slowly and more carefully than a work-history graph, because every node in it is implicitly a promise that the claim has been looked at, not just proposed.
 
+<a id="commit-dag"></a>**Commit DAG.** A directed acyclic graph that remembers work — commits as nodes, parent links as edges. It's the work-history graph for code changes, where each commit records what was tried and how it fits with previous attempts.
+
 <a id="ratchet"></a>**Ratchet.** A rule for extending a work-history graph that only advances the record forward when a new attempt strictly beats whatever the current best attempt was — anything that doesn't clear that bar gets logged, not deleted, but also doesn't become the new reference point. The name is mechanical on purpose: like a socket wrench that only turns one way, the chain of kept attempts can only move toward "better than before," never quietly slide backward because a mediocre attempt got treated as progress.
 
 <a id="durable-history"></a>**Durable history.** The specific chain of attempts a ratchet keeps — each one strictly better than the attempt before it, retained permanently as the record of how the current best result was actually reached. Durable history stays short precisely because it excludes the attempts that didn't improve on anything; the length of the chain measures how many times real progress happened, not how many times anything was tried.
@@ -36,6 +38,8 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 
 <a id="grounding"></a>**Grounding.** The property of a claim being traceable to specific supporting edges in a graph, rather than resting on how plausible or confident it sounds. A grounded claim can be checked mechanically; an ungrounded one can only be argued about.
 
+<a id="grounded-checker"></a>**Grounded checker.** A checker that verifies claims against graph edges rather than trusting how confident or plausible they sound. Instead of asking "does this sound right," it decomposes a claim into the specific edges that would have to exist, and looks for them. "That edge is not in the graph" is a stronger, more actionable verdict than "this seems a little off."
+
 <a id="governance-graph"></a>**Governance graph.** A graph whose nodes are loops (or agents) rather than facts, and whose edges describe authority and accountability between them — who feeds whom input, who checks whose output, who is allowed to overrule whom. It's the layer you reach for once more than one loop is running against the same shared memory.
 
 <a id="anchor"></a>**Anchor.** A check wired into a governance graph from outside the loop system altogether — nothing any loop authored or can nudge, like a passing integration test, an actual human's reaction, or the plain time on a clock. Without at least one, a set of loops checking only each other can settle into confident agreement on something false, with every internal signal insisting it's fine.
@@ -49,6 +53,14 @@ Short, one-paragraph definitions for the vocabulary this course uses. Each entry
 <a id="arbitration-edge"></a>**Arbitration edge.** A recorded rule in a governance graph naming whose action takes precedence when two loops reach for one resource at the same moment. Writing it down is the point: the tie gets settled by something a person decided in advance, not by whichever loop's timer happened to fire a few seconds earlier.
 
 <a id="drift"></a>**Drift.** The slow separation between what a loop was tuned to pursue and what the surrounding system has since come to need, caused by the system moving while the loop's picture of a good outcome stays put. Nothing inside the loop registers it as trouble — measured against the target it was handed, the loop is performing beautifully.
+
+<a id="metric-gaming"></a>**Metric-gaming.** When a loop optimizes exactly what it's measured on, including the parts that don't matter, because the metric came apart from the actual goal. The fix is a counter-metric — a second, independent signal the loop cannot see or influence.
+
+<a id="blind-spot"></a>**Blind spot.** A class of problem invisible to a loop from inside its own scope — it cannot see failures that exist between units it examines one at a time. The fix is a separate audit loop with a wider vantage point.
+
+<a id="conflict"></a>**Conflict.** When two individually reasonable loops collide on the same resource at the same time, each reporting success while the combined outcome breaks something downstream. The fix is an arbitration edge naming which loop wins.
+
+<a id="measurement-decay"></a>**Measurement decay.** When the reference set or yardstick a loop uses to judge "good" quietly moves on while the loop keeps optimizing against the old version. A loop that's still performing well by its own numbers may have become useless in the real world. The fix is a periodic edge back to a human or fresher reference point.
 
 <a id="pre-build-checklist"></a>**Pre-build checklist.** A short set of honest questions asked before any schema gets designed, meant to catch the cases where a queue, a good prompt, or a plain table would settle the job at a fraction of the cost. Answering it "no, don't build one" is the checklist working correctly, not a failure to find a reason to build.
 

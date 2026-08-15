@@ -42,21 +42,31 @@ That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — 
 
 ```mermaid
 flowchart TB
-    subgraph Full["Full codebase graph (thousands of nodes)"]
-        direction LR
+    direction LR
+    subgraph "Full Graph"
         GM["generate_manifest"] --> RSZ["resolve_shipping_zone"]
         RSZ --> LPC["lookup_postal_code"]
         RSZ --> NW["nearest_warehouse"]
-        RSZ -. claims .-> CA["Claim (docstring):<br/>defaults unmatched codes<br/>to nearest warehouse"]
-        RSZ -. claims .-> CB["Claim (test suite):<br/>raises an error on<br/>unmatched codes"]
-        CA -. contradicts .-> CB
+        RSZ -. "claims" .-> CA["Claim (docstring):<br/>defaults to nearest"]
+        RSZ -. "claims" .-> CB["Claim (test suite):<br/>raises error"]
+        CA -. "contradicts" .-> CB
         VA["validate_address"] --> CR["calculate_rate"]
         CR --> AD["apply_discount_code"]
         FL["format_label"] --> LS["log_shipment"]
         LS --> NC["notify_customer"]
-        RQ["retry_queue"] --> AT["audit_trail"]
     end
-    Full -. "task: fix resolve_shipping_zone" .-> Sub["Task-scoped subgraph<br/>(depth 1 + both claims,<br/>contradiction intact)"]
+
+    Full -. "task: fix resolve_shipping_zone" .-> Sub
+
+    subgraph "Task-Scoped Subgraph"
+        direction TB
+        RSZ
+        LPC & NW & CA & CB --> RSZ
+        CA -. "contradicts" .-> CB
+        style RSZ fill:#4169E1,color:#FFFFFF
+        style CA fill:#D4AF37,color:#000000
+        style CB fill:#D4AF37,color:#000000
+    end
 ```
 
 The right-hand slice keeps `resolve_shipping_zone`, its direct callers and callees, and both disputing claim nodes with the `contradicts` edge between them. Everything reachable only through `validate_address`, `format_label`, or `retry_queue` never crosses into the worker's context — it isn't wrong to exist, it's just not what this task needs.

@@ -42,7 +42,7 @@ The `can-overrule` edges have to point in one consistent direction overall. If s
 ## Diagram
 
 ```mermaid
-flowchart TD
+flowchart TB
     D["drafting loop<br/>(brief in, draft out)"]
     R["review loop<br/>(sourcing + style verdict)"]
     E["escalation loop<br/>(money / medicine / law watch)"]
@@ -54,6 +54,11 @@ flowchart TD
     E -- "checks" --> R
     E == "can-overrule" ==> R
     P -. "resolves two stamps by reading<br/>the can-overrule edge, not the clock" .-> E
+
+    style D fill:#4169E1,color:#FFFFFF
+    style R fill:#4169E1,color:#FFFFFF
+    style E fill:#D4AF37,color:#000000
+    style P fill:#0B1325,color:#FFFFFF
 ```
 
 Only the doubled arrow settles anything. Strip it out and the picture still shows three sensible loops passing work between them — which is precisely the state `A-311` was published from. The diagram would look fine, and the system would still have no answer for a node wearing two stamps at once.
