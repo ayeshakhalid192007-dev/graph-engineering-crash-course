@@ -59,18 +59,32 @@ The two write-ups below run this exact pipeline against this exact chat, one fra
 ## Diagram
 
 ```mermaid
-flowchart LR
-    Kavita((Kavita)) -- owns --> Ladder[Ladder]
-    Marcus((Marcus)) -- owns --> Stud[Stud finder]
-    Jason((Jason R.<br/>aka Jay)) -- "borrowed (m2)" --> Ladder
-    Jason -- "returned (m3)" --> Ladder
-    Deepa((Deepa)) -- "borrowed (m5)" --> Stud
+flowchart TB
+    subgraph "Tool Graph"
+        Kavita((Kavita)) -- owns --> Ladder[Ladder]
+        Marcus((Marcus)) -- owns --> Stud[Stud finder]
+        Jason((Jason R.<br/>aka Jay)) -- "borrowed (m2)" --> Ladder
+        Jason -- "returned (m3)" --> Ladder
+        Deepa((Deepa)) -- "borrowed (m5)" --> Stud
+        
+        style Kavita fill:#4169E1,color:#FFFFFF
+        style Marcus fill:#4169E1,color:#FFFFFF
+        style Jason fill:#D4AF37,color:#000000
+        style Deepa fill:#D4AF37,color:#000000
+        style Ladder fill:#0B1325,color:#FFFFFF
+        style Stud fill:#0B1325,color:#FFFFFF
+    end
 
-    Ladder -.-> LC{"Checker:<br/>available?"}
-    LC -- "borrowed + later returned" --> LY["YES -- free"]
-
-    Stud -.-> SC{"Checker:<br/>available?"}
-    SC -- "borrowed, no returned edge" --> SN["NO -- with Deepa"]
+    subgraph "Availability Checks"
+        LC{"Ladder:<br/>available?"}
+        SC{"Stud finder:<br/>available?"}
+        
+        LC -- "borrowed + returned" --> LY["✓ YES - free"]
+        SC -- "borrowed, no return" --> SN["✗ NO - with Deepa"]
+        
+        style LC fill:#E2E8F0,color:#000000
+        style SC fill:#E2E8F0,color:#000000
+    end
 ```
 
 The ladder's `borrowed` edge has a `returned` edge after it, so the checker reports it free. The stud finder's `borrowed` edge has nothing after it, so the checker reports it out — using the same two-edge lookup both times, not a guess about how recently anyone posted in the thread.

@@ -43,10 +43,10 @@ flowchart TD
     C["Small, fixed<br/>relationship set"]
     D["Nothing downstream<br/>needs the source"]
     E["None of the above"]
-    QUEUE["Use a queue"]
-    PROMPT["Use a good prompt"]
-    TABLE["Use a relational table"]
-    SKIP["Skip the graph entirely"]
+    QUEUE["✓ Use a queue"]
+    PROMPT["✓ Use a good prompt"]
+    TABLE["✓ Use a table"]
+    SKIP["✓ Skip entirely"]
     BUILD["Build the graph"]
 
     START --> A --> QUEUE
@@ -54,6 +54,13 @@ flowchart TD
     START --> C --> TABLE
     START --> D --> SKIP
     START --> E --> BUILD
+
+    style START fill:#4169E1,color:#FFFFFF
+    style QUEUE fill:#E2E8F0,color:#000000
+    style PROMPT fill:#E2E8F0,color:#000000
+    style TABLE fill:#E2E8F0,color:#000000
+    style SKIP fill:#E2E8F0,color:#000000
+    style BUILD fill:#D4AF37,color:#000000
 ```
 
 Landing in any of the first four boxes ends the question for that candidate. Only a job that clears all four does the fifth box — building the graph — become the right next move.
