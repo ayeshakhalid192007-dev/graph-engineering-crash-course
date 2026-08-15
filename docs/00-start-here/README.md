@@ -1,5 +1,9 @@
 # Start Here
 
+![Course Position Banner](../assets/course-banner.png)
+
+---
+
 Three quick questions to find your starting point.
 
 ## 1. Loop Engineering prerequisite?
