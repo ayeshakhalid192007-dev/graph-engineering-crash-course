@@ -1,5 +1,9 @@
 # Part 3 — The Graph of Facts
 
+![From Documents to Graph: Four Stages](../assets/documents-to-graph-four-stages.png)
+
+---
+
 Building a fact graph from extraction to provenance. This part covers schema-first extraction, reversible merging, and tracking claim sources.
 
 ## What You'll Learn
