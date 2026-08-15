@@ -1,9 +1,16 @@
 # Part 5 — The Graph of Loops
 
-Connecting several loops through a shared governance layer, naming how a lone loop quietly goes wrong, and locking down what shouldn't move.
+Governing multiple loops and preventing common failure patterns.
 
-- **Step 11** — a governance graph that lets loops see each other's state
-- **Step 12** — recurring failure patterns and how to spot each one
-- **Step 13** — freezing nodes that must not drift once they're settled
+## Steps
 
-See the [17-step roadmap](../README.md) for direct links to all three. Reinforce them with the [quiz](quiz.md), the [flashcards](flashcards.md), or the runnable [labs](labs/).
+- **[Step 11](step-11-wiring-loops-together.md)** — Governance graphs for multi-loop systems
+- **[Step 12](step-12-four-ways-a-lone-loop-fails-itself.md)** — Four failure modes and their fixes
+- **[Step 13](step-13-anchors-and-frozen-nodes.md)** — Preventing drift with anchors
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+- [Flashcards](flashcards.md) — Review key concepts
+
+Next: [Part 6 - One Graph End to End](../08-part-6-one-graph-end-to-end/)

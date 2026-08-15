@@ -1,8 +1,15 @@
 # Part 4 — Working From the Graph
 
-Handing a worker a bounded piece of the fact graph, then checking what it produces against real edges rather than trusting its tone.
+Using fact graphs to inform workers and verify their outputs.
 
-- **Step 9** — scoping a task-sized subgraph instead of dumping the whole thing
-- **Step 10** — verifying an output against the graph instead of eyeballing it
+## Steps
 
-Both step pages sit in the [top-level roadmap](../README.md) alongside the rest of the course. This folder's own [quiz](quiz.md), [flashcards](flashcards.md), and [labs](labs/) cover the same pair.
+- **[Step 9](step-9-subgraphs-give-a-worker-a-slice-not-the-graph.md)** — Task-scoped subgraphs instead of full dumps
+- **[Step 10](step-10-the-grounded-checker.md)** — Verify claims against real edges
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+- [Flashcards](flashcards.md) — Review key concepts
+
+Next: [Part 5 - The Graph of Loops](../07-part-5-the-graph-of-loops/)

@@ -1,9 +1,16 @@
 # Part 3 — The Graph of Facts
 
-Building the second graph: pulling claims out of raw material, merging duplicates honestly, and keeping a receipt for every one.
+Building a fact graph from extraction to provenance.
 
-- **Step 6** — pulling structured claims out before summarizing in prose
-- **Step 7** — merging mentions of the same thing without discarding either source
-- **Step 8** — attaching an origin to every claim so it can be traced back
+## Steps
 
-All three pages are indexed in the [course-wide roadmap](../README.md). A [quiz](quiz.md) and a [flashcards](flashcards.md) deck cover this Part, and the scripts in [labs](labs/) let you run each extraction step yourself.
+- **[Step 6](step-6-extraction-schema-first-prose-second.md)** — Schema-first extraction
+- **[Step 7](step-7-resolution-merging-without-losing-the-evidence.md)** — Reversible merging
+- **[Step 8](step-8-provenance-every-claim-keeps-a-receipt.md)** — Tracking claim sources
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+- [Flashcards](flashcards.md) — Review key concepts
+
+Next: [Part 4 - Working From the Graph](../06-part-4-working-from-the-graph/)

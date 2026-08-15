@@ -1,8 +1,17 @@
 # Part 7 — Staying Grounded
 
-Knowing when a graph is overkill, and keeping whatever governance you do add proportionate to the problem it's solving.
+Knowing when to skip graphs and managing complexity budgets.
 
-- **Step 16** — recognizing the cases where a lighter tool is the right call
-- **Step 17** — sizing governance to evidence instead of adding it on day one
+## Steps
 
-Both pages are catalogued in [the closing roadmap section](../README.md). A [quiz](quiz.md) and [flashcards](flashcards.md) close out the Part, and [labs](labs/) has the two closing scripts to run yourself.
+- **[Step 16](step-16-when-to-skip-graph-engineering-entirely.md)** — Four cases where simpler tools win
+- **[Step 17](step-17-complexity-budgets-and-staying-the-engineer.md)** — Add governance only after failures appear
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+- [Flashcards](flashcards.md) — Review key concepts
+
+---
+
+**Course Complete!** Return to [Start Here](../00-start-here/README.md) or explore [Advanced Topics](../advanced/README.md)

@@ -1,8 +1,14 @@
 # Part 6 — One Graph, End to End
 
-A pre-build checklist, then one small system assembled twice to confirm the graph itself — not a particular tool — is what carries the state.
+Deciding when to build a graph and validating the implementation.
 
-- **Step 14** — the questions worth answering before committing to a graph
-- **Step 15** — building the same system with two different tools and comparing output
+## Steps
 
-Both are catalogued in [the course roadmap](../README.md). This Part ships a [quiz](quiz.md) and [labs](labs/) only — no flashcards deck, per §23.
+- **[Step 14](step-14-six-questions-before-you-build.md)** — Pre-build checklist: six honest questions
+- **[Step 15](step-15-build-the-same-graph-twice.md)** — Building with two tools to verify correctness
+
+## Practice
+
+- [Quiz](quiz.md) — Test your understanding
+
+Next: [Part 7 - Staying Grounded](../09-part-7-staying-grounded/)
