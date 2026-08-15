@@ -1,5 +1,9 @@
 # Part 4 — Working From the Graph
 
+![Give the Agent a Subgraph, Not the Universe](../assets/subgraph-not-universe.png)
+
+---
+
 Using fact graphs to inform workers and verify their outputs. This part shows how to scope subgraphs and check claims mechanically.
 
 ## What You'll Learn
