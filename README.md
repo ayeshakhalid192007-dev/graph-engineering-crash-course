@@ -310,31 +310,36 @@ and operate a graph of your own, then defend it against the
 ## 🤝 Contributing & credits
 
 Pull requests are genuinely welcome — start with the
-[Contributing Guide](CONTRIBUTING.md). This course stands on the shoulders of nine
-primary sources: it synthesizes and adapts MIT-licensed material and public writing,
-and it credits every one of them, page by page, on the
-[Sources & Attribution page](resources/sources.md). Academic or written citation?
+[Contributing Guide](CONTRIBUTING.md). This course is built on the foundations of
+[Panaversity's Graph Engineering Crash Course](https://agentfactory.panaversity.org/docs/graph-engineering-crash-course)
+and credits the primary sources and voices that shaped the discipline. Academic or written citation?
 Use [`CITATION.cff`](CITATION.cff).
 
-**Primary sources, linked directly:**
+**Primary sources:**
 
-- Addy Osmani — [Loop Engineering](https://addyosmani.com/blog/loop-engineering/)
-- LangChain — [The Art of Multi-Agent Systems](https://www.langchain.com/)
-- Cobus Greyling — [Graph Engineering](https://github.com/cobusgreyling/graph-engineering)
-- Panaversity Agent Factory — [Multi-Agent Crash Course](https://agentfactory.panaversity.org/)
-- Anthropic — [Claude Code documentation](https://docs.claude.com/)
-- [Model Context Protocol specification](https://modelcontextprotocol.io/)
-- GitHub — [API and automation](https://docs.github.com/)
-- Peter Steinberger ([@steipete](https://x.com/steipete)) · Boris Cherny ([Anthropic](https://www.anthropic.com/)) · Andrew Ng ([@AndrewYNg](https://x.com/AndrewYNg))
+- **Andrej Karpathy's autoresearch** — [github.com/karpathy/autoresearch](https://github.com/karpathy/autoresearch) — "the loop's memory is not a transcript. It is the commit DAG"
+- **Anthropic's Knowledge Graph Construction Cookbook** — [platform.claude.com/cookbook](https://platform.claude.com/cookbook) — extract typed entities and relations, resolve duplicates, assemble a graph
+- **Anthropic's Dynamic Workflows** — [code.claude.com/docs](https://code.claude.com/docs) — tens to hundreds of parallel sub-agents in a single session
+- **Peter Steinberger** ([@steipete](https://x.com/steipete)) — posed the midnight question: "Are we still talking loops or did we shift to graphs yet?"
+- **Carlos E. Perez** — _From Loop Engineering to Graph Engineering?_ — four failure modes of single loops
+- **Hamel Husain** — "Loop Engineering Is Dead. Enter Graph Engineering"
+- **Santiago Valdarrama** — "Loop engineering is dead. Long live graph engineering!"
 
-Full page-by-page attribution: [Sources & Attribution](resources/sources.md).
+**Built on:**
+
+- **[Panaversity's Graph Engineering Crash Course](https://agentfactory.panaversity.org/docs/graph-engineering-crash-course)** — the foundational source for this course
+- **[Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)** — prerequisite: heartbeat, spine, maker–checker split
+
+**Live documentation references:**
+
+- [github.com/karpathy/autoresearch](https://github.com/karpathy/autoresearch)
+- [platform.claude.com/cookbook](https://platform.claude.com/cookbook)
+- [code.claude.com/docs](https://code.claude.com/docs)
+- [opencode.ai/docs](https://opencode.ai/docs)
+
+> **Before you trust a flag, a limit, or a model name, check the live sources.**
 
 Licensed [MIT](LICENSE) — free to learn from, fork, and teach with.
-
-## 🔗 Related courses
-
-- **[Loop Engineering](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)** — design the system that prompts an agent over time
-- **[Harness Engineering](https://github.com/ayeshakhalid192007-dev/Harness-Engineering-Crash-Course)** — vocabulary for agent control
 
 <div align="center">
 
