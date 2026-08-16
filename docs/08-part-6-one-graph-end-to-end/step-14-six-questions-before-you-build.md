@@ -1,5 +1,9 @@
 # Step 14 · Six Honest Questions Before You Build
 
+![Choosing a Level: The Graph is the Eighth Run, Not the First](../assets/choosing-a-level.png)
+
+---
+
 ## Hook
 
 Bramble & Co. is three people — a designer, a developer, a part-time bookkeeper. A new operations hire comes back from a conference talking about knowledge graphs, and pitches putting one in front of everything the studio touches.
