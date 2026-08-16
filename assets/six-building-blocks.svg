@@ -1,68 +1,59 @@
-<svg viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+<svg viewBox="0 0 1200 180" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" style="max-width: 1200px; margin: 20px auto; display: block;">
   <defs>
     <style>
-      .block-title { font-family: 'Inter', system-ui, sans-serif; font-size: 14px; font-weight: 600; fill: #0B1325; }
-      .block-subtitle { font-family: 'Inter', system-ui, sans-serif; font-size: 11px; fill: #64748b; }
+      .block-box { fill: none; stroke-width: 2; }
+      .block-color-1 { stroke: #4169E1; }
+      .block-color-2 { stroke: #0B1325; }
+      .block-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 13px; font-weight: 600; fill: #0B1325; }
+      .block-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif; font-size: 10px; fill: #64748b; }
     </style>
   </defs>
 
-  <!-- Block 1: Shared Facts -->
-  <g>
-    <rect x="30" y="20" width="170" height="160" rx="6" fill="none" stroke="#4169E1" stroke-width="2"/>
-    <circle cx="115" cy="55" r="16" fill="#4169E1"/>
-    <text x="115" y="140" text-anchor="middle" class="block-title">Shared Facts</text>
-    <text x="115" y="157" text-anchor="middle" class="block-subtitle">Single source of truth</text>
-  </g>
+  <!-- Block 1 -->
+  <rect x="20" y="20" width="180" height="140" rx="4" class="block-box block-color-1"/>
+  <circle cx="110" cy="50" r="12" fill="#4169E1"/>
+  <text x="110" y="110" text-anchor="middle" class="block-title">Shared Facts</text>
+  <text x="110" y="125" text-anchor="middle" class="block-desc">Source of truth</text>
 
-  <!-- Block 2: Durable History -->
-  <g>
-    <rect x="220" y="20" width="170" height="160" rx="6" fill="none" stroke="#0B1325" stroke-width="2"/>
-    <line x1="245" y1="45" x2="365" y2="45" stroke="#0B1325" stroke-width="2" opacity="0.6"/>
-    <line x1="245" y1="65" x2="360" y2="65" stroke="#0B1325" stroke-width="2" opacity="0.4"/>
-    <line x1="245" y1="85" x2="365" y2="85" stroke="#0B1325" stroke-width="2" opacity="0.2"/>
-    <text x="305" y="140" text-anchor="middle" class="block-title">Durable History</text>
-    <text x="305" y="157" text-anchor="middle" class="block-subtitle">Append-only log</text>
-  </g>
+  <!-- Block 2 -->
+  <rect x="220" y="20" width="180" height="140" rx="4" class="block-box block-color-2"/>
+  <line x1="240" y1="45" x2="380" y2="45" stroke="#0B1325" stroke-width="1.5" opacity="0.7"/>
+  <line x1="240" y1="58" x2="375" y2="58" stroke="#0B1325" stroke-width="1.5" opacity="0.5"/>
+  <line x1="240" y1="71" x2="380" y2="71" stroke="#0B1325" stroke-width="1.5" opacity="0.3"/>
+  <text x="310" y="110" text-anchor="middle" class="block-title">Durable History</text>
+  <text x="310" y="125" text-anchor="middle" class="block-desc">Append-only log</text>
 
-  <!-- Block 3: Conflict Resolution -->
-  <g>
-    <rect x="410" y="20" width="170" height="160" rx="6" fill="none" stroke="#4169E1" stroke-width="2"/>
-    <circle cx="470" cy="55" r="8" fill="#4169E1"/>
-    <circle cx="495" cy="55" r="8" fill="#0B1325"/>
-    <line x1="470" y1="55" x2="495" y2="55" stroke="#4169E1" stroke-width="2" opacity="0.5"/>
-    <text x="495" y="140" text-anchor="middle" class="block-title">Conflict Resolution</text>
-    <text x="495" y="157" text-anchor="middle" class="block-subtitle">Safe merging</text>
-  </g>
+  <!-- Block 3 -->
+  <rect x="420" y="20" width="180" height="140" rx="4" class="block-box block-color-1"/>
+  <circle cx="475" cy="50" r="7" fill="#4169E1"/>
+  <circle cx="500" cy="50" r="7" fill="#0B1325"/>
+  <line x1="475" y1="50" x2="500" y2="50" stroke="#4169E1" stroke-width="1.5" opacity="0.5"/>
+  <text x="510" y="110" text-anchor="middle" class="block-title">Conflict Resolution</text>
+  <text x="510" y="125" text-anchor="middle" class="block-desc">Safe merging</text>
 
-  <!-- Block 4: Verification -->
-  <g>
-    <rect x="600" y="20" width="170" height="160" rx="6" fill="none" stroke="#0B1325" stroke-width="2"/>
-    <circle cx="685" cy="55" r="14" fill="none" stroke="#0B1325" stroke-width="2"/>
-    <path d="M 681 50 L 685 56 L 691 48" fill="none" stroke="#0B1325" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="685" y="140" text-anchor="middle" class="block-title">Independent Verification</text>
-    <text x="685" y="157" text-anchor="middle" class="block-subtitle">Each agent verifies</text>
-  </g>
+  <!-- Block 4 -->
+  <rect x="620" y="20" width="180" height="140" rx="4" class="block-box block-color-2"/>
+  <circle cx="710" cy="50" r="11" fill="none" stroke="#0B1325" stroke-width="1.5"/>
+  <path d="M 706 46 L 710 52 L 715 44" fill="none" stroke="#0B1325" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="710" y="110" text-anchor="middle" class="block-title">Independent Verification</text>
+  <text x="710" y="125" text-anchor="middle" class="block-desc">Each agent verifies</text>
 
-  <!-- Block 5: Auditable State -->
-  <g>
-    <rect x="790" y="20" width="170" height="160" rx="6" fill="none" stroke="#4169E1" stroke-width="2"/>
-    <circle cx="840" cy="50" r="5" fill="#4169E1"/>
-    <line x1="845" y1="50" x2="870" y2="50" stroke="#4169E1" stroke-width="1.5"/>
-    <circle cx="840" cy="65" r="5" fill="#4169E1"/>
-    <line x1="845" y1="65" x2="870" y2="65" stroke="#4169E1" stroke-width="1.5"/>
-    <circle cx="840" cy="80" r="5" fill="#4169E1"/>
-    <line x1="845" y1="80" x2="870" y2="80" stroke="#4169E1" stroke-width="1.5"/>
-    <text x="875" y="140" text-anchor="middle" class="block-title">Auditable State</text>
-    <text x="875" y="157" text-anchor="middle" class="block-subtitle">Complete path</text>
-  </g>
+  <!-- Block 5 -->
+  <rect x="820" y="20" width="180" height="140" rx="4" class="block-box block-color-1"/>
+  <circle cx="870" cy="48" r="4" fill="#4169E1"/>
+  <line x1="874" y1="48" x2="895" y2="48" stroke="#4169E1" stroke-width="1"/>
+  <circle cx="870" cy="62" r="4" fill="#4169E1"/>
+  <line x1="874" y1="62" x2="895" y2="62" stroke="#4169E1" stroke-width="1"/>
+  <circle cx="870" cy="76" r="4" fill="#4169E1"/>
+  <line x1="874" y1="76" x2="895" y2="76" stroke="#4169E1" stroke-width="1"/>
+  <text x="910" y="110" text-anchor="middle" class="block-title">Auditable State</text>
+  <text x="910" y="125" text-anchor="middle" class="block-desc">Complete path</text>
 
-  <!-- Block 6: Human Oversight -->
-  <g>
-    <rect x="980" y="20" width="190" height="160" rx="6" fill="none" stroke="#0B1325" stroke-width="2"/>
-    <circle cx="1065" cy="50" r="10" fill="#0B1325"/>
-    <line x1="1065" y1="60" x2="1065" y2="78" stroke="#0B1325" stroke-width="2" stroke-linecap="round"/>
-    <line x1="1048" y1="69" x2="1082" y2="69" stroke="#0B1325" stroke-width="2" stroke-linecap="round"/>
-    <text x="1065" y="140" text-anchor="middle" class="block-title">Human Oversight</text>
-    <text x="1065" y="157" text-anchor="middle" class="block-subtitle">Escalation & review</text>
-  </g>
+  <!-- Block 6 -->
+  <rect x="1020" y="20" width="160" height="140" rx="4" class="block-box block-color-2"/>
+  <circle cx="1090" cy="48" r="8" fill="#0B1325"/>
+  <line x1="1090" y1="56" x2="1090" y2="70" stroke="#0B1325" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="1078" y1="63" x2="1102" y2="63" stroke="#0B1325" stroke-width="1.5" stroke-linecap="round"/>
+  <text x="1090" y="110" text-anchor="middle" class="block-title">Human Oversight</text>
+  <text x="1090" y="125" text-anchor="middle" class="block-desc">Escalation & review</text>
 </svg>
