@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0.05" />
+    </linearGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+      .hero-title { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700; fill: #06b6d4; }
+      .hero-subtitle { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; fill: #64748b; }
+    </style>
+  </defs>
+  <rect width="1200" height="300" fill="url(#heroGradient)" />
+  <rect x="1" y="1" width="1198" height="298" fill="none" stroke="#06b6d4" stroke-width="2" opacity="0.2" />
+
+  <!-- Graph nodes visualization -->
+  <circle cx="200" cy="80" r="25" fill="#06b6d4" opacity="0.3" />
+  <circle cx="350" cy="120" r="20" fill="#06b6d4" opacity="0.4" />
+  <circle cx="450" cy="60" r="22" fill="#0891b2" opacity="0.35" />
+  <circle cx="600" cy="100" r="24" fill="#06b6d4" opacity="0.3" />
+  <circle cx="800" cy="90" r="21" fill="#0891b2" opacity="0.4" />
+  <circle cx="950" cy="110" r="23" fill="#06b6d4" opacity="0.35" />
+  <circle cx="1050" cy="70" r="19" fill="#0891b2" opacity="0.3" />
+
+  <!-- Connecting lines -->
+  <line x1="225" y1="95" x2="325" y2="115" stroke="#06b6d4" stroke-width="1.5" opacity="0.2" />
+  <line x1="370" y1="120" x2="428" y2="85" stroke="#0891b2" stroke-width="1.5" opacity="0.2" />
+  <line x1="472" y1="55" x2="576" y2="90" stroke="#06b6d4" stroke-width="1.5" opacity="0.2" />
+  <line x1="624" y1="105" x2="776" y2="95" stroke="#0891b2" stroke-width="1.5" opacity="0.2" />
+  <line x1="821" y1="85" x2="927" y2="105" stroke="#06b6d4" stroke-width="1.5" opacity="0.2" />
+  <line x1="973" y1="110" x2="1031" y2="80" stroke="#0891b2" stroke-width="1.5" opacity="0.2" />
+
+  <!-- Text -->
+  <text x="150" y="200" class="hero-title">Graph Engineering Crash Course</text>
+  <text x="150" y="240" class="hero-subtitle">Design the system that lets multiple agents collaborate safely</text>
+</svg>
