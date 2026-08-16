@@ -347,6 +347,4 @@ Licensed [MIT](LICENSE) — free to learn from, fork, and teach with.
 
 ---
 
-**Maintainers:** Ayesha Khalid, Saram Ali | **License:** MIT | **Status:** 100% free & open source
-
 </div>
