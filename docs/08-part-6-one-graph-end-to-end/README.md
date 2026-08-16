@@ -1,5 +1,9 @@
 # Part 6 — One Graph, End to End
 
+![The Whole Build: Three JSON Files, One Hook, Two Prompts](../assets/whole-build-architecture.png)
+
+---
+
 Deciding when to build a graph and validating the implementation. This part provides the pre-build checklist and a worked example.
 
 ## What You'll Learn
