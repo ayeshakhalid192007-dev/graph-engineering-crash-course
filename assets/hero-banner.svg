@@ -1,33 +1,38 @@
-<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
   <defs>
     <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#E2E8F0;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#CBD5E1;stop-opacity:1" />
     </linearGradient>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-      .hero-title { font-family: 'Inter', sans-serif; font-size: 48px; font-weight: 700; fill: #0B1325; }
-      .hero-subtitle { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 400; fill: #475569; }
-    </style>
   </defs>
-  <rect width="1200" height="300" fill="url(#heroGradient)" />
 
-  <!-- Graph visualization with course colors -->
-  <circle cx="150" cy="100" r="28" fill="#4169E1" opacity="0.8" />
-  <circle cx="350" cy="140" r="24" fill="#0B1325" opacity="0.6" />
-  <circle cx="550" cy="80" r="26" fill="#4169E1" opacity="0.7" />
-  <circle cx="750" cy="120" r="25" fill="#0B1325" opacity="0.7" />
-  <circle cx="950" cy="90" r="27" fill="#4169E1" opacity="0.8" />
-  <circle cx="1100" cy="140" r="23" fill="#0B1325" opacity="0.6" />
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#heroGradient)"/>
+  <rect width="1200" height="300" fill="none" stroke="#0B1325" stroke-width="1" opacity="0.1"/>
 
-  <!-- Connection lines -->
-  <line x1="178" y1="105" x2="322" y2="135" stroke="#4169E1" stroke-width="2.5" opacity="0.5" />
-  <line x1="374" y1="135" x2="524" y2="85" stroke="#0B1325" stroke-width="2.5" opacity="0.5" />
-  <line x1="576" y1="85" x2="725" y2="115" stroke="#4169E1" stroke-width="2.5" opacity="0.5" />
-  <line x1="775" y1="120" x2="923" y2="95" stroke="#0B1325" stroke-width="2.5" opacity="0.5" />
-  <line x1="977" y1="90" x2="1073" y2="135" stroke="#4169E1" stroke-width="2.5" opacity="0.5" />
+  <!-- Graph nodes with connecting lines -->
+  <g opacity="0.8">
+    <!-- Nodes -->
+    <circle cx="150" cy="100" r="28" fill="#4169E1"/>
+    <circle cx="350" cy="140" r="24" fill="#0B1325"/>
+    <circle cx="550" cy="80" r="26" fill="#4169E1"/>
+    <circle cx="750" cy="120" r="25" fill="#0B1325"/>
+    <circle cx="950" cy="90" r="27" fill="#4169E1"/>
+    <circle cx="1100" cy="140" r="23" fill="#0B1325"/>
+
+    <!-- Connection lines -->
+    <line x1="178" y1="105" x2="322" y2="135" stroke="#4169E1" stroke-width="2.5" opacity="0.5"/>
+    <line x1="374" y1="135" x2="524" y2="85" stroke="#0B1325" stroke-width="2.5" opacity="0.5"/>
+    <line x1="576" y1="85" x2="725" y2="115" stroke="#4169E1" stroke-width="2.5" opacity="0.5"/>
+    <line x1="775" y1="120" x2="923" y2="95" stroke="#0B1325" stroke-width="2.5" opacity="0.5"/>
+    <line x1="977" y1="90" x2="1073" y2="135" stroke="#4169E1" stroke-width="2.5" opacity="0.5"/>
+  </g>
 
   <!-- Text -->
-  <text x="150" y="220" class="hero-title">Graph Engineering Crash Course</text>
-  <text x="150" y="260" class="hero-subtitle">Design systems where agents collaborate safely</text>
+  <text x="600" y="220" font-family="Inter, system-ui, sans-serif" font-size="48" font-weight="700" fill="#0B1325" text-anchor="middle">
+    Graph Engineering Crash Course
+  </text>
+  <text x="600" y="260" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#475569" text-anchor="middle">
+    Design systems where agents collaborate safely
+  </text>
 </svg>
