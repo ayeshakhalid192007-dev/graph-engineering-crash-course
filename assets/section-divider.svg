@@ -1,18 +1,24 @@
-<svg viewBox="0 0 1200 80" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
+<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" width="100%" height="auto">
   <defs>
     <linearGradient id="dividerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#0B1325;stop-opacity:0"/>
-      <stop offset="15%" style="stop-color:#0B1325;stop-opacity:0.4"/>
-      <stop offset="50%" style="stop-color:#0B1325;stop-opacity:0.8"/>
-      <stop offset="85%" style="stop-color:#0B1325;stop-opacity:0.4"/>
+      <stop offset="10%" style="stop-color:#0B1325;stop-opacity:0.5"/>
+      <stop offset="50%" style="stop-color:#0B1325;stop-opacity:1"/>
+      <stop offset="90%" style="stop-color:#0B1325;stop-opacity:0.5"/>
       <stop offset="100%" style="stop-color:#0B1325;stop-opacity:0"/>
     </linearGradient>
   </defs>
 
-  <!-- Horizontal divider line -->
-  <line x1="0" y1="40" x2="1200" y2="40" stroke="url(#dividerGrad)" stroke-width="3"/>
+  <!-- Main horizontal line -->
+  <line x1="0" y1="60" x2="1200" y2="60" stroke="url(#dividerGrad)" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Top accent line -->
+  <line x1="300" y1="30" x2="900" y2="30" stroke="#4169E1" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
+
+  <!-- Bottom accent line -->
+  <line x1="300" y1="90" x2="900" y2="90" stroke="#4169E1" stroke-width="2" opacity="0.4" stroke-linecap="round"/>
 
   <!-- Center accent circles -->
-  <circle cx="600" cy="40" r="8" fill="#4169E1" opacity="0.9"/>
-  <circle cx="600" cy="40" r="12" fill="#4169E1" opacity="0.3"/>
+  <circle cx="600" cy="60" r="10" fill="#4169E1" opacity="0.9"/>
+  <circle cx="600" cy="60" r="15" fill="#4169E1" opacity="0.2"/>
 </svg>
