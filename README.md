@@ -24,7 +24,7 @@
 
 <div align="center">
 
-![Graph Engineering Crash Course — design the system that lets multiple agents collaborate safely, not the agent itself](assets/hero-banner.svg)
+![Graph Engineering Crash Course — design the system that lets multiple agents collaborate safely, not the agent itself](assets/hero-banner.svg "Graph Engineering Crash Course")
 
 # Graph Engineering Crash Course
 
@@ -42,7 +42,7 @@ The leverage has moved: it no longer lives in the perfect agent, but in the **me
 
 <div align="center">
 
-![Graph Ready score — npm run audit:graphs validates structure across all 23 kits](assets/section-divider.svg)
+![Graph Ready score — npm run audit:graphs validates structure across all 23 kits](assets/section-divider.svg "Graph Ready audit")
 
 *Real foundation, real score — graphs that power production systems start with shared facts, not isolated prompts.*
 
@@ -76,7 +76,7 @@ npx @graph-engineering-kits/graph-kit document-to-facts
 | Operate graphs safely (failure modes, recovery) | [**View →**](docs/README.md) |
 | Get certified | [**View →**](docs/00-start-here/) |
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 💬 Why this matters
 
@@ -115,13 +115,13 @@ Every graph in this course — and every kit in the
 
 <div align="center">
 
-![The six building blocks — shared facts, durable history, conflict resolution, independent verification, auditable state, and human oversight](assets/six-building-blocks.svg)
+![The six building blocks — shared facts, durable history, conflict resolution, independent verification, auditable state, and human oversight](assets/six-building-blocks.svg "Six building blocks")
 
 </div>
 
 Deep dive: [Foundations](docs/README.md) — which block solves which problem, side by side.
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 🎓 Choose your track
 
@@ -138,7 +138,7 @@ Like any good learning system, this course meets you where you are. Answer four 
 
 [**View the full track map with entry checks and exit assessments →**](docs/00-start-here/)
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 📚 Curriculum
 
@@ -177,7 +177,7 @@ Like any good learning system, this course meets you where you are. Answer four 
 Every lesson shows the same build in at least two tools, side by side
 (Claude Code ↔ OpenCode), so you learn the discipline — not one vendor's syntax.
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 🔁 Anatomy of a graph
 
@@ -199,7 +199,7 @@ Start with [Mental Models](docs/README.md) and
 [The Graph Layers](docs/README.md); keep the
 [Glossary](docs/README.md) open in a tab.
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 🧰 Graph pattern library
 
@@ -239,7 +239,7 @@ Prefer to design your own from a blank? `npx @graph-engineering-kits/graph-kit n
 scaffolds one from [the blank template](docs/README.md).
 [**View the full install guide →**](packages/graph-kit/README.md)
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 🚀 Getting started (5 minutes)
 
@@ -257,7 +257,7 @@ scaffolds one from [the blank template](docs/README.md).
    the [curriculum](#-curriculum) through to the
    [Graph Ready certification](docs/00-start-here/).
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 🛡️ Operating & safety
 
@@ -292,7 +292,7 @@ and operate a graph of your own, then defend it against the
 [Final Exam](docs/README.md).
 [**View the full certification path →**](docs/00-start-here/)
 
-![](assets/section-divider.svg)
+![](assets/section-divider.svg "Section divider")
 
 ## 📂 Repository map
 
@@ -321,7 +321,7 @@ Use [`CITATION.cff`](CITATION.cff).
 - **Anthropic's Knowledge Graph Construction Cookbook** — [platform.claude.com/cookbook](https://platform.claude.com/cookbook) — extract typed entities and relations, resolve duplicates, assemble a graph
 - **Anthropic's Dynamic Workflows** — [code.claude.com/docs](https://code.claude.com/docs) — tens to hundreds of parallel sub-agents in a single session
 - **Peter Steinberger** ([@steipete](https://x.com/steipete)) — posed the midnight question: "Are we still talking loops or did we shift to graphs yet?"
-- **Carlos E. Perez** — _From Loop Engineering to Graph Engineering?_ — four failure modes of single loops
+- **Carlos E. Perez** — *From Loop Engineering to Graph Engineering?* — four failure modes of single loops
 - **Hamel Husain** — "Loop Engineering Is Dead. Enter Graph Engineering"
 - **Santiago Valdarrama** — "Loop engineering is dead. Long live graph engineering!"
 
