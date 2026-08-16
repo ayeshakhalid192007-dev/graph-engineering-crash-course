@@ -1,6 +1,6 @@
 # Step 10 · The Grounded Checker
 
-![The Grounded Checker](../../assets/the-grounded-checker.png)
+![The Grounded Checker](../assets/the-grounded-checker.png)
 
 ---
 
