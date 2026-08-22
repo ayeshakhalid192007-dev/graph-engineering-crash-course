@@ -4,12 +4,14 @@ Choose your path through the Graph Engineering Crash Course based on your goals 
 
 ## 🟢 G1 · Foundations
 
-**New to graphs**
+### New to graphs
 
 Walking in, you already know…
+
 - The Loop Engineering vocabulary — heartbeat, spine, maker/checker
 
 Walking out, you can…
+
 - Point to the exact moment a lone memory file quits working once a second worker starts touching it
 - Tell a trail of attempts apart from a store of checked claims
 
@@ -21,12 +23,14 @@ Walking out, you can…
 
 ## 🔵 G2 · Practitioner
 
-**Comfortable with the two-graph split**
+### Comfortable with the two-graph split
 
 Walking in, you already know…
+
 - That work-history and facts are different graphs with different jobs
 
 Walking out, you can…
+
 - Push a real claim through extraction, resolution, and provenance
 - Hand a worker a bounded subgraph and check its output against real edges
 
@@ -39,12 +43,14 @@ Walking out, you can…
 
 ## 🟠 G3 · Engineer
 
-**Can stand up a single working graph**
+### Can stand up a single working graph
 
 Walking in, you already know…
+
 - How one graph is built and read
 
 Walking out, you can…
+
 - Connect several graphs into a governance structure
 - Name — and patch — each of the four ways a graph quietly goes wrong
 
@@ -57,12 +63,14 @@ Walking out, you can…
 
 ## 🔴 G4 · Ultra-Pro
 
-**Has shipped a graph already**
+### Has shipped a graph already
 
 Walking in, you already know…
+
 - How to run a graph as production infrastructure
 
 Walking out, you can…
+
 - Recognize when a graph is the wrong tool for a job
 - Scale one across a bigger system
 - Write a new pattern for someone else to reuse
@@ -76,7 +84,7 @@ Walking out, you can…
 
 ## Quick Routing
 
-**I want to…**
+### I want to…
 
 - **Learn the absolute minimum** → G1 Foundations
 - **Build a real graph** → G1 + G2 Practitioner
@@ -91,7 +99,7 @@ Walking out, you can…
 ## Skill Progression
 
 | Skill Track | G1 | G2 | G3 | G4 |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Foundations** | ✓ Intro | ✓ Deepens | ✓ Applies | ✓ Teaches |
 | **Extraction** | ✗ | ✓ Learn | ✓ Refine | ✓ Optimize |
 | **Resolution** | ✗ | ✓ Learn | ✓ Refine | ✓ Optimize |
@@ -129,5 +137,5 @@ Walking out, you can…
 - **Time estimate:** 2–8 hours depending on track
 - **Tools needed:** See [environment setup](../01-prerequisites/environment-setup.md)
 - **Primers:** [Loop Engineering](../01-prerequisites/loop-engineering-primer.md) + [Harness Engineering](../01-prerequisites/harness-engineering-primer.md)
-- **Questions?** Check the [glossary](../02-foundations/glossary.md) or [FAQ](#)
+- **Questions?** Check the [glossary](../02-foundations/glossary.md) or [FAQ](../assessments/README.md)
 

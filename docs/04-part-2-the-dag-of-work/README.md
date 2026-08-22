@@ -16,8 +16,8 @@ Build a work-history graph that preserves learning:
 
 ## Contents
 
-1. **[Step 4](step-4-recording-attempts-without-losing-the-trail.md)** — The ratchet: keep only improvements, log everything else
-2. **[Step 5](step-5-letting-failed-branches-stay-queryable.md)** — Make failed attempts findable
+1. **[Step 4](04-recording-attempts-without-losing-the-trail.md)** — The ratchet: keep only improvements, log everything else
+2. **[Step 5](05-letting-failed-branches-stay-queryable.md)** — Make failed attempts findable
 
 ## Diagram
 
