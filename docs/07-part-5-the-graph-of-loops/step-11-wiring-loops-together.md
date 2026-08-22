@@ -108,7 +108,7 @@ Recency is never a tiebreak here.
 
 ## Going Deeper
 
-It's tempting, once the governance graph exists, to fill it in completely — every loop related to every other, authority ranked top to bottom before anything has gone wrong. That instinct produces a governance layer larger than the system it governs, full of edges nobody can justify and nobody will maintain. The more durable habit: add a governance edge when a specific real incident has shown you which one was missing. `A-311` publishing itself is what earned `escalation can-overrule review` its place — until that Tuesday, the edge would have been speculation. This is the same discipline the [build-a-graph method](../methods/) closes with, and it applies with extra force here, because a governance edge is a standing constraint on how the whole system behaves, not just another fact in a store.
+It's tempting, once the governance graph exists, to fill it in completely — every loop related to every other, authority ranked top to bottom before anything has gone wrong. That instinct produces a governance layer larger than the system it governs, full of edges nobody can justify and nobody will maintain. The more durable habit: add a governance edge when a specific real incident has shown you which one was missing. `A-311` publishing itself is what earned `escalation can-overrule review` its place — until that Tuesday, the edge would have been speculation. This is the same discipline the [build-a-graph method](../10-methods/) closes with, and it applies with extra force here, because a governance edge is a standing constraint on how the whole system behaves, not just another fact in a store.
 
 ## Check Yourself
 

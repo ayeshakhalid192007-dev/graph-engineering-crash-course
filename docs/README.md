@@ -75,12 +75,14 @@ Links below point at where Day 2 of this build will place each step's page. Unti
 16. [When to skip graph engineering entirely](09-part-7-staying-grounded/step-16-when-to-skip-graph-engineering-entirely.md)
 17. [Complexity budgets and staying the engineer](09-part-7-staying-grounded/step-17-complexity-budgets-and-staying-the-engineer.md)
 
-## Reference material
+## Learning progression
+
+After Part 7, continue with structured practice and reference material:
 
 | Section | What it's for |
 | --- | --- |
-| [`methods/`](methods/README.md) | The build-a-graph method, the pattern picker, and the pre-build decision framework |
-| [`operating/`](operating/README.md) | Anti-patterns, failure modes, safety notes, and observability guidance |
+| [`10-methods/`](10-methods/README.md) | The build-a-graph method, the pattern picker, and the pre-build decision framework |
+| [`11-operating/`](11-operating/README.md) | Anti-patterns, failure modes, safety notes, and observability guidance |
 | [`advanced/`](advanced/README.md) | The Ultra-Pro (G4) tier: scale, federation, and org-level governance |
 | [`projects/`](projects/README.md) | The eight hands-on projects, from a first hand-drawn graph to the two-loop capstone |
 | [`appendix/cheatsheets/`](appendix/cheatsheets/README.md) | Quick-reference sheets per tool |

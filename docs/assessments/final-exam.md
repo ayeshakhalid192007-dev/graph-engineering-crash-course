@@ -1,6 +1,6 @@
 # Final Exam
 
-Twenty questions covering all seventeen steps. Questions 1–17 follow the course in order, one per step. Questions 18–20 are anti-pattern spotting, drawn from the three categories in [`anti-patterns.md`](../operating/anti-patterns.md).
+Twenty questions covering all seventeen steps. Questions 1–17 follow the course in order, one per step. Questions 18–20 are anti-pattern spotting, drawn from the three categories in [`anti-patterns.md`](../11-operating/anti-patterns.md).
 
 **How to take it.** Write your answers down before opening the key. Most questions want two or three sentences; a few want a decision plus the reason behind it. The key is a single fold at the bottom rather than one per question, so it is harder to check yourself into agreement one answer at a time.
 

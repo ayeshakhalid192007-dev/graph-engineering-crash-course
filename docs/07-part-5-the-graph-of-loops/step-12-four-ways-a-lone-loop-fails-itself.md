@@ -158,7 +158,7 @@ The diagnostic question that separates them is short: could this loop, given eve
 - Collision: no, because the other loop is invisible to it.
 - Drift: no, because the yardstick itself moved.
 
-Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../operating/).
+Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../11-operating/).
 
 ## Check Yourself
 
