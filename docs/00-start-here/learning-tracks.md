@@ -112,6 +112,7 @@ Walking out, you can…
 ## How to Use This Course
 
 ### Solo learner
+
 1. Pick your track above
 2. Work through sections in order
 3. Complete the quizzes and flashcards
@@ -119,12 +120,14 @@ Walking out, you can…
 5. Review solutions when stuck
 
 ### Study group
+
 1. Assign a facilitator
 2. Work through one part per session (~1 hour)
 3. Discuss quiz questions together
 4. Pair on the projects
 
 ### Teaching others
+
 1. Start with the learning tracks above
 2. Use the [decision framework](../10-methods/decision-framework.md) to scope what's relevant
 3. Reference [the build-a-graph method](../10-methods/build-a-graph-method.md) for your own examples

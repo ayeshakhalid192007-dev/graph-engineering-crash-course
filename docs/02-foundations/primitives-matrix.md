@@ -5,7 +5,7 @@ A reference table for the three core primitives and how they appear in different
 ## Quick Reference
 
 | Primitive | Definition | Examples | When You Use It |
-|-----------|-----------|----------|-----------------|
+| --- | --- | --- | --- |
 | **Node** | Discrete entity or concept | Person, Task, Document, Claim | Representing things |
 | **Edge** | Directed relationship | authored, verified, caused | Representing relationships |
 | **Property** | Metadata on nodes/edges | timestamp, confidence, status | Adding nuance and evidence |
@@ -13,7 +13,7 @@ A reference table for the three core primitives and how they appear in different
 ## Nodes in Different Domains
 
 | Domain | Node Type | Examples | Natural Key |
-|--------|-----------|----------|-------------|
+| --- | --- | --- | --- |
 | **Task Management** | Task | Bug #42, Feature PR #99 | task_id |
 | | Person | alice@example.com, bob | email or username |
 | **Knowledge Graphs** | Claim | "Coffee is a stimulant" | content_hash |
@@ -26,7 +26,7 @@ A reference table for the three core primitives and how they appear in different
 ## Edges in Different Domains
 
 | Domain | Edge Type | Source | Target | Meaning |
-|--------|-----------|--------|--------|---------|
+| --- | --- | --- | --- | --- |
 | **Task Management** | assigned-to | Task | Person | Who owns this? |
 | | depends-on | Task | Task | What blocks this? |
 | **Knowledge Graphs** | verified-by | Claim | Person | Who checked this? |
@@ -119,7 +119,7 @@ Edges track the transitions:
 ## Scaling the Primitives
 
 | Scale | Challenge | Solution |
-|-------|-----------|----------|
+| --- | --- | --- |
 | **Small (< 1K nodes)** | Simplicity over completeness | Keep 3–5 node types, 5–10 edge types |
 | **Medium (1K–1M nodes)** | Query performance | Add indexes, partition by type |
 | **Large (1M+ nodes)** | Storage and traversal | Use graph database, implement subgraph queries |

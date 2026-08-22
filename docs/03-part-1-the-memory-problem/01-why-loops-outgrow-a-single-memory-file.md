@@ -130,4 +130,4 @@ This Step's key term, **thin-memory trick**, is defined in the [glossary](../02-
 
 ---
 
-Next: [Step 2 · Graphs in Plain Terms](step-2-graphs-in-plain-terms.md)
+Next: [Step 2 · Graphs in Plain Terms](02-graphs-in-plain-terms.md)
