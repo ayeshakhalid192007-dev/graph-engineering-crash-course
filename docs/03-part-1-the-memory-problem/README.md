@@ -12,9 +12,9 @@ Understand the fundamental problem graph engineering solves:
 
 ## Contents
 
-1. **[Step 1](step-1-why-loops-outgrow-a-single-memory-file.md)** — When two writers race to the same file
-2. **[Step 2](step-2-graphs-in-plain-terms.md)** — Nodes and edges: the basics
-3. **[Step 3](step-3-keep-your-two-graphs-separate.md)** — Why work-history and facts need separate graphs
+1. **[Step 1](01-why-loops-outgrow-a-single-memory-file.md)** — When two writers race to the same file
+2. **[Step 2](02-graphs-in-plain-terms.md)** — Nodes and edges: the basics
+3. **[Step 3](03-keep-your-two-graphs-separate.md)** — Why work-history and facts need separate graphs
 
 ## Diagram
 

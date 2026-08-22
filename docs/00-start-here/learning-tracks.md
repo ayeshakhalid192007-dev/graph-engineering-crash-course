@@ -91,7 +91,7 @@ Walking out, you can…
 - **Run multiple graphs** → G1 + G2 + G3 Engineer
 - **Ship at scale** → Complete all four tracks (G1–G4)
 - **Understand when NOT to use graphs** → Start with [Part 7](../09-part-7-staying-grounded/README.md)
-- **Skip straight to practice** → [Projects](../../projects/README.md)
+- **Skip straight to practice** → [Projects](../projects/README.md)
 - **Dive into patterns** → [Pattern library](../../patterns/README.md)
 
 ---

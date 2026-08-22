@@ -41,5 +41,5 @@ Who can write to each graph? Who can read?
 
 ## Common Multi-Graph Patterns
 
-See [multi-loop-coordination.md](../advanced/multi-loop-coordination.md) in Advanced for detailed patterns.
+See [Multi-Graph Federation](../advanced/multi-graph-federation.md) in Advanced for detailed patterns.
 

@@ -16,9 +16,9 @@ Build a fact graph that maintains trust and traceability:
 
 ## Contents
 
-1. **[Step 6](step-6-extraction-schema-first-prose-second.md)** — Schema-first extraction
-2. **[Step 7](step-7-resolution-merging-without-losing-the-evidence.md)** — Reversible merging
-3. **[Step 8](step-8-provenance-every-claim-keeps-a-receipt.md)** — Tracking claim sources
+1. **[Step 6](06-extraction-schema-first-prose-second.md)** — Schema-first extraction
+2. **[Step 7](07-resolution-merging-without-losing-the-evidence.md)** — Reversible merging
+3. **[Step 8](08-provenance-every-claim-keeps-a-receipt.md)** — Tracking claim sources
 
 ## Diagram
 

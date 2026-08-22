@@ -12,8 +12,8 @@ Make proportionate decisions:
 
 ## Contents
 
-1. **[Step 16](step-16-when-to-skip-graph-engineering-entirely.md)** — Four cases where simpler tools win
-2. **[Step 17](step-17-complexity-budgets-and-staying-the-engineer.md)** — Add governance only after failures appear
+1. **[Step 16](16-when-to-skip-graph-engineering-entirely.md)** — Four cases where simpler tools win
+2. **[Step 17](17-complexity-budgets-and-staying-the-engineer.md)** — Add governance only after failures appear
 
 ## Diagram
 

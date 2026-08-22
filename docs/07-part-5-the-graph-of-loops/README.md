@@ -16,9 +16,9 @@ Connect loops safely and prevent predictable failures:
 
 ## Contents
 
-1. **[Step 11](step-11-wiring-loops-together.md)** — Governance graphs for multi-loop systems
-2. **[Step 12](step-12-four-ways-a-lone-loop-fails-itself.md)** — Four failure modes and their fixes
-3. **[Step 13](step-13-anchors-and-frozen-nodes.md)** — Preventing drift with anchors
+1. **[Step 11](11-wiring-loops-together.md)** — Governance graphs for multi-loop systems
+2. **[Step 12](12-four-ways-a-lone-loop-fails-itself.md)** — Four failure modes and their fixes
+3. **[Step 13](13-anchors-and-frozen-nodes.md)** — Preventing drift with anchors
 
 ## Diagram
 

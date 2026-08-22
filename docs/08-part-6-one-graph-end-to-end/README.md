@@ -16,8 +16,8 @@ Make informed build-or-skip decisions:
 
 ## Contents
 
-1. **[Step 14](step-14-six-questions-before-you-build.md)** — Pre-build checklist: six honest questions
-2. **[Step 15](step-15-build-the-same-graph-twice.md)** — Building with two tools to verify correctness
+1. **[Step 14](14-six-questions-before-you-build.md)** — Pre-build checklist: six honest questions
+2. **[Step 15](15-build-the-same-graph-twice.md)** — Building with two tools to verify correctness
 
 ## Diagram
 

@@ -16,8 +16,8 @@ Put the fact graph to work:
 
 ## Contents
 
-1. **[Step 9](step-9-subgraphs-give-a-worker-a-slice-not-the-graph.md)** — Task-scoped subgraphs instead of full dumps
-2. **[Step 10](step-10-the-grounded-checker.md)** — Verify claims against real edges
+1. **[Step 9](09-subgraphs-give-a-worker-a-slice-not-the-graph.md)** — Task-scoped subgraphs instead of full dumps
+2. **[Step 10](10-the-grounded-checker.md)** — Verify claims against real edges
 
 ## Diagram
 
