@@ -10,20 +10,11 @@ Complete course on building and managing shared memory graphs for autonomous sys
 
 ## Learning Paths
 
-**Core Path** (~2 hours)  
-Steps 1-13 + Projects 1-4. Learn to build fact graphs and check claims mechanically.
+For guided learning by experience level, see [Learning Tracks](00-start-here/learning-tracks.md).
 
-**Advanced Path**  
-Steps 14-17 + Projects 5-8 + pattern library. Governance, scale, and when to skip graphs entirely.
-
-## Skill tracks
-
-| Track | Level | Walking in, you already know… | Walking out, you can… | Where it lives |
-| --- | --- | --- | --- | --- |
-| **G1 · Foundations** | New to graphs | The Loop Engineering vocabulary — heartbeat, spine, maker/checker | Point to the exact moment a lone memory file quits working once a second worker starts touching it, and tell a trail of attempts apart from a store of checked claims | Prerequisites + Foundations + Part 1 |
-| **G2 · Practitioner** | Comfortable with the two-graph split | That work-history and facts are different graphs with different jobs | Push a real claim through extraction, resolution, and provenance, then hand a worker a bounded subgraph and check its output against real edges | Parts 2–4 + Projects 2–6 |
-| **G3 · Engineer** | Can stand up a single working graph | How one graph is built and read | Connect several loops into a governance graph, and name — and patch — each of the four ways a lone loop quietly goes wrong | Part 5 + Projects 7–8 + pattern library |
-| **G4 · Ultra-Pro** | Has shipped a graph already | How to run a graph as production infrastructure | Recognize when a graph is the wrong tool for a job, scale one across a bigger system, and write a new pattern for someone else to reuse | Parts 6–7 + advanced tier + certification |
+**Quick start:**
+- **Core Path:** Steps 1-13 + Projects 1-4 (~2 hours)
+- **Advanced Path:** Steps 14-17 + Projects 5-8 + Advanced tier
 
 ## Before Part 1
 
@@ -39,41 +30,41 @@ Links below point at where Day 2 of this build will place each step's page. Unti
 
 ### Part 1 — The Memory Problem
 
-1. [Why loops outgrow a single memory file](03-part-1-the-memory-problem/step-1-why-loops-outgrow-a-single-memory-file.md)
-2. [Graphs in plain terms](03-part-1-the-memory-problem/step-2-graphs-in-plain-terms.md)
-3. [Keep your two graphs separate](03-part-1-the-memory-problem/step-3-keep-your-two-graphs-separate.md)
+1. [Why loops outgrow a single memory file](03-part-1-the-memory-problem/01-why-loops-outgrow-a-single-memory-file.md)
+2. [Graphs in plain terms](03-part-1-the-memory-problem/02-graphs-in-plain-terms.md)
+3. [Keep your two graphs separate](03-part-1-the-memory-problem/03-keep-your-two-graphs-separate.md)
 
 ### Part 2 — The DAG of Work
 
-4. [Recording attempts without losing the trail](04-part-2-the-dag-of-work/step-4-recording-attempts-without-losing-the-trail.md)
-5. [Letting failed branches stay queryable](04-part-2-the-dag-of-work/step-5-letting-failed-branches-stay-queryable.md)
+4. [Recording attempts without losing the trail](04-part-2-the-dag-of-work/04-recording-attempts-without-losing-the-trail.md)
+5. [Letting failed branches stay queryable](04-part-2-the-dag-of-work/05-letting-failed-branches-stay-queryable.md)
 
 ### Part 3 — The Graph of Facts
 
-6. [Extraction: schema first, prose second](05-part-3-the-graph-of-facts/step-6-extraction-schema-first-prose-second.md)
-7. [Resolution: merging without losing the evidence](05-part-3-the-graph-of-facts/step-7-resolution-merging-without-losing-the-evidence.md)
-8. [Provenance: every claim keeps a receipt](05-part-3-the-graph-of-facts/step-8-provenance-every-claim-keeps-a-receipt.md)
+6. [Extraction: schema first, prose second](05-part-3-the-graph-of-facts/06-extraction-schema-first-prose-second.md)
+7. [Resolution: merging without losing the evidence](05-part-3-the-graph-of-facts/07-resolution-merging-without-losing-the-evidence.md)
+8. [Provenance: every claim keeps a receipt](05-part-3-the-graph-of-facts/08-provenance-every-claim-keeps-a-receipt.md)
 
 ### Part 4 — Working From the Graph
 
-9. [Subgraphs: give a worker a slice, not the graph](06-part-4-working-from-the-graph/step-9-subgraphs-give-a-worker-a-slice-not-the-graph.md)
-10. [The grounded checker](06-part-4-working-from-the-graph/step-10-the-grounded-checker.md)
+9. [Subgraphs: give a worker a slice, not the graph](06-part-4-working-from-the-graph/09-subgraphs-give-a-worker-a-slice-not-the-graph.md)
+10. [The grounded checker](06-part-4-working-from-the-graph/10-the-grounded-checker.md)
 
 ### Part 5 — The Graph of Loops
 
-11. [Wiring loops together](07-part-5-the-graph-of-loops/step-11-wiring-loops-together.md)
-12. [Four ways a lone loop fails itself](07-part-5-the-graph-of-loops/step-12-four-ways-a-lone-loop-fails-itself.md)
-13. [Anchors and frozen nodes](07-part-5-the-graph-of-loops/step-13-anchors-and-frozen-nodes.md)
+11. [Wiring loops together](07-part-5-the-graph-of-loops/11-wiring-loops-together.md)
+12. [Four ways a lone loop fails itself](07-part-5-the-graph-of-loops/12-four-ways-a-lone-loop-fails-itself.md)
+13. [Anchors and frozen nodes](07-part-5-the-graph-of-loops/13-anchors-and-frozen-nodes.md)
 
 ### Part 6 — One Graph, End to End
 
-14. [Six questions before you build](08-part-6-one-graph-end-to-end/step-14-six-questions-before-you-build.md)
-15. [Build the same graph twice](08-part-6-one-graph-end-to-end/step-15-build-the-same-graph-twice.md)
+14. [Six questions before you build](08-part-6-one-graph-end-to-end/14-six-questions-before-you-build.md)
+15. [Build the same graph twice](08-part-6-one-graph-end-to-end/15-build-the-same-graph-twice.md)
 
 ### Part 7 — Staying Grounded
 
-16. [When to skip graph engineering entirely](09-part-7-staying-grounded/step-16-when-to-skip-graph-engineering-entirely.md)
-17. [Complexity budgets and staying the engineer](09-part-7-staying-grounded/step-17-complexity-budgets-and-staying-the-engineer.md)
+16. [When to skip graph engineering entirely](09-part-7-staying-grounded/16-when-to-skip-graph-engineering-entirely.md)
+17. [Complexity budgets and staying the engineer](09-part-7-staying-grounded/17-complexity-budgets-and-staying-the-engineer.md)
 
 ## Learning progression
 
