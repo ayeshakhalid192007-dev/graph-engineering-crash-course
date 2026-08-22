@@ -40,7 +40,7 @@ A reference table for the three core primitives and how they appear in different
 
 ### On Nodes
 
-```
+```text
 Node: task-42
 Properties:
   created_at: 2026-08-15T09:00:00Z      (when)
@@ -53,7 +53,7 @@ Properties:
 
 ### On Edges
 
-```
+```text
 Edge: alice --[authored]--> doc-v2
 Properties:
   timestamp: 2026-08-22T09:15:00Z       (when)
@@ -66,46 +66,55 @@ Properties:
 ## Combining Primitives: Common Patterns
 
 ### Pattern 1: Timeline (nodes + temporal edges)
-```
+
+```text
 Event A
   ↓ preceded-by
 Event B
   ↓ preceded-by
 Event C
 ```
+
 **Use case:** Audit logs, deployment history, state machines
 
 ### Pattern 2: Hierarchy (nodes + structural edges)
-```
+
+```text
 Organization
   ├─ owns ─→ Team A
   │           ├─ owns ─→ Project 1
   │           └─ owns ─→ Project 2
   └─ owns ─→ Team B
 ```
+
 **Use case:** Org structure, file systems, document hierarchy
 
 ### Pattern 3: Causation Chain (nodes + causal edges)
-```
+
+```text
 Root Cause
   ↓ causes
 Intermediate Effect
   ↓ causes
 Observable Problem
 ```
+
 **Use case:** Incident investigation, bug tracking, root cause analysis
 
 ### Pattern 4: Verification Trail (nodes + attributed edges)
-```
+
+```text
 Claim
   ← verified-by: Alice (timestamp, confidence)
   ← verified-by: Bob (timestamp, confidence)
   ← contradicted-by: Charlie (timestamp, confidence)
 ```
+
 **Use case:** Collaborative fact-checking, scientific citations, compliance audits
 
 ### Pattern 5: State Machine (nodes with properties + transitions)
-```
+
+```text
 Node: task-42
   status: pending → assigned → in-progress → review → done
   
@@ -114,6 +123,7 @@ Edges track the transitions:
     timestamp: 2026-08-22T10:00:00Z
     triggered-by: alice@example.com
 ```
+
 **Use case:** Workflows, approval processes, task lifecycles
 
 ## Scaling the Primitives
@@ -129,18 +139,21 @@ Edges track the transitions:
 When designing a graph, ask:
 
 **Nodes:**
+
 - [ ] What's my natural key? (or should I generate IDs?)
 - [ ] How many node types do I actually need? (5–10 is typical)
 - [ ] What properties must every node have?
 - [ ] What properties are optional but valuable?
 
 **Edges:**
+
 - [ ] What relationships do I actually query? (start there)
 - [ ] Do any edges need direction reversals? (if you query both ways)
 - [ ] Should I store properties on edges?
 - [ ] Are there cycles I need to detect or break?
 
 **Properties:**
+
 - [ ] How will timestamps help me? (created, updated, verified)
 - [ ] Do I need confidence or certainty levels?
 - [ ] What's my audit trail requirement?
@@ -149,6 +162,7 @@ When designing a graph, ask:
 ---
 
 Use this matrix to:
+
 - **Design:** Pick patterns and primitives that match your domain
 - **Communicate:** Show stakeholders what data you're modeling
 - **Validate:** Check that your choices match your queries

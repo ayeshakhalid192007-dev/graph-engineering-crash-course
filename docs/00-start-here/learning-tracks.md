@@ -141,4 +141,3 @@ Walking out, you can…
 - **Tools needed:** See [environment setup](../01-prerequisites/environment-setup.md)
 - **Primers:** [Loop Engineering](../01-prerequisites/loop-engineering-primer.md) + [Harness Engineering](../01-prerequisites/harness-engineering-primer.md)
 - **Questions?** Check the [glossary](../02-foundations/glossary.md) or [FAQ](../assessments/README.md)
-

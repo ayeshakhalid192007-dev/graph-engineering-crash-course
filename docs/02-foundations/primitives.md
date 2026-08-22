@@ -5,12 +5,13 @@ Graph engineering is built on a small set of primitives that recur in every syst
 ## The Three Primitives
 
 ### 1. Nodes
+
 A node is a discrete entity or concept in your graph. Every node has:
 - **Identity** — a unique identifier (URI, UUID, or natural key)
 - **Type** — what kind of thing it is (Person, Task, Claim, etc.)
 - **Attributes** — data that describes it
 
-```
+```text
 Node: "alice@example.com"
 Type: Person
 Attributes:
@@ -19,25 +20,27 @@ Attributes:
 ```
 
 ### 2. Edges
+
 An edge is a directed relationship between two nodes. Every edge has:
 - **Source** — the node the edge originates from
 - **Type** — what kind of relationship it is (knows, caused, verified, etc.)
 - **Target** — the node the edge points to
 - **Attributes** — metadata about the relationship (timestamp, confidence, etc.)
 
-```
+```text
 Edge: alice --[authored]--> task-123
 Type: authored
 Timestamp: 2026-08-22T09:00:00Z
 ```
 
 ### 3. Properties
+
 Properties are key-value pairs attached to nodes or edges. They store:
 - Immutable facts (created_at, node_id)
 - Mutable state (status, score, label)
 - Evidence (source, confidence, proof)
 
-```
+```text
 Node.task-123.properties:
   title: "Fix login bug"
   status: "in-progress"
@@ -100,7 +103,7 @@ Too narrow (separate types for every variant):
 
 **Middle ground:** Use a small set of types that correspond to how you'll query and reason about the graph.
 
-```
+```text
 ✓ Good types: Person, Task, Document, Event
 ✗ Too narrow: Engineer, Manager, Contractor, Consultant
 ✗ Too broad: Entity, Thing, Object
