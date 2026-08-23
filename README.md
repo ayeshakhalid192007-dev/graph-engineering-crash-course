@@ -28,38 +28,66 @@
 
 # Graph Engineering Crash Course
 
-*Stop building isolated agents. Design the graph.*
+*You learned to build loops. Now learn to connect them.*
 
-**Learn to build collaborative agent graphs — distributed systems with shared facts, durable history, conflict-free updates, independent verification, and auditable state.**
+**Build collaborative agent graphs — the system that lets multiple independent agents share facts, history, and decisions safely without corruption, miscommunication, or lost work.**
 
 </div>
 
 <!-- HERO-END -->
 
-**Graph engineering is the practice of designing the system that lets multiple independent agents collaborate safely — shared structured memory, durable work history, conflict resolution, verification, and logging — rather than building isolated agents that work alone.**
+## You're here because loops alone aren't enough
 
-The leverage has moved: it no longer lives in the perfect agent, but in the **memory system that keeps agents collaborating toward a goal over time**. This free, open-source course teaches that discipline end to end — 17 steps, 23 ready-to-run graph kits, graded labs, an operating handbook, and a certification. You don't read *about* graphs here; you build them, in two tools, from a first document-to-facts graph to a certified multi-agent system.
+If you've finished the **[Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)**, you know how to build a single agent loop: heartbeat, spine, maker-checker split. One loop works. But the moment you tried to run *two* loops writing to the same file, everything broke.
 
-### Why graphs? The evolution from loops to collaboration
+**That's not a failure of loops — it's the signal you need graphs.**
 
-You may have completed the **[Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)** — mastering heartbeats, spines, and the maker-checker split. That foundation is vital. But here's where things change:
+Graph engineering is the practice of designing the system that lets multiple independent agents collaborate safely. Not isolated agents working alone. Not loops that step on each other. **A system.** One with shared structured memory, durable work history, conflict resolution, verification, and auditable state.
 
-**A single loop can only go so far.** The moment two agents write to the same file, you need more than a heartbeat — you need a graph. A system where facts are shared, not duplicated; where history is durable; where conflicts resolve safely; and where every change is auditable.
+The leverage has moved from the perfect agent to the **memory system that keeps agents collaborating toward a goal over time**. This course teaches that end to end — 17 steps, 6 parts, 23 ready-to-run graph kits, graded labs, an operating handbook, and a certification. You don't read *about* graphs here; you build them. In two tools. From a first document-to-facts graph to a certified multi-agent system.
+
+### From one loop to many: the exact problem graphs solve
+
+Here's what happened when you tried to scale loops:
 
 ```mermaid
-graph LR
-    Loop["🔄 Loop Engineering<br/>heartbeat · spine · maker-checker"]
-    Loop -->|"now two agents<br/>writing to the same place"| Conflict["⚠️ Coordination Problem<br/>who wrote what when?"]
-    Conflict -->|"solution"| Graph["📊 Graph Engineering<br/>shared facts · durable history<br/>conflict resolution · verification"]
-    Graph -->|"result"| Multi["🤝 Safe Collaboration<br/>independent agents · auditable state<br/>continuous operation"]
+graph TB
+    subgraph "One Loop (Fine)"
+        A1["🔄 Loop A<br/>heartbeat · spine · maker-checker<br/>reads + writes to memory.md"]
+        A1 -->|"single source<br/>of truth"| Result1["✅ Works<br/>no conflicts"]
+    end
     
-    style Loop fill:#06b6d4,stroke:#0f172a,color:#fff,stroke-width:2px
-    style Conflict fill:#f97316,stroke:#0f172a,color:#fff,stroke-width:2px
-    style Graph fill:#34d399,stroke:#0f172a,color:#fff,stroke-width:2px
-    style Multi fill:#8b5cf6,stroke:#0f172a,color:#fff,stroke-width:2px
+    subgraph "Two Loops (Broken)"
+        B1["🔄 Loop A<br/>reads memory.md<br/>thinks X = 10"]
+        B2["🔄 Loop B<br/>reads memory.md<br/>thinks X = 10"]
+        Conflict["💥 Race condition"]
+        B1 -->|"writes X = 11"| Conflict
+        B2 -->|"writes X = 12"| Conflict
+        Conflict -->|"last write wins<br/>data lost"| Result2["❌ Broken<br/>who's right?"]
+    end
+    
+    subgraph "Two Loops + Graph (Safe)"
+        C1["🔄 Loop A<br/>proposes update"]
+        C2["🔄 Loop B<br/>proposes update"]
+        Store["📊 Shared Fact Store<br/>single source of truth"]
+        Merger["🔀 Conflict Resolver<br/>safe merging"]
+        Audit["🔍 Audit Trail<br/>complete history"]
+        C1 -->|"fact + metadata"| Store
+        C2 -->|"fact + metadata"| Store
+        Store -->|"detect parallel<br/>updates"| Merger
+        Merger -->|"policy: who wins?"| Audit
+        Audit -->|"verified facts"| C1
+        Audit -->|"verified facts"| C2
+        Result3["✅ Works<br/>auditable"]
+        Audit --> Result3
+    end
+    
+    style Result1 fill:#34d399,stroke:#0f172a,color:#000,stroke-width:2px
+    style Result2 fill:#ef4444,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Result3 fill:#8b5cf6,stroke:#0f172a,color:#fff,stroke-width:2px
 ```
 
-This course picks up exactly where Loop Engineering left off — building on the heartbeat and spine you already know, but adding the graph structure that lets loops become systems.
+**That graph in the third box? That's what this course teaches you to design and operate.**
 
 <div align="center">
 
@@ -102,6 +130,46 @@ graph TB
 
 **What you build here matters:** Every pattern in this course has been battle-tested in production systems coordinating tens to hundreds of agents. You're not learning theory — you're learning what actually works.
 
+## What transfers from Loop Engineering → Graph Engineering
+
+Your loop training gives you a head start. Here's what stays the same and what evolves:
+
+```mermaid
+graph LR
+    subgraph "Loop Engineering (You Know This)"
+        L1["❤️ Heartbeat<br/>read → decide → write"]
+        L2["📖 Spine<br/>durable append-only log"]
+        L3["✋ Maker-Checker<br/>propose + verify"]
+        L1 -.-> L2
+        L2 -.-> L3
+    end
+    
+    subgraph "Graph Engineering (Builds On It)"
+        G1["📊 Shared Facts<br/>all loops read same spine"]
+        G2["🔀 Conflict Policy<br/>when two loops write"]
+        G3["🔍 Provenance<br/>who changed what when"]
+        G1 -.-> G2
+        G2 -.-> G3
+    end
+    
+    L1 -->|"✓ same heartbeat"| G1
+    L2 -->|"✓ same spine concept"| G1
+    L3 -->|"✓ same maker-checker"| G3
+    
+    L1 -->|"upgrade to:"| G2
+    
+    style L1 fill:#06b6d4,stroke:#0f172a,color:#fff
+    style L2 fill:#06b6d4,stroke:#0f172a,color:#fff
+    style L3 fill:#06b6d4,stroke:#0f172a,color:#fff
+    style G1 fill:#34d399,stroke:#0f172a,color:#000
+    style G2 fill:#34d399,stroke:#0f172a,color:#000
+    style G3 fill:#34d399,stroke:#0f172a,color:#000
+```
+
+**The discipline is identical.** You read facts, you decide, you write. The only difference: now your decision must account for other loops doing the same thing simultaneously. A policy decides who wins. That's it.
+
+Everything else — heartbeat, spine, maker-checker — transfers directly. You're scaling from one loop to many, not starting over.
+
 <div align="center">
 
 ![Graph Ready score — npm run audit:graphs validates structure across all 23 kits](assets/section-divider.svg "Graph Ready audit")
@@ -140,9 +208,11 @@ npx @graph-engineering-kits/graph-kit document-to-facts
 
 ![](assets/section-divider.svg "Section divider")
 
-## 💬 Why this matters
+## 💬 Why this matters: The moment one loop becomes two
 
-The teams building multi-agent systems today say it plainly:
+You felt this: one loop works fine. Two loops break it. That's not a limitation of loops — it's the exact moment you *need* a graph.
+
+The teams building multi-agent systems today learned this the hard way:
 
 > "You shouldn't build isolated agents anymore. You should be designing graphs
 > that let your agents collaborate safely."
@@ -154,10 +224,11 @@ The teams building multi-agent systems today say it plainly:
 >
 > — **Core Truth in Distributed AI**
 
-The job is no longer building the perfect agent — it is architecting the memory system
-that lets agents work together toward a goal over time. That is exactly the discipline this
-course teaches, and it stands on the shoulders of
-[nine credited primary sources](resources/sources.md).
+**That moment is now.** You've built one loop. You know the heartbeat, spine, and maker-checker split. Now you're adding a second loop — and you need the graph structure to keep them from corrupting each other's work.
+
+The job isn't building the perfect agent anymore. It's architecting the memory system that lets agents work together toward a goal over time. That is exactly the discipline this course teaches, and it stands on the shoulders of [nine credited primary sources](resources/sources.md).
+
+Every pattern you'll build exists because teams asked: "How do we run two loops safely?" Then: "How about ten?" Then: "How about a hundred?" The answers are in this course.
 
 ## 🧩 The six building blocks
 
@@ -189,14 +260,14 @@ Deep dive: [Foundations](docs/README.md) — which block solves which problem, s
 
 **New here?** [**Open the 60-second router →**](docs/00-start-here/)
 
-Like any good learning system, this course meets you where you are. Answer four honest questions and the router drops you onto exactly one of four tracks — so a first-timer never drowns and a veteran never yawns:
+Like any good learning system, this course meets you where you are. Already finished Loop Engineering? Pick the track that matches your next step:
 
 | Track | You are… | You'll learn to… |
 | --- | --- | --- |
-| **T1 · Foundations** | building agents in isolation or just starting | explain why graphs matter and build your first document-to-facts graph |
-| **T2 · Practitioner** | fluent in graph basics | design a fact structure, write conflict-free merges, verify independently |
-| **T3 · Engineer** | able to assemble a complete graph | build a production graph in two tools and operate it safely |
-| **T4 · Ultra-Pro** | shipping graphs already | governance at team scale, multi-graph systems, audit trails |
+| **T1 · Foundations** | just finished Loop Engineering, building your first multi-loop system | understand why one loop breaks with two, and build your first shared fact store |
+| **T2 · Practitioner** | comfortable with loop basics and ready to coordinate multiple loops | design fact structures that multiple loops can write to safely, write conflict-free merges, verify independently |
+| **T3 · Engineer** | able to assemble a complete single-loop system | build a production graph coordinating many loops in two tools and operate it safely |
+| **T4 · Ultra-Pro** | already shipping multi-loop systems | governance at team scale, multi-graph federation, audit trails for compliance |
 
 [**View the full track map with entry checks and exit assessments →**](docs/00-start-here/)
 
