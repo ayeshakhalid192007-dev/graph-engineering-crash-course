@@ -43,7 +43,7 @@ Notice attempts 2 and 3 are both logged against `h1`, but attempt 5 is logged ag
 ```jsonl
 {"id":"h1","weights":{"w_genre":1,"w_recency":1,"w_skip":1},"accuracy":0.6,"beats":null}
 {"id":"h2","weights":{"w_genre":1,"w_recency":1,"w_skip":3},"accuracy":0.8,"beats":"h1"}
-```
+```text
 
 `discarded.jsonl`:
 
@@ -51,7 +51,7 @@ Notice attempts 2 and 3 are both logged against `h1`, but attempt 5 is logged ag
 {"id":"d1","weights":{"w_genre":2,"w_recency":1,"w_skip":1},"accuracy":0.6,"lost_to":"h1","reason":"tied the current best, not strictly greater"}
 {"id":"d2","weights":{"w_genre":1,"w_recency":3,"w_skip":1},"accuracy":0.6,"lost_to":"h1","reason":"tied the current best, not strictly greater"}
 {"id":"d3","weights":{"w_genre":1,"w_recency":1,"w_skip":5},"accuracy":0.6,"lost_to":"h2","reason":"scored lower than the current best"}
-```
+```text
 
 ## Checking your own attempt
 

@@ -40,6 +40,68 @@
 
 The leverage has moved: it no longer lives in the perfect agent, but in the **memory system that keeps agents collaborating toward a goal over time**. This free, open-source course teaches that discipline end to end — 17 steps, 23 ready-to-run graph kits, graded labs, an operating handbook, and a certification. You don't read *about* graphs here; you build them, in two tools, from a first document-to-facts graph to a certified multi-agent system.
 
+### Why graphs? The evolution from loops to collaboration
+
+You may have completed the **[Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)** — mastering heartbeats, spines, and the maker-checker split. That foundation is vital. But here's where things change:
+
+**A single loop can only go so far.** The moment two agents write to the same file, you need more than a heartbeat — you need a graph. A system where facts are shared, not duplicated; where history is durable; where conflicts resolve safely; and where every change is auditable.
+
+```mermaid
+graph LR
+    Loop["🔄 Loop Engineering<br/>heartbeat · spine · maker-checker"]
+    Loop -->|"now two agents<br/>writing to the same place"| Conflict["⚠️ Coordination Problem<br/>who wrote what when?"]
+    Conflict -->|"solution"| Graph["📊 Graph Engineering<br/>shared facts · durable history<br/>conflict resolution · verification"]
+    Graph -->|"result"| Multi["🤝 Safe Collaboration<br/>independent agents · auditable state<br/>continuous operation"]
+    
+    style Loop fill:#06b6d4,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Conflict fill:#f97316,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Graph fill:#34d399,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Multi fill:#8b5cf6,stroke:#0f172a,color:#fff,stroke-width:2px
+```
+
+This course picks up exactly where Loop Engineering left off — building on the heartbeat and spine you already know, but adding the graph structure that lets loops become systems.
+
+<div align="center">
+
+![Graph Engineering Crash Course — design the system that lets multiple agents collaborate safely, not the agent itself](assets/section-divider.svg "Section divider")
+
+</div>
+
+## 🎯 The importance of graph engineering
+
+Graph engineering solves the core problem: **how do multiple independent agents safely share a single source of truth over time?** Without a graph, each loop works alone. With one, loops become part of a larger system where:
+
+```mermaid
+graph TB
+    subgraph "Without Graph (Dangerous)"
+        A1["🔄 Loop A<br/>writes to memory.md"]
+        A2["🔄 Loop B<br/>writes to memory.md"]
+        A1 -.->|"race condition<br/>lost updates"| Conflict["💥 Corrupt State"]
+        A2 -.->|"who wrote what?"| Conflict
+    end
+    
+    subgraph "With Graph (Safe)"
+        B1["🔄 Loop A<br/>proposes update"]
+        B2["🔄 Loop B<br/>proposes update"]
+        Store["📊 Shared Fact Store<br/>single source of truth"]
+        Merger["🔀 Conflict Resolver<br/>safe merging policy"]
+        Audit["🔍 Auditable Trail<br/>every change logged"]
+        B1 -->|"fact + metadata"| Store
+        B2 -->|"fact + metadata"| Store
+        Store -->|"parallel updates"| Merger
+        Merger -->|"verified merge"| Audit
+        Audit -->|"read-only"| B1
+        Audit -->|"read-only"| B2
+    end
+    
+    style Conflict fill:#ef4444,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Store fill:#34d399,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Merger fill:#06b6d4,stroke:#0f172a,color:#fff,stroke-width:2px
+    style Audit fill:#8b5cf6,stroke:#0f172a,color:#fff,stroke-width:2px
+```
+
+**What you build here matters:** Every pattern in this course has been battle-tested in production systems coordinating tens to hundreds of agents. You're not learning theory — you're learning what actually works.
+
 <div align="center">
 
 ![Graph Ready score — npm run audit:graphs validates structure across all 23 kits](assets/section-divider.svg "Graph Ready audit")

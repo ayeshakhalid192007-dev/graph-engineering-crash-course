@@ -35,7 +35,7 @@ flowchart LR
     style B fill:#0B1325,color:#FFFFFF
     style C fill:#D4AF37,color:#000000
     style S fill:#E2E8F0,color:#000000
-```
+```text
 
 **Three core ideas.** Heartbeat, Spine, Maker/checker — the shape of a loop that keeps moving on its own.
 

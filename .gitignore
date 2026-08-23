@@ -5,3 +5,9 @@ node_modules/
 .originality-cache/
 .DS_Store
 *.log
+
+# Loop engineering artifacts
+loop-*.md
+*-loop.md
+loops/
+.loops/

@@ -91,7 +91,7 @@ flowchart TB
     style R2 fill:#4169E1,color:#FFFFFF
     style R3 fill:#4169E1,color:#FFFFFF
     style R4 fill:#4169E1,color:#FFFFFF
-```
+```text
 
 Read the arrows as "is repaired by," and notice that every repair sits outside the failing loop. None of the four right-hand boxes is a change to the loop on its left.
 
@@ -125,7 +125,7 @@ writes, and the number it is judged on -- answer these four in order.
 
 Do not propose making the loop itself smarter as the answer to any of
 the four. Every fix is an edge outside the loop.
-```
+```text
 
 ### OpenCode
 
@@ -145,7 +145,7 @@ rule. Drift: state the frozen assumption about what good means and the
 recurring human sample that refreshes it. Every recommendation must be an
 addition to the surrounding structure. "Improve the loop" is not an
 acceptable answer to any of the four.
-```
+```text
 
 ## Going Deeper
 

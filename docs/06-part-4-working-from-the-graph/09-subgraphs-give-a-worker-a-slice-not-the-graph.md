@@ -67,7 +67,7 @@ flowchart TB
         style CA fill:#D4AF37,color:#000000
         style CB fill:#D4AF37,color:#000000
     end
-```
+```text
 
 The right-hand slice keeps `resolve_shipping_zone`, its direct callers and callees, and both disputing claim nodes with the `contradicts` edge between them. Everything reachable only through `validate_address`, `format_label`, or `retry_queue` never crosses into the worker's context — it isn't wrong to exist, it's just not what this task needs.
 
@@ -94,7 +94,7 @@ description: Builds a depth-1 subgraph around a target function for one task, ke
    attached claims as one bounded subgraph. State the node count of the
    subgraph next to the node count of the full graph, so it's visible
    how much was left out.
-```
+```text
 
 ### OpenCode
 
@@ -111,7 +111,7 @@ claims by silently dropping one -- keep both, and keep any `contradicts`
 edge linking them, inside the returned subgraph. Report the subgraph's
 node count against the full graph's node count so the scope reduction is
 explicit, not just assumed.
-```
+```text
 
 ## Going Deeper
 

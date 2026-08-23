@@ -23,7 +23,7 @@ model: claude-opus-4-1-20250805
 temperature: 0
 tools: [Read, Write]
 ---
-```
+```text
 
 | Field | Notes |
 | --- | --- |
@@ -58,7 +58,7 @@ name: graph-verifier
 context: verify-graph-output
 tools: [Read]
 ---
-```
+```text
 
 Body headings used by the kits: `## Purpose`, `## Inputs`, `## Validation Steps`, `## Output`, `## Example`.
 
@@ -80,7 +80,7 @@ PASS/FAIL: FAIL
 - affected: INC-4482 -> "Priya Raman" — FAIL: endpoint type is Person,
   not Service. "affected" must run Incident -> Service.
   Fix: drop this relationship; Person is not a schema entity type.
-```
+```text
 
 Name the rule broken and the fix. A bare `FAIL` sends the reader back to re-run the check by hand to find out what happened.
 
@@ -90,7 +90,7 @@ Claude Code invocation is conversational — ask for the skill by name and name 
 
 ```text
 Run the extract-facts skill on sample-input.md using schema.example.json.
-```
+```text
 
 Then run the verifier as its own turn. Keeping the two apart is the point: a producer asked to check itself in the same breath tends to grade its own work generously.
 

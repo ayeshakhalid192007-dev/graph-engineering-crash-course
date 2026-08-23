@@ -48,7 +48,7 @@ flowchart TB
 
     style S fill:#4169E1,color:#FFFFFF
     style S2 fill:#D4AF37,color:#000000
-```
+```text
 
 Each near-duplicate label increases the debt, because it adds one more thing a newcomer has to learn to tell apart from the others, without removing anything they already had to learn. The graph doesn't flag it because a graph has no built-in way to tell a redundant label from a genuinely new distinction — both are equally valid-looking edges to the structure itself. Catching this requires a human (or a deliberate review process) actively asking whether a new label is really needed, not something the graph will surface on its own.
 

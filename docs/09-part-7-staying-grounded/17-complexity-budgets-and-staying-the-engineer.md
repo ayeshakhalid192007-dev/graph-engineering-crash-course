@@ -79,7 +79,7 @@ flowchart TB
     style AL fill:#0B1325,color:#FFFFFF
     style AE fill:#0B1325,color:#FFFFFF
     style AF fill:#0B1325,color:#FFFFFF
-```
+```text
 
 Every arrow into a fix starts from an observed failure, not from the loop shipping. A fix added before its matching box on the left has fired is spending complexity budget on evidence that doesn't exist yet.
 
@@ -111,7 +111,7 @@ description: Reviews proposed governance edges against a loop's real incident hi
 4. Do not recommend removing a flagged edge automatically. Recommend
    recording explicitly that it's unproven, and revisiting once real
    evidence exists either way.
-```
+```text
 
 ### OpenCode
 
@@ -130,7 +130,7 @@ triage, or change-review friction it's already imposing regardless of
 whether it has ever caught anything. Don't recommend ripping out a
 flagged edge on the spot -- recommend marking it explicitly unproven
 and setting a real trigger for revisiting it.
-```
+```text
 
 ## Going Deeper
 

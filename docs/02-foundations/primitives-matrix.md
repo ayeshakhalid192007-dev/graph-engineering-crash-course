@@ -49,7 +49,7 @@ Properties:
   priority: 3                           (scoring)
   confidence: 0.92                      (uncertainty)
   source: user-input                    (provenance)
-```
+```text
 
 ### On Edges
 
@@ -61,7 +61,7 @@ Properties:
   reason: "Fixed typos"                 (why)
   count: 47                             (how many)
   trace_id: "req-abc-123"               (audit trail)
-```
+```text
 
 ## Combining Primitives: Common Patterns
 
@@ -73,7 +73,7 @@ Event A
 Event B
   ↓ preceded-by
 Event C
-```
+```text
 
 **Use case:** Audit logs, deployment history, state machines
 
@@ -85,7 +85,7 @@ Organization
   │           ├─ owns ─→ Project 1
   │           └─ owns ─→ Project 2
   └─ owns ─→ Team B
-```
+```text
 
 **Use case:** Org structure, file systems, document hierarchy
 
@@ -97,7 +97,7 @@ Root Cause
 Intermediate Effect
   ↓ causes
 Observable Problem
-```
+```text
 
 **Use case:** Incident investigation, bug tracking, root cause analysis
 
@@ -108,7 +108,7 @@ Claim
   ← verified-by: Alice (timestamp, confidence)
   ← verified-by: Bob (timestamp, confidence)
   ← contradicted-by: Charlie (timestamp, confidence)
-```
+```text
 
 **Use case:** Collaborative fact-checking, scientific citations, compliance audits
 
@@ -122,7 +122,7 @@ Edges track the transitions:
   task-42 --[transitioned-to]--> state-in-progress
     timestamp: 2026-08-22T10:00:00Z
     triggered-by: alice@example.com
-```
+```text
 
 **Use case:** Workflows, approval processes, task lifecycles
 

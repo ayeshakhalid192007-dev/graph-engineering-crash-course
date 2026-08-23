@@ -43,7 +43,7 @@ flowchart TB
 
     style V fill:#4169E1,color:#FFFFFF
     style Es fill:#D4AF37,color:#000000
-```
+```text
 
 **Five jobs.** Constrain, Inform, Verify, Correct, Escalate — each answers a different question about what the agent is allowed to do.
 

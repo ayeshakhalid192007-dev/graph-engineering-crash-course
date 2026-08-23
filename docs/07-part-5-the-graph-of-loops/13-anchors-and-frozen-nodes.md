@@ -74,7 +74,7 @@ flowchart TB
 
     DISK == "finds the mismatch" ==> GAP{{"1 runbook missing<br/>from catalogue:<br/>payments-failover"}}
     L3 -. "write refused" .-> RULE
-```
+```text
 
 The triangle of agreement in the upper half is genuine and worthless — all three loops drew from one source, so their agreement is a fact about that source's reach, not about the runbooks. Only the anchor, coming in from a place no loop wrote, finds the forty-second file.
 
@@ -104,7 +104,7 @@ description: Verifies the runbook catalogue against the directory on disk, and r
    resolved by widening it, refuse the change and report the mismatch
    instead. Changing that number is a human decision, made on the
    record, never a side effect of clearing a check.
-```
+```text
 
 ### OpenCode
 
@@ -123,7 +123,7 @@ agreement measures nothing. The ninety-day review window may not be
 modified under any circumstance, including the circumstance where
 modifying it would make a report come back clean -- surface the finding
 and stop.
-```
+```text
 
 ## Going Deeper
 

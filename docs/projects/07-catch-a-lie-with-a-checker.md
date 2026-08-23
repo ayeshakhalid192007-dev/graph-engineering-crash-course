@@ -26,7 +26,7 @@ The deploy graph, built from the two deployments' manifests, `deploy-graph.json`
     { "deployment": "D-212", "service": "billing-service" }
   ]
 }
-```
+```text
 
 The two release-note claims to check:
 

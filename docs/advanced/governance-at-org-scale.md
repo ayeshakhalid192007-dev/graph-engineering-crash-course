@@ -56,7 +56,7 @@ An escalation edge asserts: *on this surface, this domain's rule governs.* It do
   "review_on": "2026-11-21",
   "dissent": "Northern maintains that stale capacity causes more day-to-day misrouting than untraceable writes cause breaches. Recorded, not adopted."
 }
-```
+```text
 
 Four properties carry the weight:
 
@@ -115,7 +115,7 @@ flowchart TB
     FRZ -.-> C
     FRZ -.-> I
     NR -.->|"unchanged, still governs<br/>Northern's own surfaces"| N
-```
+```text
 
 The org layer holds two node types and touches one field. Each division's internal rule is untouched and keeps governing everything that division writes alone — which is nearly everything.
 
@@ -154,7 +154,7 @@ tools: [Read]
 7. Emit findings by severity. Never propose a rule, never fill in a
    `governed_by`, and never resolve a cycle — for each finding, name who is
    entitled to decide it. That is the report's job; deciding is not.
-```
+```text
 
 ### OpenCode
 
@@ -189,7 +189,7 @@ Flag org-level frozen nodes with no unfreezing path written down.
 
 Report only. Do not supply a missing rule, do not choose a governing domain,
 do not break a cycle. For each finding, name who has standing to decide it.
-```
+```text
 
 ## Going Deeper
 

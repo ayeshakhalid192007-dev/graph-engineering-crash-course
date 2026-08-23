@@ -27,7 +27,7 @@ Starting from `T-501` as the target:
   ],
   "note": "cl1 and cl2 disagree about root cause and, implicitly, about which team should own the fix -- cl1 points at Identity-Access (where the ticket already sits), cl2 points at Network-Ops (a team not currently routed to this ticket at all). Neither claim was dropped or preferred."
 }
-```
+```text
 
 **Node count:** the full graph has 7 distinct entity nodes — `T-501`, `T-502`, `T-503`, `Identity-Access`, `Network-Ops`, `Endpoint-Hardware`, `App-Platform`. The subgraph keeps 3 of them: `T-501`, `Identity-Access`, `App-Platform`. Dropped: `T-502`, `T-503`, `Network-Ops`, `Endpoint-Hardware` — plus `cl3`, the one claim that belongs to a different ticket entirely.
 

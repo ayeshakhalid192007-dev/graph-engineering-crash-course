@@ -53,7 +53,7 @@ flowchart TB
     style B fill:#E2E8F0,color:#000000
     style C fill:#E2E8F0,color:#000000
     style D fill:#0B1325,color:#FFFFFF
-```
+```text
 
 `Agent-D` doesn't need to know any of this history in advance. It queries the `tried_for` edges on the bug node and gets all three attempts back, statuses included, in one step. Nothing about that query filters out the failed or abandoned ones — if it did, `Agent-D` would be right back to starting cold.
 
@@ -76,7 +76,7 @@ description: Queries every prior fix attempt for a bug, failed and abandoned inc
 3. Only after reviewing that full list, propose a new fix approach --
    and if the new approach resembles a failed attempt closely, say so
    explicitly instead of proposing it anyway.
-```
+```text
 
 ### OpenCode
 
@@ -91,7 +91,7 @@ result alongside any successful one. List each attempt's approach, status,
 and recorded reason. Only draft a new fix proposal after that full list has
 been reviewed, and flag it if the new proposal overlaps with something
 already marked failed.
-```
+```text
 
 ## Going Deeper
 

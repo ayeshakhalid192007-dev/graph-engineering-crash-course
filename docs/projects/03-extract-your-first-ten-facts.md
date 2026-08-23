@@ -34,7 +34,7 @@ Before touching the document, you'll fix a schema — the same discipline Step 6
 - Added: a weekly digest email summarizing notes edited that week.
 - Changed: the free-tier note limit raised from 200 to 500.
 - Fixed: exporting a note to PDF cutting off the last line of long notes.
-```
+```text
 
 ## Your task
 

@@ -67,7 +67,7 @@ flowchart TB
 
     style Pass fill:#4169E1,color:#FFFFFF
     style Graph fill:#D4AF37,color:#000000
-```
+```text
 
 Two items pass through because their entity types and relationship type are on the allowed list. The third is built from the same document and reads just as plausibly as the other two, but `escalated-to` and a `Team` entity were never defined in the schema — so it's discarded at the gate, not admitted and reshaped to fit.
 
@@ -92,7 +92,7 @@ description: Extracts Service/Incident/Cause facts from a postmortem doc against
 3. Check every item against the schema from step 1. Keep only items whose
    subject_type, relation, and object_type all appear on the allowed
    lists. Report every dropped item and which part of it failed the check.
-```
+```text
 
 ### OpenCode
 
@@ -109,7 +109,7 @@ drop any item whose subject_type, relation, or object_type is not one of
 the four allowed values above, and say what was dropped and why. Never
 invent a fifth entity type or a third relationship type to fit something
 the document mentions.
-```
+```text
 
 ## Going Deeper
 

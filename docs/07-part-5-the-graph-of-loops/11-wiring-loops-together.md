@@ -59,7 +59,7 @@ flowchart TB
     style R fill:#4169E1,color:#FFFFFF
     style E fill:#D4AF37,color:#000000
     style P fill:#0B1325,color:#FFFFFF
-```
+```text
 
 Only the doubled arrow settles anything. Strip it out and the picture still shows three sensible loops passing work between them — which is precisely the state `A-311` was published from. The diagram would look fine, and the system would still have no answer for a node wearing two stamps at once.
 
@@ -87,7 +87,7 @@ description: Decides whether an article ships when two loops have stamped it dif
    governance graph, and the fix is to add the edge deliberately.
 4. Before trusting any answer, confirm the `can-overrule` edges contain
    no cycle. A ring of authority means the graph cannot rank anyone.
-```
+```text
 
 ### OpenCode
 
@@ -104,7 +104,7 @@ leave the article unpublished, and flag the missing edge as something a
 human needs to add on purpose. Reject the whole graph as unusable if its
 authority edges form a ring -- a cyclic ranking cannot resolve anything.
 Recency is never a tiebreak here.
-```
+```text
 
 ## Going Deeper
 

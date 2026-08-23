@@ -41,7 +41,7 @@ m3 looks like it belongs — same surname, same initial, superficially the close
     }
   ]
 }
-```
+```text
 
 ## Why this is reversible
 

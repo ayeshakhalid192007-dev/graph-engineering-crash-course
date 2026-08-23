@@ -49,6 +49,6 @@ flowchart TB
     Q2["Query: what was tried?"]
     Q2 -- "queries" --> WH1 & WH2 & WH3 & WH4
     Q2 -. "gets" .-> "All attempts with order"
-```
+```text
 
 This page only gets you the vocabulary and the shape of the split; the fuller treatment of exactly what collapsing them costs you, and how to keep them from blurring together in practice, comes later once you've built a bit more of the surrounding picture.

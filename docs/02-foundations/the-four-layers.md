@@ -24,12 +24,12 @@ Graph engineering works in four distinct layers. Each layer has its own concerns
 
 **Example:**
 
-```
+```text
 Nodes: Person, Task, Document
 Edges: authored, verified, depends-on
 Properties: created_at, confidence, source
 
-```
+```text
 
 ---
 
@@ -59,14 +59,14 @@ Properties: created_at, confidence, source
 
 **Example:**
 
-```
+```text
 
 Storage: Neo4j
 Indexes: (Person, email), (Task, created_at)
 Partitions: By year for time-series data
 Replication: 3-node cluster for redundancy
 
-```
+```text
 
 ---
 
@@ -96,14 +96,14 @@ Replication: 3-node cluster for redundancy
 
 **Example:**
 
-```
+```text
 
 Fast queries: "Give me all tasks assigned to Alice"
 Slow queries: "Find all 5-hop paths in the task graph"
 Filters: status = "in-progress" AND priority > 2
 Aggregation: COUNT verified claims grouped by source
 
-```
+```text
 
 ---
 
@@ -133,20 +133,20 @@ Aggregation: COUNT verified claims grouped by source
 
 **Example:**
 
-```
+```text
 
 Insert: Create new task node once per task
 Update: Modify task properties (append timestamp, track changes)
 Conflict handling: If two people edit simultaneously, keep latest
 Consistency: Within single graph, no dangling edges
 
-```
+```text
 
 ---
 
 ## How the Layers Stack
 
-```
+```text
 
 ┌─────────────────────────────────────┐
 │ Layer 4: Update Patterns            │ How you change the graph
@@ -158,7 +158,7 @@ Consistency: Within single graph, no dangling edges
 │ Layer 1: Primitives (Data Model)    │ Nodes, edges, properties
 └─────────────────────────────────────┘
 
-```
+```text
 
 Each layer depends on the one below it:
 
@@ -174,46 +174,46 @@ Each layer depends on the one below it:
 
 ### Layer 1: Primitives
 
-```
+```text
 
 Nodes: Task, Person, Project
 Edges: assigned-to, depends-on, belongs-to
 Properties: status, priority, created_at, assigned_by
 
-```
+```text
 
 ### Layer 2: Storage
 
-```
+```text
 
 Database: PostgreSQL with JSON edges
 Indexes: (Task, project_id), (Person, email)
 Partitioning: By project_id for horizontal scaling
 Replication: Read replicas for reporting
 
-```
+```text
 
 ### Layer 3: Query Patterns
 
-```
+```text
 
 Fast: "All tasks assigned to Alice in project X"
 Slow: "Find all 5-hop dependency chains"
 Filter: status = 'in-progress' AND priority > 2
 Aggregation: COUNT tasks grouped by assignee
 
-```
+```text
 
 ### Layer 4: Update Patterns
 
-```
+```text
 
 Insert: New task gets unique ID, immutable created_at
 Update: Task.status changes trigger timestamp update
 Conflict: If two edits happen simultaneously, last-write-wins
 Consistency: No dangling task.assigned_to references
 
-```
+```text
 
 ---
 

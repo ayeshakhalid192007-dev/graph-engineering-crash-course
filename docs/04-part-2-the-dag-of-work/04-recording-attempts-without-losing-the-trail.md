@@ -67,7 +67,7 @@ flowchart TB
     B -. "logged" .-> B2
     B -. "logged" .-> B3
     C -. "logged" .-> C2
-```
+```text
 
 The solid chain across the top is durable history: four attempts, each strictly better than the last — all a reader needs to trace how the loop reached 0.71. The dotted branches are logged-but-not-kept attempts, filed against whichever kept attempt they lost to. Attempt 5's "tone instruction" idea sits right there, attached to Attempt 4, waiting for the second loop from the Hook to find it before wasting forty minutes.
 
@@ -94,7 +94,7 @@ description: Scores a candidate prompt and ratchets durable history forward only
 4. Otherwise, append the candidate to `discarded.jsonl`, including which
    entry in `durable-history.jsonl` it was compared against and why it
    lost -- never touch `durable-history.jsonl` in this branch.
-```
+```text
 
 ### OpenCode
 
@@ -110,7 +110,7 @@ durable-history.jsonl. Anything else -- tie or worse -- gets appended to
 discarded.jsonl instead, tagged with the id of the entry it lost to.
 durable-history.jsonl only ever grows toward better scores; it is never
 rewritten in place.
-```
+```text
 
 ## Going Deeper
 

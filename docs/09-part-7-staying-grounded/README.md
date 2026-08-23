@@ -32,7 +32,7 @@ flowchart TB
     style S16 fill:#4169E1,color:#FFFFFF
     style S17 fill:#4169E1,color:#FFFFFF
     style DONE fill:#D4AF37,color:#000000
-```
+```text
 
 ## Learning Thread
 

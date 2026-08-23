@@ -39,7 +39,7 @@ flowchart TB
     style GL fill:#E2E8F0,color:#000000
     style CO fill:#E2E8F0,color:#000000
     style NEXT fill:#D4AF37,color:#000000
-```
+```text
 
 ## Learning Thread
 

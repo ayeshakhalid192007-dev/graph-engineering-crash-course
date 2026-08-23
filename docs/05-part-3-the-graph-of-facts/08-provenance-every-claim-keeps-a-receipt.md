@@ -59,7 +59,7 @@ flowchart TB
         style P1 fill:#4169E1,color:#FFFFFF
         style P2 fill:#4169E1,color:#FFFFFF
     end
-```
+```text
 
 The `v1` claim never leaves the graph — its status changes and a `supersedes` edge points forward from it, but its own provenance record is untouched. A query run against the graph as it stood before the `v2` extraction still gets a truthful answer, because nothing about that earlier moment was rewritten to look like the later one.
 
@@ -84,7 +84,7 @@ description: Records a more complete re-extraction as a new claim that supersede
 3. Add a `supersedes` edge from the old claim to the new one, and change
    the old claim's status to `superseded`. Leave every other field on the
    old claim, including its own provenance record, exactly as it was.
-```
+```text
 
 ### OpenCode
 
@@ -99,7 +99,7 @@ claim node with its own provenance record (source document, extraction
 run, schema version), add a supersedes edge from the old claim to the new
 one, and set the old claim's status to superseded. The old claim's
 provenance record must stay exactly as it was recorded originally.
-```
+```text
 
 ## Going Deeper
 

@@ -39,7 +39,7 @@ flowchart TB
     style S12 fill:#4169E1,color:#FFFFFF
     style S13 fill:#4169E1,color:#FFFFFF
     style NEXT fill:#D4AF37,color:#000000
-```
+```text
 
 ## Learning Thread
 

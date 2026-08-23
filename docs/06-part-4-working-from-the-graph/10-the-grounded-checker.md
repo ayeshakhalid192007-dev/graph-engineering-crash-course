@@ -72,7 +72,7 @@ flowchart TB
     style Query fill:#D4AF37,color:#000000
     style Reject fill:#0B1325,color:#FFFFFF
     style Confirm fill:#0B1325,color:#FFFFFF
-```
+```text
 
 The checker never reads either PR's description. It decomposes the claim into one falsifying edge, asks the graph whether that edge exists, and reports whatever the graph actually says — which is why the same procedure correctly confirms `PR-4821`'s claim and rejects `PR-5190`'s, using nothing but the presence or absence of one edge each time.
 
@@ -98,7 +98,7 @@ description: Verifies a PR's "doesn't touch X" claim by checking the graph for t
 3. If the edge exists, reject the claim and name the edge that falsifies
    it. If the edge is absent, confirm the claim. State which of the two
    happened and why -- never "looks fine" without naming the edge checked.
-```
+```text
 
 ### OpenCode
 
@@ -114,7 +114,7 @@ diff, not from reading prose. If the edge is present, reject the claim
 and cite the edge. If it's absent, confirm the claim. Never substitute a
 read of the PR description for the graph lookup, and never report a
 result without naming the specific edge the decision rested on.
-```
+```text
 
 ## Going Deeper
 

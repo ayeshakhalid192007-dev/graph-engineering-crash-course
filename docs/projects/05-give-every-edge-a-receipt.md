@@ -27,7 +27,7 @@ The claims, as they currently sit in `hive-claims.json`, with no provenance at a
     { "id": "c5", "subject": "Hive-19", "relation": "has-condition", "object": "healthy" }
   ]
 }
-```
+```text
 
 The cooperative's separate inspection log, kept by hand and never linked to the claims file:
 

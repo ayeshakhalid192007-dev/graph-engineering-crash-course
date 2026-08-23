@@ -21,7 +21,7 @@ Attributes:
   name: "Alice"
   role: "Engineer"
 
-```
+```text
 
 ### 2. Edges
 
@@ -40,7 +40,7 @@ Edge: alice --[authored]--> task-123
 Type: authored
 Timestamp: 2026-08-22T09:00:00Z
 
-```
+```text
 
 ### 3. Properties
 
@@ -59,7 +59,7 @@ Node.task-123.properties:
   priority: 3
   created_by: "alice@example.com"
 
-```
+```text
 
 ## How Primitives Combine
 
@@ -140,7 +140,7 @@ Too narrow (separate types for every variant):
 ✗ Too narrow: Engineer, Manager, Contractor, Consultant
 ✗ Too broad: Entity, Thing, Object
 
-```
+```text
 
 ## Edges: Relationship Types
 

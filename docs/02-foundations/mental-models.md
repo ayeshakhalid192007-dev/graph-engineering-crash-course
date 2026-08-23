@@ -44,6 +44,6 @@ flowchart TB
     style Team1 fill:#0B1325,color:#FFFFFF
     style Team2 fill:#0B1325,color:#FFFFFF
     style Team3 fill:#0B1325,color:#FFFFFF
-```
+```text
 
 The solo writer keeps a personal record where one person controls both reading and writing. The shared team board forces structure — each ticket is pinned in a specific place, tied to a specific team, with clear status. A graph is the shared team board for software teams and autonomous agents: it keeps many writers from stepping on each other by scoping what each can touch and labeling what each contribution means.

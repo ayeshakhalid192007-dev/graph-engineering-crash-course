@@ -85,7 +85,7 @@ flowchart TB
         style LC fill:#E2E8F0,color:#000000
         style SC fill:#E2E8F0,color:#000000
     end
-```
+```text
 
 The ladder's `borrowed` edge has a `returned` edge after it, so the checker reports it free. The stud finder's `borrowed` edge has nothing after it, so the checker reports it out — using the same two-edge lookup both times, not a guess about how recently anyone posted in the thread.
 
@@ -122,7 +122,7 @@ description: Builds and reads the Elm Street tool-cabinet graph from five chat m
    borrowed edge on this tool with no later returned edge from the same
    person. Report the verdict and name the edge(s) checked, never a
    guess based on how recently anyone posted.
-```
+```text
 
 ### OpenCode
 
@@ -151,7 +151,7 @@ entirely, they're not relevant to this question. Then check
 availability the grounded way: look for a borrowed edge on this tool
 with no later returned edge belonging to the same borrower, and report
 exactly that, never an impression from scrolling the chat.
-```
+```text
 
 ## Going Deeper
 
