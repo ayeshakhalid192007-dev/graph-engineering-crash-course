@@ -4,9 +4,13 @@
 
 ---
 
-Complete course on building and managing shared memory graphs for autonomous systems.
+**You've built a loop. Now scale it to many.**
 
-👉 **New here?** Start at [00-start-here](00-start-here/README.md)
+Complete course on building and managing shared memory graphs for autonomous systems — taking the loop discipline you know (heartbeat, spine, maker-checker) and extending it to coordinate multiple loops safely.
+
+If you completed the [Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse), this is the natural next step. If not, start there first — this course assumes you're comfortable with loop vocabulary and ready to scale from one agent to many.
+
+👉 **New here?** Answer 3 quick questions at [00-start-here](00-start-here/README.md)
 
 ## Learning Paths
 

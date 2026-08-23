@@ -2,83 +2,94 @@
 
 Choose your path through the Graph Engineering Crash Course based on your goals and experience level.
 
+**All tracks assume you've completed the [Loop Engineering Crash Course](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse).** This course picks up from heartbeat, spine, and maker-checker — scaling from one loop to many.
+
 ## 🟢 G1 · Foundations
 
-### New to graphs
+### Just finished Loop Engineering, want to understand graphs
 
 Walking in, you already know…
 
 - The Loop Engineering vocabulary — heartbeat, spine, maker/checker
+- How one loop works
+- Why you tried to run two loops and everything broke
 
 Walking out, you can…
 
-- Point to the exact moment a lone memory file quits working once a second worker starts touching it
+- Point to the exact moment a lone memory file quits working once a second loop starts touching it
 - Tell a trail of attempts apart from a store of checked claims
+- Understand why the graph pattern solves the race condition you felt
 
 **Path:** Prerequisites + Foundations + Part 1  
 **Time:** ~2 hours  
-**Start here:** [Why loops outgrow a single memory file](../03-part-1-the-memory-problem/01-why-loops-outgrow-a-single-memory-file.md)
+**Next:** [Why loops outgrow a single memory file](../03-part-1-the-memory-problem/01-why-loops-outgrow-a-single-memory-file.md)
 
 ---
 
 ## 🔵 G2 · Practitioner
 
-### Comfortable with the two-graph split
+### Ready to coordinate multiple loops safely
 
 Walking in, you already know…
 
+- The loop discipline (G1 complete)
 - That work-history and facts are different graphs with different jobs
 
 Walking out, you can…
 
 - Push a real claim through extraction, resolution, and provenance
 - Hand a worker a bounded subgraph and check its output against real edges
+- Design a fact structure that multiple loops can write to without corruption
 
 **Path:** Parts 2–4 + Projects 2–6  
 **Time:** ~4 hours  
 **Prerequisites:** Complete G1 first  
-**Start here:** [Recording attempts without losing the trail](../04-part-2-the-dag-of-work/04-recording-attempts-without-losing-the-trail.md)
+**Next:** [Recording attempts without losing the trail](../04-part-2-the-dag-of-work/04-recording-attempts-without-losing-the-trail.md)
 
 ---
 
 ## 🟠 G3 · Engineer
 
-### Can stand up a single working graph
+### Ready to connect multiple graphs into a system
 
 Walking in, you already know…
 
-- How one graph is built and read
+- How to build a single graph (G2 complete)
+- Conflict resolution and verification from the practitioner track
 
 Walking out, you can…
 
 - Connect several graphs into a governance structure
 - Name — and patch — each of the four ways a graph quietly goes wrong
+- Operate a multi-loop system in production
 
 **Path:** Part 5 + Projects 7–8 + [Pattern library](../../patterns/README.md)  
 **Time:** ~6 hours  
 **Prerequisites:** Complete G2 first  
-**Start here:** [Wiring graphs together](../07-part-5-the-graph-of-loops/11-wiring-loops-together.md)
+**Next:** [Wiring graphs together](../07-part-5-the-graph-of-loops/11-wiring-loops-together.md)
 
 ---
 
 ## 🔴 G4 · Ultra-Pro
 
-### Has shipped a graph already
+### Shipping multi-loop systems, ready to scale further
 
 Walking in, you already know…
 
-- How to run a graph as production infrastructure
+- How to run a graph as production infrastructure (G3 complete)
+- The full loop-to-graph transformation
 
 Walking out, you can…
 
 - Recognize when a graph is the wrong tool for a job
 - Scale one across a bigger system
 - Write a new pattern for someone else to reuse
+- Govern graphs at organizational scale
 
 **Path:** Parts 6–7 + [Advanced tier](../advanced/README.md) + Certification  
 **Time:** ~8 hours  
 **Prerequisites:** Complete G3 first  
-**Start here:** [When to skip graph engineering entirely](../09-part-7-staying-grounded/16-when-to-skip-graph-engineering-entirely.md)
+**Next:** [When to skip graph engineering entirely](../09-part-7-staying-grounded/16-when-to-skip-graph-engineering-entirely.md)
 
 ---
 
@@ -86,9 +97,9 @@ Walking out, you can…
 
 ### I want to…
 
-- **Learn the absolute minimum** → G1 Foundations
-- **Build a real graph** → G1 + G2 Practitioner
-- **Run multiple graphs** → G1 + G2 + G3 Engineer
+- **Learn the absolute minimum** → G1 Foundations (just finished loops, want to understand why graphs matter)
+- **Build a real multi-loop system** → G1 + G2 Practitioner
+- **Run multiple graphs together** → G1 + G2 + G3 Engineer
 - **Ship at scale** → Complete all four tracks (G1–G4)
 - **Understand when NOT to use graphs** → Start with [Part 7](../09-part-7-staying-grounded/README.md)
 - **Skip straight to practice** → [Projects](../projects/README.md)
