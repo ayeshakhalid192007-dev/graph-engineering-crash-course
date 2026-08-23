@@ -189,9 +189,7 @@ npx @graph-engineering-kits/graph-kit document-to-facts
 ```
 
 > **We eat our own cooking.** This is a course about graphs that is *built by graphs*. The
-> rulebook lives in [`LOOP.md`](LOOP.md), the durable spine in [`STATE.md`](STATE.md),
-> and every single run is logged, one line at a time, in
-> [`loop-run-log.md`](loop-run-log.md).
+> rulebook lives in [`LOOP.md`](LOOP.md) and the durable spine in [`STATE.md`](STATE.md).
 
 ## 📌 Quick links
 
