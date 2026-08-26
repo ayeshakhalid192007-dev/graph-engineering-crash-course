@@ -47,7 +47,7 @@ flowchart TB
         AA["Agent-Auditor"] -- "verified" --> F1
     end
     H1 -. "same underlying issue,<br/>two different kinds of record" .-> F1
-```
+```text
 
 The dotted edge is the only thing tying the two graphs together — it says "these are about the same real issue," not "these are the same node." Everything else stays where it belongs: attempts and outcomes in the work-history graph, checked claims about the code in the fact graph.
 
@@ -70,7 +70,7 @@ description: Writes review findings to the correct graph -- work-history or fact
 3. Never write the same entry to both files. If an entry has both an event
    and a confirmed claim, write two linked entries -- one per file -- not one
    merged entry.
-```
+```text
 
 ### OpenCode
 
@@ -85,7 +85,7 @@ work-history.jsonl. Confirmed facts go to facts.jsonl. If an entry contains
 both, split it into two entries and write one to each file, connected by a
 shared PR or issue identifier -- do not collapse them into a single record
 in either file.
-```
+```text
 
 ## Going Deeper
 

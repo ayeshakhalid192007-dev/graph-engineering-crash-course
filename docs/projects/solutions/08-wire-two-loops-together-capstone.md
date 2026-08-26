@@ -27,7 +27,7 @@ This works through [Project 8](../08-wire-two-loops-together-capstone.md)'s Embe
     }
   ]
 }
-```
+```text
 
 `forecast-loop feeds gps-ground-loop` because the checker loop's job is to verify predictions against reality, which means the forecaster's output is the thing being checked. `gps-ground-loop checks forecast-loop` records that relationship explicitly, the same way Step 11's review loop checks its drafting loop. Only one `can-overrule` edge exists, and it runs one direction. The reverse edge — `forecast-loop` holding any authority over `gps-ground-loop` — is simply absent, so there's no ring to resolve.
 
@@ -51,7 +51,7 @@ The `can-overrule` edge's rule applies directly: an anchored write on the same f
   "rejected": { "loop": "forecast-loop", "value": "14:07", "reason": "unanchored periodic model estimate, preempted by gps-ground-loop can-overrule forecast-loop on this field" },
   "rule_applied": "event-anchored write beats unanchored periodic estimate on the same field"
 }
-```
+```text
 
 `14:07` never disappears from the record — it's rejected, not deleted, with the specific reason it lost. A dashboard that only showed the accepted value would look identical to one that silently dropped the losing write; keeping both, labeled, is what makes the arbitration auditable later.
 

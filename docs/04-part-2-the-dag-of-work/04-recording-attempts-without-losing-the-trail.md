@@ -41,16 +41,35 @@ For thirty-one attempts, maybe four or five actually improved on the one before 
 ## Diagram
 
 ```mermaid
-flowchart LR
-    A["Attempt 1 (kept)<br/>baseline prompt<br/>score 0.52"] --> B["Attempt 4 (kept)<br/>+ format constraint<br/>score 0.61"]
-    B --> C["Attempt 9 (kept)<br/>+ length cap<br/>score 0.68"]
-    C --> D["Attempt 22 (kept)<br/>+ entity list<br/>score 0.71"]
-    A -. "logged, not kept" .-> A2["Attempt 2<br/>score 0.49"]
-    A -. "logged, not kept" .-> A3["Attempt 3<br/>score 0.50"]
-    B -. "logged, not kept" .-> B2["Attempt 5<br/>tone instruction<br/>score 0.55"]
-    B -. "logged, not kept" .-> B3["Attempt 6<br/>score 0.58"]
-    C -. "logged, not kept" .-> C2["Attempt 15<br/>score 0.63"]
-```
+flowchart TB
+    subgraph "Durable History (kept)"
+        A["Attempt 1<br/>score 0.52"]
+        B["Attempt 4<br/>score 0.61"]
+        C["Attempt 9<br/>score 0.68"]
+        D["Attempt 22<br/>score 0.71"]
+        A --> B --> C --> D
+        style A fill:#D4AF37,color:#000000
+        style B fill:#D4AF37,color:#000000
+        style C fill:#D4AF37,color:#000000
+        style D fill:#D4AF37,color:#000000
+    end
+
+    subgraph "Discarded Attempts"
+        A2["Attempt 2<br/>score 0.49"]
+        A3["Attempt 3<br/>score 0.50"]
+        B2["Attempt 5<br/>tone instruction<br/>score 0.55"]
+        B3["Attempt 6<br/>score 0.58"]
+        C2["Attempt 15<br/>score 0.63"]
+    end
+
+    A -. "logged" .-> A2
+    A -. "logged" .-> A3
+    B -. "logged" .-> B2
+    B -. "logged" .-> B3
+    C -. "logged" .-> C2
+```text
+
+The solid chain across the top is durable history: four attempts, each strictly better than the last — all a reader needs to trace how the loop reached 0.71. The dotted branches are logged-but-not-kept attempts, filed against whichever kept attempt they lost to. Attempt 5's "tone instruction" idea sits right there, attached to Attempt 4, waiting for the second loop from the Hook to find it before wasting forty minutes.
 
 The solid chain across the top is durable history: four attempts, each strictly better than the last — all a reader needs to trace how the loop reached 0.71. The dotted branches are logged-but-not-kept attempts, filed against whichever kept attempt they lost to. Attempt 5's "tone instruction" idea sits right there, attached to Attempt 4, waiting for the second loop from the Hook to find it before wasting forty minutes.
 
@@ -75,7 +94,7 @@ description: Scores a candidate prompt and ratchets durable history forward only
 4. Otherwise, append the candidate to `discarded.jsonl`, including which
    entry in `durable-history.jsonl` it was compared against and why it
    lost -- never touch `durable-history.jsonl` in this branch.
-```
+```text
 
 ### OpenCode
 
@@ -91,7 +110,7 @@ durable-history.jsonl. Anything else -- tie or worse -- gets appended to
 discarded.jsonl instead, tagged with the id of the entry it lost to.
 durable-history.jsonl only ever grows toward better scores; it is never
 rewritten in place.
-```
+```text
 
 ## Going Deeper
 

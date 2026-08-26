@@ -1,8 +1,61 @@
 # Part 4 — Working From the Graph
 
-Handing a worker a bounded piece of the fact graph, then checking what it produces against real edges rather than trusting its tone.
+![Give the Agent a Subgraph, Not the Universe](../assets/subgraph-not-universe.png)
 
-- **Step 9** — scoping a task-sized subgraph instead of dumping the whole thing
-- **Step 10** — verifying an output against the graph instead of eyeballing it
+---
 
-Both step pages sit in the [top-level roadmap](../README.md) alongside the rest of the course. This folder's own [quiz](quiz.md), [flashcards](flashcards.md), and [labs](labs/) cover the same pair.
+Using fact graphs to inform workers and verify their outputs. This part shows how to scope subgraphs and check claims mechanically.
+
+## What You'll Learn
+
+Put the fact graph to work:
+
+- Scoping task-sized subgraphs instead of dumping everything
+- Verifying claims against real edges, not confidence scores
+- Building grounded checkers that decompose claims
+
+## Contents
+
+1. **[Step 9](09-subgraphs-give-a-worker-a-slice-not-the-graph.md)** — Task-scoped subgraphs instead of full dumps
+2. **[Step 10](10-the-grounded-checker.md)** — Verify claims against real edges
+
+## Diagram
+
+```mermaid
+flowchart TB
+    PREV["Part 3:<br/>Graph of Facts"]
+    
+    S9["Step 9<br/>Subgraphs"]
+    S10["Step 10<br/>Grounded checking"]
+    
+    PREV --> S9 --> S10
+    
+    S10 --> NEXT["Part 5:<br/>Graph of Loops"]
+    
+    style PREV fill:#E2E8F0,color:#000000
+    style S9 fill:#4169E1,color:#FFFFFF
+    style S10 fill:#4169E1,color:#FFFFFF
+    style NEXT fill:#D4AF37,color:#000000
+```text
+
+## Learning Thread
+
+**Prerequisites**: Complete Parts 1-3. You should have a fact graph built and understand extraction, resolution, and provenance.
+
+**What this unlocks**: Scope task-sized subgraphs and verify outputs mechanically instead of trusting tone.
+
+## Practice
+
+- [Quiz](quiz.md) — Assess understanding
+- [Flashcards](flashcards.md) — Review material
+
+## Verify Your Skills
+
+Can you:
+
+- ✓ Scope a subgraph to a specific task boundary
+- ✓ Decompose prose claims into falsifying edges
+- ✓ Build a grounded checker that queries the graph
+- ✓ Explain why checking "sounds right" isn't checking
+
+**Ready?** Continue to [Part 5 - The Graph of Loops](../07-part-5-the-graph-of-loops/)

@@ -1,17 +1,26 @@
 # Prerequisites
 
-This course does not teach you how to run a single agent loop, and it does not teach you how to build a harness around one. It assumes both are already familiar, and it builds forward from there without circling back to re-explain them.
+This course is the natural continuation of **[Loop Engineering](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)**.
 
-Specifically, this course assumes you've already worked through **Loop Engineering** (the vocabulary of heartbeat, spine, and maker/checker) and **Harness Engineering** (the vocabulary of constrain, inform, verify, correct, and escalate). If either of those courses is new to you, going and finishing it properly will serve you far better than anything on this page.
+**You should already be comfortable with:**
+- The loop heartbeat (read → decide → write)
+- The spine — a durable append-only log
+- The maker-checker split — propose + verify
+
+This course does not re-teach single-agent loops. Instead, it takes that foundation and builds forward: **how do multiple loops coordinate safely without corrupting each other's work?**
+
+If either **Loop Engineering** or **Harness Engineering** is new to you, finish those first. They're load-bearing prerequisites — the vocabulary there appears constantly in this course. The primers below are refreshers, not replacements.
 
 ## What's here
 
-- [Loop Engineering primer](loop-engineering-primer.md) — a short recap of the loop vocabulary this course leans on.
-- [Harness Engineering primer](harness-engineering-primer.md) — a short recap of the harness vocabulary this course leans on.
-- [Environment setup](environment-setup.md) — what to install before you touch any of the hands-on material.
+- [Loop Engineering primer](loop-engineering-primer.md) — a quick recap of heartbeat, spine, and maker-checker (the foundation this course builds on)
+- [Harness Engineering primer](harness-engineering-primer.md) — a quick recap of constrain, inform, verify, correct, and escalate
+- [Environment setup](environment-setup.md) — what to install before you touch hands-on material
 
-## What the primers are not
+## How to use the primers
 
-Neither primer is a substitute for the real courses. They exist for one narrow purpose: refreshing your memory if it's been a while, so a half-remembered term doesn't slow you down once the graph material starts introducing new vocabulary on top of it. If a primer raises more questions than it answers, that's a signal to go back to the source course, not to push through anyway.
+**Already comfortable with loops?** Skip straight to [Start Here](../00-start-here/README.md).
 
-Once both prerequisites feel solid, double back to [Start Here](../00-start-here/README.md) if you haven't already, or jump straight into the [glossary page](../02-foundations/glossary.md) to start picking up this course's own terms.
+**Haven't finished Loop Engineering yet?** Read the [Loop Engineering primer](loop-engineering-primer.md) — it's a fast recap. But know that if it raises more questions than it answers, that's your signal to complete the full Loop Engineering course first. Don't push through on a shaky foundation.
+
+**Ready to dive in?** Continue to [Start Here](../00-start-here/README.md) or jump straight into [Foundations](../02-foundations/README.md).

@@ -42,7 +42,7 @@ The `can-overrule` edges have to point in one consistent direction overall. If s
 ## Diagram
 
 ```mermaid
-flowchart TD
+flowchart TB
     D["drafting loop<br/>(brief in, draft out)"]
     R["review loop<br/>(sourcing + style verdict)"]
     E["escalation loop<br/>(money / medicine / law watch)"]
@@ -54,7 +54,12 @@ flowchart TD
     E -- "checks" --> R
     E == "can-overrule" ==> R
     P -. "resolves two stamps by reading<br/>the can-overrule edge, not the clock" .-> E
-```
+
+    style D fill:#4169E1,color:#FFFFFF
+    style R fill:#4169E1,color:#FFFFFF
+    style E fill:#D4AF37,color:#000000
+    style P fill:#0B1325,color:#FFFFFF
+```text
 
 Only the doubled arrow settles anything. Strip it out and the picture still shows three sensible loops passing work between them — which is precisely the state `A-311` was published from. The diagram would look fine, and the system would still have no answer for a node wearing two stamps at once.
 
@@ -82,7 +87,7 @@ description: Decides whether an article ships when two loops have stamped it dif
    governance graph, and the fix is to add the edge deliberately.
 4. Before trusting any answer, confirm the `can-overrule` edges contain
    no cycle. A ring of authority means the graph cannot rank anyone.
-```
+```text
 
 ### OpenCode
 
@@ -99,11 +104,11 @@ leave the article unpublished, and flag the missing edge as something a
 human needs to add on purpose. Reject the whole graph as unusable if its
 authority edges form a ring -- a cyclic ranking cannot resolve anything.
 Recency is never a tiebreak here.
-```
+```text
 
 ## Going Deeper
 
-It's tempting, once the governance graph exists, to fill it in completely — every loop related to every other, authority ranked top to bottom before anything has gone wrong. That instinct produces a governance layer larger than the system it governs, full of edges nobody can justify and nobody will maintain. The more durable habit: add a governance edge when a specific real incident has shown you which one was missing. `A-311` publishing itself is what earned `escalation can-overrule review` its place — until that Tuesday, the edge would have been speculation. This is the same discipline the [build-a-graph method](../methods/) closes with, and it applies with extra force here, because a governance edge is a standing constraint on how the whole system behaves, not just another fact in a store.
+It's tempting, once the governance graph exists, to fill it in completely — every loop related to every other, authority ranked top to bottom before anything has gone wrong. That instinct produces a governance layer larger than the system it governs, full of edges nobody can justify and nobody will maintain. The more durable habit: add a governance edge when a specific real incident has shown you which one was missing. `A-311` publishing itself is what earned `escalation can-overrule review` its place — until that Tuesday, the edge would have been speculation. This is the same discipline the [build-a-graph method](../10-methods/) closes with, and it applies with extra force here, because a governance edge is a standing constraint on how the whole system behaves, not just another fact in a store.
 
 ## Check Yourself
 

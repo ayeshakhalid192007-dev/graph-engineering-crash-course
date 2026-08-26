@@ -63,7 +63,7 @@ c1 and c4 report the exact same finding about the exact same hive — that's the
     { "from": "c1", "to": "c4" }
   ]
 }
-```
+```text
 
 ## Why c1 wasn't edited
 

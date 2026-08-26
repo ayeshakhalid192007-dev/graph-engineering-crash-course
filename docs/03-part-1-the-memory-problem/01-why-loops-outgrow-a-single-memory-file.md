@@ -33,10 +33,24 @@ Neither failure is a bug in the agents. Both behaved reasonably given what they 
 ## Diagram
 
 ```mermaid
-flowchart LR
-    RS["Reviewer-Security<br/>(writer)"] -- "1: reads empty file<br/>3: writes verdict + caveat" --> F[("review-notes.md")]
-    RL["Reviewer-Logic<br/>(writer)"] -- "2: reads empty file<br/>4: writes verdict only<br/>(overwrites step 3)" --> F
-```
+flowchart TB
+    subgraph "Race Condition"
+        RS["Reviewer-Security"]
+        RL["Reviewer-Logic"]
+        F["review-notes.md"]
+
+        RS -- "1. reads (empty)" --> F
+        RL -- "2. reads (empty)" --> F
+        RS -- "3. writes: verdict + caveat" --> F
+        RL -- "4. writes: verdict only<br/>(overwrites)" --> F
+    end
+
+    style F fill:#4169E1,color:#FFFFFF
+    style RS fill:#0B1325,color:#FFFFFF
+    style RL fill:#0B1325,color:#FFFFFF
+```text
+
+Both reviewers race to the same file. The edge labels show the real order: both reads land before either write, so neither write accounts for the other. Whoever writes last wins. See it happen yourself: `labs/step-1-two-writers-one-file.sh` reproduces this exact race and shows the caveat vanish.
 
 Both reviewers race to the same file. The edge labels show the real order: both reads land before either write, so neither write accounts for the other. Whoever writes last wins. See it happen yourself: `labs/step-1-two-writers-one-file.sh` reproduces this exact race and shows the caveat vanish.
 
@@ -59,7 +73,7 @@ description: Appends this reviewer's verdict to the shared review notes file.
    reviewer's own analysis of the diff.
 3. Append the verdict as a new line, then write the whole file back to
    `review-notes.md`.
-```
+```text
 
 Nothing between step 1 and step 3 checks for another writer. Two parallel runs — one per reviewer — each read, decide, write, with no idea the other exists.
 
@@ -75,7 +89,7 @@ description: Append this reviewer's verdict to review-notes.md
 Read the current contents of review-notes.md, form a verdict for this
 reviewer's assigned concern, append it as a new bullet, and write the
 updated file back to disk. Do not wait on or check for any other writer.
-```
+```text
 
 Run one of these per reviewer, in parallel, on the same file, and you get the same collision — no matter which tool ran it. The failure is in the plan, not the tool.
 
@@ -116,4 +130,4 @@ This Step's key term, **thin-memory trick**, is defined in the [glossary](../02-
 
 ---
 
-Next: [Step 2 · Graphs in Plain Terms](step-2-graphs-in-plain-terms.md)
+Next: [Step 2 · Graphs in Plain Terms](02-graphs-in-plain-terms.md)

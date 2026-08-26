@@ -1,9 +1,64 @@
 # Part 5 — The Graph of Loops
 
-Connecting several loops through a shared governance layer, naming how a lone loop quietly goes wrong, and locking down what shouldn't move.
+![The Loop is the Node. The Graph is the Wiring.](../assets/loop-is-node-graph-is-wiring.png)
 
-- **Step 11** — a governance graph that lets loops see each other's state
-- **Step 12** — recurring failure patterns and how to spot each one
-- **Step 13** — freezing nodes that must not drift once they're settled
+---
 
-See the [17-step roadmap](../README.md) for direct links to all three. Reinforce them with the [quiz](quiz.md), the [flashcards](flashcards.md), or the runnable [labs](labs/).
+Governing multiple loops and preventing common failure patterns. This part introduces governance graphs and the four ways lone loops fail.
+
+## What You'll Learn
+
+Connect loops safely and prevent predictable failures:
+
+- Building governance graphs that wire loops together
+- Recognizing and fixing the four failure modes
+- Using anchors and frozen nodes to prevent drift
+
+## Contents
+
+1. **[Step 11](11-wiring-loops-together.md)** — Governance graphs for multi-loop systems
+2. **[Step 12](12-four-ways-a-lone-loop-fails-itself.md)** — Four failure modes and their fixes
+3. **[Step 13](13-anchors-and-frozen-nodes.md)** — Preventing drift with anchors
+
+## Diagram
+
+```mermaid
+flowchart TB
+    PREV["Part 4:<br/>Working from Graph"]
+    
+    S11["Step 11<br/>Governance graphs"]
+    S12["Step 12<br/>Four failures"]
+    S13["Step 13<br/>Anchors & frozen"]
+    
+    PREV --> S11 --> S12 --> S13
+    
+    S13 --> NEXT["Part 6:<br/>One Graph End to End"]
+    
+    style PREV fill:#E2E8F0,color:#000000
+    style S11 fill:#4169E1,color:#FFFFFF
+    style S12 fill:#4169E1,color:#FFFFFF
+    style S13 fill:#4169E1,color:#FFFFFF
+    style NEXT fill:#D4AF37,color:#000000
+```text
+
+## Learning Thread
+
+**Prerequisites**: Complete Parts 1-4. You should understand both work-history and fact graphs, and how to use them.
+
+**What this unlocks**: Wire multiple loops safely, spot when a lone loop is gaming metrics or drifting, and apply the right governance fix.
+
+## Practice
+
+- [Quiz](quiz.md) — Validate understanding  
+- [Flashcards](flashcards.md) — Study material
+
+## Verify Your Skills
+
+Can you:
+
+- ✓ Wire loops together using a governance graph
+- ✓ Identify metric-gaming, blind spots, collisions, and drift
+- ✓ Choose the right repair for each failure mode
+- ✓ Use anchors to detect when loops seal themselves off
+
+**Ready?** Continue to [Part 6 - One Graph End to End](../08-part-6-one-graph-end-to-end/)

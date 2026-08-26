@@ -61,24 +61,37 @@ This is **[drift](../02-foundations/glossary.md#drift)**, and it's not a defect 
 ## Diagram
 
 ```mermaid
-flowchart LR
-    subgraph Failures["how a lone loop fails"]
+flowchart TB
+    subgraph "Four Failure Modes"
+        direction LR
         F1["metric-gaming<br/>chases the number,<br/>not the goal"]
         F2["blind spot<br/>defect lives outside<br/>its field of view"]
         F3["collision<br/>two right loops,<br/>one resource"]
         F4["drift<br/>the target moved,<br/>the loop did not"]
     end
-    subgraph Repairs["the edge that repairs it"]
+
+    subgraph "Four Governance Repairs"
+        direction LR
         R1["counter-metric<br/>scored elsewhere,<br/>hidden from the loop"]
         R2["audit loop<br/>reads many units<br/>in one pass"]
         R3["arbitration edge<br/>precedence recorded<br/>outside both loops"]
         R4["periodic human edge<br/>reference set rebuilt<br/>from current reality"]
     end
+
     F1 --> R1
     F2 --> R2
     F3 --> R3
     F4 --> R4
-```
+
+    style F1 fill:#E2E8F0,color:#000000
+    style F2 fill:#E2E8F0,color:#000000
+    style F3 fill:#E2E8F0,color:#000000
+    style F4 fill:#E2E8F0,color:#000000
+    style R1 fill:#4169E1,color:#FFFFFF
+    style R2 fill:#4169E1,color:#FFFFFF
+    style R3 fill:#4169E1,color:#FFFFFF
+    style R4 fill:#4169E1,color:#FFFFFF
+```text
 
 Read the arrows as "is repaired by," and notice that every repair sits outside the failing loop. None of the four right-hand boxes is a change to the loop on its left.
 
@@ -112,7 +125,7 @@ writes, and the number it is judged on -- answer these four in order.
 
 Do not propose making the loop itself smarter as the answer to any of
 the four. Every fix is an edge outside the loop.
-```
+```text
 
 ### OpenCode
 
@@ -132,7 +145,7 @@ rule. Drift: state the frozen assumption about what good means and the
 recurring human sample that refreshes it. Every recommendation must be an
 addition to the surrounding structure. "Improve the loop" is not an
 acceptable answer to any of the four.
-```
+```text
 
 ## Going Deeper
 
@@ -145,7 +158,7 @@ The diagnostic question that separates them is short: could this loop, given eve
 - Collision: no, because the other loop is invisible to it.
 - Drift: no, because the yardstick itself moved.
 
-Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../operating/).
+Four different reasons for the same "no," and each one points at a different edge. The compact version of this list, meant for looking up rather than learning from, is in the [operating reference](../11-operating/).
 
 ## Check Yourself
 

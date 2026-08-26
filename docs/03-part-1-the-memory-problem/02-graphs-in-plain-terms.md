@@ -42,10 +42,32 @@ Direction does real work here, not decoration. `AuthMiddleware --depends_on--> S
 ## Diagram
 
 ```mermaid
-flowchart LR
-    A["AuthMiddleware"] -- "depends_on" --> B["SessionStore"]
-    C["RateLimiter"]
-```
+flowchart TB
+    subgraph "Graph Structure"
+        direction LR
+        A["AuthMiddleware"]
+        B["SessionStore"]
+        C["RateLimiter"]
+
+        A -- "depends_on" --> B
+
+        style A fill:#4169E1,color:#FFFFFF
+        style B fill:#4169E1,color:#FFFFFF
+        style C fill:#E2E8F0,color:#000000
+    end
+
+    subgraph "Key Ideas"
+        direction TB
+        I1["Node: one thing tracked"]
+        I2["Edge: directed + labeled"]
+        I3["Silence: no edge = no assertion"]
+
+        I1 --> I2 --> I3
+        style I1 fill:#D4AF37,color:#000000
+        style I2 fill:#D4AF37,color:#000000
+        style I3 fill:#D4AF37,color:#000000
+    end
+```text
 
 Three nodes, one directed edge. `RateLimiter` is part of the same service, but no edge connects it to anything yet — nobody has asserted a relationship for it. That's a legitimate state, not a sign the graph is wrong. See `labs/step-2-label-the-arrow.py` for this structure built as a plain adjacency dictionary, with a check that the two directions of an edge are never treated as the same claim.
 
@@ -68,13 +90,13 @@ single JSON object with three fields: `from` (the node the edge starts at),
 `label` (a specific verb phrase for the relationship, not a vague word like
 "related"), and `to` (the node the edge points to). Do not output a second
 edge unless the sentence clearly describes more than one relationship.
-```
+```text
 
 Feeding it "the auth middleware depends on the session store" should produce:
 
 ```json
 { "from": "AuthMiddleware", "label": "depends_on", "to": "SessionStore" }
-```
+```text
 
 ### OpenCode
 
@@ -90,7 +112,7 @@ the direction the relationship runs. Respond with JSON: {"from": ..., "label":
 ..., "to": ...}. The label must be specific enough that someone could check
 whether it's true — reject vague labels like "related_to" or "connected_to"
 and pick a verb that names the actual relationship instead.
-```
+```text
 
 Both prompts refuse the same shortcut on purpose: a label like "related_to" would technically satisfy "output a label," but it throws away exactly the specificity that makes an edge worth having over a sentence.
 

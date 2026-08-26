@@ -40,7 +40,7 @@ A correspondence asserts: *this node in graph A and this node in graph B refer t
   "scope": "identity-only",
   "reversible": true
 }
-```
+```text
 
 Four properties make this work, and dropping any one of them turns federation back into an undocumented merge:
 
@@ -75,7 +75,7 @@ What it should return is both, attributed:
   "correspondence": "corr-0041",
   "reconciled": false
 }
-```
+```text
 
 `"reconciled": false` is the load-bearing field. It says the federation layer noticed the disagreement and deliberately declined to settle it — which is what [`conflict-aware-bundle`](../../starters/conflict-aware-bundle/) does within one graph, applied here across two. Settling it is a clinical decision, and the federation layer has no standing to make it.
 
@@ -112,7 +112,7 @@ flowchart LR
     CORR -.->|"asserts identity"| TI
     FM ==>|"READ traverses"| TI
     TI -. "WRITE blocked" .-x FM
-```
+```text
 
 The dotted correspondence links point *into* the middle artifact from both sides — neither graph contains it. The heavy arrow is a federated read. The blocked arrow is the rule that keeps each graph's provenance guarantee intact.
 
@@ -148,7 +148,7 @@ tools: [Read]
 7. Do not follow a correspondence chain. If the counterpart node itself has
    a correspondence onward to a third graph, stop and report that a further
    hop exists but was not taken.
-```
+```text
 
 ### OpenCode
 
@@ -180,7 +180,7 @@ anything a conflict at all — two different refresh dates often explain it.
 
 Stop after one hop. If the counterpart has its own onward correspondence,
 note that it exists and that you did not follow it.
-```
+```text
 
 ## Going Deeper
 

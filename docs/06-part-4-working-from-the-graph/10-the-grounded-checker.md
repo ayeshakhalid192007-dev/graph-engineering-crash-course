@@ -1,5 +1,9 @@
 # Step 10 · The Grounded Checker
 
+![The Grounded Checker](../assets/the-grounded-checker.png)
+
+---
+
 ## Hook
 
 `PR-5190` lands with a description that reads well: *"Refactors the login form's client-side validation. No backend changes, doesn't touch auth."* It's a five-hundred-line diff, mostly HTML and CSS tweaks — confident, specific, exactly how a reviewer wants a description to sound.
@@ -43,13 +47,32 @@ A grounded checker is only as trustworthy as the edges it's checking against. As
 ## Diagram
 
 ```mermaid
-flowchart LR
-    Claim["Claim: PR-5190 does not<br/>modify auth-module"] --> Decomp["Decompose into the<br/>falsifying edge:<br/>PR-5190 --modifies--> auth-module"]
-    Decomp --> Query{"Edge present<br/>in the graph?"}
-    Graph[("Repo graph<br/>(built by extraction<br/>over diffs)")] -.-> Query
-    Query -- "yes, edge exists" --> Reject["Claim REJECTED --<br/>PR-5190 does touch auth-module"]
-    Query -- "no, edge absent" --> Confirm["Claim CONFIRMED --<br/>e.g. PR-4821, no such edge"]
-```
+flowchart TB
+    subgraph "The Claim"
+        Claim["Claim: PR-5190 does not<br/>modify auth-module"]
+    end
+
+    subgraph "Decomposition"
+        Claim --> Decomp["Decompose into<br/>falsifying edge:<br/>PR-5190 --modifies--> auth-module"]
+    end
+
+    subgraph "Graph Query"
+        Decomp --> Query{"Edge present<br/>in the graph?"}
+        Graph[("Repo graph<br/>(built by extraction)")]
+        Graph -.-> Query
+    end
+
+    subgraph "Result"
+        Query -- "yes, exists" --> Reject["REJECTED<br/>PR-5190 does touch auth"]
+        Query -- "no, absent" --> Confirm["CONFIRMED<br/>claim holds"]
+    end
+
+    style Claim fill:#E2E8F0,color:#000000
+    style Decomp fill:#4169E1,color:#FFFFFF
+    style Query fill:#D4AF37,color:#000000
+    style Reject fill:#0B1325,color:#FFFFFF
+    style Confirm fill:#0B1325,color:#FFFFFF
+```text
 
 The checker never reads either PR's description. It decomposes the claim into one falsifying edge, asks the graph whether that edge exists, and reports whatever the graph actually says — which is why the same procedure correctly confirms `PR-4821`'s claim and rejects `PR-5190`'s, using nothing but the presence or absence of one edge each time.
 
@@ -75,7 +98,7 @@ description: Verifies a PR's "doesn't touch X" claim by checking the graph for t
 3. If the edge exists, reject the claim and name the edge that falsifies
    it. If the edge is absent, confirm the claim. State which of the two
    happened and why -- never "looks fine" without naming the edge checked.
-```
+```text
 
 ### OpenCode
 
@@ -91,7 +114,7 @@ diff, not from reading prose. If the edge is present, reject the claim
 and cite the edge. If it's absent, confirm the claim. Never substitute a
 read of the PR description for the graph lookup, and never report a
 result without naming the specific edge the decision rested on.
-```
+```text
 
 ## Going Deeper
 

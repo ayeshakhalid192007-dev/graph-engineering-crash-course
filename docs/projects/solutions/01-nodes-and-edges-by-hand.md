@@ -20,7 +20,7 @@ This walks through one way to complete [Project 1](../01-nodes-and-edges-by-hand
     { "from": "book-1", "label": "written_by", "to": "author-1" }
   ]
 }
-```
+```text
 
 ## Why it's shaped this way
 

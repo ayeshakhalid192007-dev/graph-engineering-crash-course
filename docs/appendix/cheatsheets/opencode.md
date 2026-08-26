@@ -38,7 +38,7 @@ Unlike Claude Code, path alone is not enough here. A skill has to be declared in
     ]
   }
 }
-```
+```text
 
 | Field | Notes |
 | --- | --- |
@@ -55,7 +55,7 @@ name: extract-facts
 description: OpenCode equivalent of the Claude Code extract-facts skill and graph-verifier agent — extracts and verifies Service/Incident/Cause facts from an incident report against a fixed schema
 context: pattern-implementation
 ---
-```
+```text
 
 `context` replaces Claude Code's `model`/`temperature`/`tools` trio. There is no per-skill tool allowlist, which is worth knowing when you port a verifier: the read-only guarantee you get from `tools: [Read]` in Claude Code has no direct equivalent here, and has to be carried by the skill's instructions instead.
 

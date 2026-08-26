@@ -41,7 +41,7 @@ The full routing graph, `helpdesk-graph.json`:
     { "id": "cl3", "ticket": "T-502", "source": "triage-bot", "diagnosis": "firmware update corrupted the boot partition" }
   ]
 }
-```
+```text
 
 `cl1` implicates Identity-Access, the team T-501 is currently routed to. `cl2` implicates Network-Ops instead, a team T-501 isn't routed to at all — and the two claims were never reconciled.
 

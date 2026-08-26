@@ -44,16 +44,30 @@ A schema that accepts everything offered to it isn't a schema. It's a suggestion
 ## Diagram
 
 ```mermaid
-flowchart LR
-    Doc[("PM-2117<br/>postmortem, raw prose")] --> Pass["Extraction pass"]
-    Sch["Schema<br/>entities: Service, Incident, Cause<br/>relationships: caused-by, affected"] -. "constrains" .-> Pass
-    Pass --> Ok1["PM-2117 --caused-by--><br/>expired internal CA cert"]
-    Pass --> Ok2["PM-2117 --affected--><br/>checkout-api"]
-    Pass --> Bad["PM-2117 --escalated-to--><br/>on-call rotation<br/>(rejected: not on the schema)"]
-    Ok1 --> Graph[("Fact graph")]
-    Ok2 --> Graph
-    Bad -. "never enters" .-> Graph
-```
+flowchart TB
+    subgraph "Input"
+        Doc[("PM-2117<br/>postmortem, raw prose")]
+        Sch["Schema<br/>entities: Service, Incident, Cause<br/>relationships: caused-by, affected"]
+    end
+
+    subgraph "Extraction Pass"
+        Doc --> Pass["Extraction"]
+        Sch -. "constrains" .-> Pass
+        Pass --> Ok1["PM-2117 --caused-by--><br/>expired internal CA cert"]
+        Pass --> Ok2["PM-2117 --affected--><br/>checkout-api"]
+        Pass --> Bad["PM-2117 --escalated-to--><br/>on-call rotation<br/>(rejected: not on schema)"]
+    end
+
+    subgraph "Output"
+        Graph[("Fact graph")]
+        Ok1 --> Graph
+        Ok2 --> Graph
+        Bad -. "never enters" .-> Graph
+    end
+
+    style Pass fill:#4169E1,color:#FFFFFF
+    style Graph fill:#D4AF37,color:#000000
+```text
 
 Two items pass through because their entity types and relationship type are on the allowed list. The third is built from the same document and reads just as plausibly as the other two, but `escalated-to` and a `Team` entity were never defined in the schema — so it's discarded at the gate, not admitted and reshaped to fit.
 
@@ -78,7 +92,7 @@ description: Extracts Service/Incident/Cause facts from a postmortem doc against
 3. Check every item against the schema from step 1. Keep only items whose
    subject_type, relation, and object_type all appear on the allowed
    lists. Report every dropped item and which part of it failed the check.
-```
+```text
 
 ### OpenCode
 
@@ -95,7 +109,7 @@ drop any item whose subject_type, relation, or object_type is not one of
 the four allowed values above, and say what was dropped and why. Never
 invent a fifth entity type or a third relationship type to fit something
 the document mentions.
-```
+```text
 
 ## Going Deeper
 

@@ -42,22 +42,32 @@ That's not resolution in [Part 3](../05-part-3-the-graph-of-facts/)'s sense — 
 
 ```mermaid
 flowchart TB
-    subgraph Full["Full codebase graph (thousands of nodes)"]
-        direction LR
+    direction LR
+    subgraph "Full Graph"
         GM["generate_manifest"] --> RSZ["resolve_shipping_zone"]
         RSZ --> LPC["lookup_postal_code"]
         RSZ --> NW["nearest_warehouse"]
-        RSZ -. claims .-> CA["Claim (docstring):<br/>defaults unmatched codes<br/>to nearest warehouse"]
-        RSZ -. claims .-> CB["Claim (test suite):<br/>raises an error on<br/>unmatched codes"]
-        CA -. contradicts .-> CB
+        RSZ -. "claims" .-> CA["Claim (docstring):<br/>defaults to nearest"]
+        RSZ -. "claims" .-> CB["Claim (test suite):<br/>raises error"]
+        CA -. "contradicts" .-> CB
         VA["validate_address"] --> CR["calculate_rate"]
         CR --> AD["apply_discount_code"]
         FL["format_label"] --> LS["log_shipment"]
         LS --> NC["notify_customer"]
-        RQ["retry_queue"] --> AT["audit_trail"]
     end
-    Full -. "task: fix resolve_shipping_zone" .-> Sub["Task-scoped subgraph<br/>(depth 1 + both claims,<br/>contradiction intact)"]
-```
+
+    Full -. "task: fix resolve_shipping_zone" .-> Sub
+
+    subgraph "Task-Scoped Subgraph"
+        direction TB
+        RSZ
+        LPC & NW & CA & CB --> RSZ
+        CA -. "contradicts" .-> CB
+        style RSZ fill:#4169E1,color:#FFFFFF
+        style CA fill:#D4AF37,color:#000000
+        style CB fill:#D4AF37,color:#000000
+    end
+```text
 
 The right-hand slice keeps `resolve_shipping_zone`, its direct callers and callees, and both disputing claim nodes with the `contradicts` edge between them. Everything reachable only through `validate_address`, `format_label`, or `retry_queue` never crosses into the worker's context — it isn't wrong to exist, it's just not what this task needs.
 
@@ -84,7 +94,7 @@ description: Builds a depth-1 subgraph around a target function for one task, ke
    attached claims as one bounded subgraph. State the node count of the
    subgraph next to the node count of the full graph, so it's visible
    how much was left out.
-```
+```text
 
 ### OpenCode
 
@@ -101,7 +111,7 @@ claims by silently dropping one -- keep both, and keep any `contradicts`
 edge linking them, inside the returned subgraph. Report the subgraph's
 node count against the full graph's node count so the scope reduction is
 explicit, not just assumed.
-```
+```text
 
 ## Going Deeper
 

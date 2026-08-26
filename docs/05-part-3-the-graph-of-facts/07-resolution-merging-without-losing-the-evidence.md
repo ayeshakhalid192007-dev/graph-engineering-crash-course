@@ -38,11 +38,24 @@ Querying for `billing-svc` now correctly surfaces the retro's incident, because 
 ## Diagram
 
 ```mermaid
-flowchart LR
-    M1["Mention: 'the payments service'<br/>source: incident retro"] -- "mentioned_as" --> Svc["Service (canonical)<br/>billing-svc"]
-    M2["Mention: 'billing-svc'<br/>source: deploy log"] -- "mentioned_as" --> Svc
-    Svc -. "merge reasoning:<br/>same deployment target,<br/>same on-call rotation" .-> Rec["Merge record<br/>(reversible)"]
-```
+flowchart TB
+    subgraph "Original Mentions"
+        M1["Mention: 'the payments service'<br/>source: incident retro"]
+        M2["Mention: 'billing-svc'<br/>source: deploy log"]
+    end
+
+    subgraph "Resolved Node"
+        Svc["Service (canonical)<br/>billing-svc"]
+        M1 -- "mentioned_as" --> Svc
+        M2 -- "mentioned_as" --> Svc
+        Svc -. "merge record:<br/>same deployment target,<br/>same on-call rotation" .-> Rec["Reversible merge<br/>record"]
+    end
+
+    style Svc fill:#4169E1,color:#FFFFFF
+    style Rec fill:#D4AF37,color:#000000
+```text
+
+Both mentions still exist as their own nodes, each pointing at the merged `Service` node through a `mentioned_as` edge that names its own source. Nothing about folding them together required deleting either one — the merge record hanging off to the side is what makes the decision itself inspectable, and reversible, instead of a name swap nobody can trace back.
 
 Both mentions still exist as their own nodes, each pointing at the merged `Service` node through a `mentioned_as` edge that names its own source. Nothing about folding them together required deleting either one — the merge record hanging off to the side is what makes the decision itself inspectable, and reversible, instead of a name swap nobody can trace back.
 
@@ -69,7 +82,7 @@ description: Merges two Service mentions into one canonical node only if it can 
    delete either mention node.
 3. If they're not the same, or the evidence is too thin to be sure, leave
    both nodes unmerged and say so explicitly rather than guessing.
-```
+```text
 
 ### OpenCode
 
@@ -86,7 +99,7 @@ mentioned_as edge from each to one canonical node, and record the reason
 for the merge on that canonical node so it can be checked or reversed
 later. If the evidence is too thin, leave both nodes separate and report
 that the merge was skipped and why.
-```
+```text
 
 ## Going Deeper
 

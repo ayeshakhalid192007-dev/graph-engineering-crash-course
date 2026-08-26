@@ -49,26 +49,37 @@ The alternative isn't waiting for a disaster before wiring in anything at all. I
 ## Diagram
 
 ```mermaid
-flowchart TD
-    NEW["New loop ships,<br/>bare, no governance edges"]
+flowchart TB
+    NEW["New loop ships<br/>bare, no governance"]
     WATCH["Watch it run"]
-    FAIL{"Has one of the four<br/>failure modes actually<br/>shown up yet?"}
-    GAME["Metric-gaming observed"]
-    BLIND["Blind spot observed"]
-    COLL["Collision observed"]
-    DRIFTQ["Drift observed"]
-    CM["Add a counter-metric"]
-    AL["Add an audit loop"]
-    AE["Add an arbitration edge"]
-    AF["Add an anchor +<br/>frozen node"]
+    FAIL{"Has a failure mode<br/>actually shown up?"}
+    
+    GAME["Metric-gaming<br/>observed"]
+    BLIND["Blind spot<br/>observed"]
+    COLL["Collision<br/>observed"]
+    DRIFTQ["Drift<br/>observed"]
+    
+    CM["Add counter-metric"]
+    AL["Add audit loop"]
+    AE["Add arbitration edge"]
+    AF["Add anchor +<br/>frozen node"]
 
     NEW --> WATCH --> FAIL
     FAIL -- "not yet" --> WATCH
-    FAIL -- "metric-gaming" --> GAME --> CM
-    FAIL -- "blind spot" --> BLIND --> AL
-    FAIL -- "collision" --> COLL --> AE
-    FAIL -- "drift" --> DRIFTQ --> AF
-```
+    FAIL -- "yes" --> GAME & BLIND & COLL & DRIFTQ
+    GAME --> CM
+    BLIND --> AL
+    COLL --> AE
+    DRIFTQ --> AF
+
+    style NEW fill:#4169E1,color:#FFFFFF
+    style WATCH fill:#E2E8F0,color:#000000
+    style FAIL fill:#D4AF37,color:#000000
+    style CM fill:#0B1325,color:#FFFFFF
+    style AL fill:#0B1325,color:#FFFFFF
+    style AE fill:#0B1325,color:#FFFFFF
+    style AF fill:#0B1325,color:#FFFFFF
+```text
 
 Every arrow into a fix starts from an observed failure, not from the loop shipping. A fix added before its matching box on the left has fired is spending complexity budget on evidence that doesn't exist yet.
 
@@ -100,7 +111,7 @@ description: Reviews proposed governance edges against a loop's real incident hi
 4. Do not recommend removing a flagged edge automatically. Recommend
    recording explicitly that it's unproven, and revisiting once real
    evidence exists either way.
-```
+```text
 
 ### OpenCode
 
@@ -119,7 +130,7 @@ triage, or change-review friction it's already imposing regardless of
 whether it has ever caught anything. Don't recommend ripping out a
 flagged edge on the spot -- recommend marking it explicitly unproven
 and setting a real trigger for revisiting it.
-```
+```text
 
 ## Going Deeper
 

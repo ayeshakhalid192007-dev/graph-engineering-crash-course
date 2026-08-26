@@ -19,3 +19,31 @@ A solo hiker keeping a trail journal writes whatever she wants, in whatever orde
 A search-and-rescue team coordinating a missing-person search cannot work that way. Someone maintains a board where each searched area is a distinct, labeled entry, connected to who searched it, when, and what they found — not a diary entry, but a specific claim: *this exact section, cleared, by this team, at this time.* That's the difference a graph's structure buys you over a shared pile of notes: not just that many people can write to it, but that what each contribution means is precise enough for someone else to act on without re-asking the person who wrote it.
 
 Hold both pictures loosely as you go — the expo rail for why structure lets several writers share one surface safely, the incident board for why a labeled claim is worth more than a loose note. The formal vocabulary in the rest of this course is mostly just names for pieces you've already met in these two scenes.
+
+## Diagram
+
+```mermaid
+flowchart TB
+    subgraph "Solo Writer" 
+        SW["Single hiker's trail journal"]
+        SW-. Personal record .-> "One person writes and reads"
+    end
+    
+    subgraph "Team Shared Memory"
+        TS["Search team's incident board"]
+        T1["Ticket 1: Area A searched"]
+        T2["Ticket 2: Area B searched"]
+        T3["Ticket 3: Area C searched"]
+        T1 -- "searched by" --> Team1["Team Alpha"]
+        T2 -- "searched by" --> Team2["Team Beta"]
+        T3 -- "searched by" --> Team3["Team Gamma"]
+        Team1 & Team2 & Team3 -- "share same board" --> TS
+    end
+    
+    style TS fill:#4169E1,color:#FFFFFF
+    style Team1 fill:#0B1325,color:#FFFFFF
+    style Team2 fill:#0B1325,color:#FFFFFF
+    style Team3 fill:#0B1325,color:#FFFFFF
+```text
+
+The solo writer keeps a personal record where one person controls both reading and writing. The shared team board forces structure — each ticket is pinned in a specific place, tied to a specific team, with clear status. A graph is the shared team board for software teams and autonomous agents: it keeps many writers from stepping on each other by scoping what each can touch and labeling what each contribution means.

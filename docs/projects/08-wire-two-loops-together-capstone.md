@@ -30,7 +30,7 @@ The route-status record both loops write to, before either write lands, `route-1
   "on_time_window_minutes": 2,
   "records": []
 }
-```
+```text
 
 The two competing writes:
 

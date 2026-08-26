@@ -1,5 +1,9 @@
 # Step 14 · Six Honest Questions Before You Build
 
+![Choosing a Level: The Graph is the Eighth Run, Not the First](../assets/choosing-a-level.png)
+
+---
+
 ## Hook
 
 Bramble & Co. is three people — a designer, a developer, a part-time bookkeeper. A new operations hire comes back from a conference talking about knowledge graphs, and pitches putting one in front of everything the studio touches.
@@ -62,7 +66,7 @@ flowchart TD
     Q5 -- "yes" --> Q6
     Q6 -- "slow, table keeps up" --> SKIP
     Q6 -- "fast, table goes stale" --> BUILD
-```
+```text
 
 Any single "skip it" answer ends the checklist for that candidate — a graph isn't the tiebreaker for five yeses and one no, because the one no is telling you exactly where the cost stops being worth paying.
 
@@ -96,7 +100,7 @@ description: Runs a described situation through six honest questions and reports
 3. Report "build a graph" only if every question points that way.
    Otherwise report "skip it" and name the specific question that ended
    the check -- never just "no" without saying which one.
-```
+```text
 
 ### OpenCode
 
@@ -115,7 +119,7 @@ someone could keep a table current by hand. Only recommend building a
 graph if all six point that direction -- and whenever the answer is
 "skip it," name the exact question that decided it instead of returning
 a bare no.
-```
+```text
 
 ## Going Deeper
 

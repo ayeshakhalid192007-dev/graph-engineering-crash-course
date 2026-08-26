@@ -79,7 +79,7 @@ flowchart TB
     D4 -- "Yes" --> PG["postgres-backed-graph"]
     D4 -- "No, pure traversal" --> NEO["neo4j-at-scale"]
     CAP -.-> D3
-```
+```text
 
 Three of the five terminal states never leave SQLite. That ratio is the point of the diagram: most graphs that feel like they have outgrown their store have outgrown their *query*.
 
@@ -113,7 +113,7 @@ tools: [Read, Bash]
    workload also joins non-graph tables, Neo4j if it is pure traversal.
 6. Never cite total node or edge count as a reason to migrate. If asked to,
    refuse and restate the finding from step 3.
-```
+```text
 
 ### OpenCode
 
@@ -140,7 +140,7 @@ its exclusions" — not "migrate". Recommend a store only when chains are
 still being cut short at every acceptable latency, and name which store
 and why. Row counts are never a reason on their own; if the caller offers
 one as justification, say that it isn't one.
-```
+```text
 
 ## Going Deeper
 

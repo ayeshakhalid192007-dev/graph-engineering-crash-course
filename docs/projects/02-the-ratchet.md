@@ -34,7 +34,7 @@ Scoring formula for a candidate, given weights `(w_genre, w_recency, w_skip)`:
 
 ```text
 score = w_genre * genre_match + w_recency * (1 / (1 + recency_days)) - w_skip * skip_rate
-```
+```text
 
 For each session, the formula's "prediction" is whichever candidate scores higher. **Accuracy** for one set of weights is the fraction of the five sessions where the prediction matches who the listener actually chose.
 

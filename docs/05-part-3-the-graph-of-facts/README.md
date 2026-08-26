@@ -1,9 +1,64 @@
 # Part 3 — The Graph of Facts
 
-Building the second graph: pulling claims out of raw material, merging duplicates honestly, and keeping a receipt for every one.
+![From Documents to Graph: Four Stages](../assets/documents-to-graph-four-stages.png)
 
-- **Step 6** — pulling structured claims out before summarizing in prose
-- **Step 7** — merging mentions of the same thing without discarding either source
-- **Step 8** — attaching an origin to every claim so it can be traced back
+---
 
-All three pages are indexed in the [course-wide roadmap](../README.md). A [quiz](quiz.md) and a [flashcards](flashcards.md) deck cover this Part, and the scripts in [labs](labs/) let you run each extraction step yourself.
+Building a fact graph from extraction to provenance. This part covers schema-first extraction, reversible merging, and tracking claim sources.
+
+## What You'll Learn
+
+Build a fact graph that maintains trust and traceability:
+
+- Schema-first extraction from unstructured sources
+- Merging duplicates without losing evidence
+- Attaching provenance to every claim
+
+## Contents
+
+1. **[Step 6](06-extraction-schema-first-prose-second.md)** — Schema-first extraction
+2. **[Step 7](07-resolution-merging-without-losing-the-evidence.md)** — Reversible merging
+3. **[Step 8](08-provenance-every-claim-keeps-a-receipt.md)** — Tracking claim sources
+
+## Diagram
+
+```mermaid
+flowchart TB
+    PREV["Part 2:<br/>DAG of Work"]
+    
+    S6["Step 6<br/>Extraction"]
+    S7["Step 7<br/>Resolution"]
+    S8["Step 8<br/>Provenance"]
+    
+    PREV --> S6 --> S7 --> S8
+    
+    S8 --> NEXT["Part 4:<br/>Working from Graph"]
+    
+    style PREV fill:#E2E8F0,color:#000000
+    style S6 fill:#4169E1,color:#FFFFFF
+    style S7 fill:#4169E1,color:#FFFFFF
+    style S8 fill:#4169E1,color:#FFFFFF
+    style NEXT fill:#D4AF37,color:#000000
+```text
+
+## Learning Thread
+
+**Prerequisites**: Complete Parts 1-2. You should understand the fact graph's purpose and how it differs from work-history.
+
+**What this unlocks**: Extract structured claims from documents, merge mentions of the same thing, and maintain chain of custody for every fact.
+
+## Practice
+
+- [Quiz](quiz.md) — Verify understanding
+- [Flashcards](flashcards.md) — Review concepts
+
+## Verify Your Skills
+
+Can you:
+
+- ✓ Define a schema before extraction begins
+- ✓ Merge duplicate mentions reversibly
+- ✓ Attach provenance records to every claim
+- ✓ Explain why editing claims in place destroys history
+
+**Ready?** Continue to [Part 4 - Working From the Graph](../06-part-4-working-from-the-graph/)
